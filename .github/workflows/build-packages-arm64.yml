@@ -1,0 +1,103 @@
+name: Build Rockchip Packages (ARM64)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/**'
+      - 'Dockerfile'
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-packages:
+    name: Build Packages on ARM64
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: debian:trixie
+      options: --privileged --platform linux/arm64
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure APT Sources
+        run: |
+          sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources
+          apt-get update -qq
+
+      - name: Install Base Dependencies
+        run: |
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git build-essential devscripts debhelper equivs \
+            ca-certificates rsync meson pkg-config wget \
+            xorg-dev libx11-xcb-dev libxkbcommon-dev libffi-dev \
+            libssl-dev libwayland-dev wayland-protocols \
+            libdrm-dev libgbm-dev libgl-dev libegl-dev \
+            libstdc++6 libxcb-dri2-0-dev libxcb-dri3-dev \
+            libxcb-present-dev libxcb-glx0-dev libxcb-randr0-dev \
+            cmake libxcb-shm0-dev libxcb-sync-dev libvulkan-dev libwayland-bin libwayland-client0
+
+      - name: Execute Build Script
+        run: |
+          chmod +x scripts/build.sh
+          ./scripts/build.sh
+        shell: bash
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rockchip-packages-deb
+          path: output/*.deb
+          if-no-files-found: error
+          retention-days: 7
+
+  publish-repo:
+    name: Publish APT Repository
+    needs: build-packages
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: rockchip-packages-deb
+          path: repo-build
+
+      - name: Setup Repository Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev apt-utils
+
+      - name: Generate Repository Structure
+        run: |
+          mkdir -p public/dists/trixie/main/binary-arm64
+          mkdir -p public/pool/main
+          cp repo-build/*.deb public/pool/main/
+          cd public
+          dpkg-scanpackages --arch arm64 --multiversion pool/main > dists/trixie/main/binary-arm64/Packages
+          gzip -k -f dists/trixie/main/binary-arm64/Packages
+          cd dists/trixie
+          cat << EOF > Release
+          Origin: RockchipPackagesBuilder
+          Label: Rockchip Media Packages Unofficial Repo
+          Suite: trixie
+          Codename: trixie
+          Version: 1.0
+          Architectures: arm64
+          Components: main
+          Description: Compiled Rockchip multimedia packages
+          Date: $(date -R)
+          EOF
+          apt-ftparchive release . >> Release
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true
