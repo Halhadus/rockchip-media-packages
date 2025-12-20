@@ -40,9 +40,9 @@ run_silent() {
 }
 
 prepare_environment() {
-    log_header "Environment Preparation"
     mkdir -p "$WORK_DIR"
     mkdir -p "$OUTPUT_DIR"
+    log_header "Environment Preparation"
     if [ -z "$CI" ]; then
         run_silent "Updating apt sources (adding deb-src)" sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources
         run_silent "Updating package lists" apt-get update -qq
