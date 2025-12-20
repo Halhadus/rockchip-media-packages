@@ -128,9 +128,10 @@ build_ffmpeg() {
     log_success "ffmpeg built successfully."
 }
 
+prepare_environment
+
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
-prepare_environment
 build_v4l_utils
 build_standard_repos
 build_ffmpeg
