@@ -15,8 +15,7 @@ WORK_DIR="$BASE_DIR/build_workspace"
 OUTPUT_DIR="$BASE_DIR/output"
 LOG_FILE="$OUTPUT_DIR/build_firefox_log_$(date +%Y%m%d).txt"
 
-FIREFOX_VERSION="139.0.1"
-DEBIAN_TAG="debian/${FIREFOX_VERSION}-1" 
+FIREFOX_VERSION="139.0.4"
 GECKO_BASE="4c065f1df299065c305fb48b36cdae571a43d97c"
 GECKO_BRANCH="mpp-release"
 PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_BASE}...${GECKO_BRANCH}.patch"
@@ -73,7 +72,7 @@ build_firefox_mpp() {
             git clone https://salsa.debian.org/mozilla-team/firefox.git firefox
     fi
     cd firefox
-    run_silent "Checking out tag: $DEBIAN_TAG" git checkout -f "$DEBIAN_TAG"
+    run_silent "Checking out tag: $FIREFOX_VERSION" git checkout -f "$FIREFOX_VERSION"
     log_header "Applying Rockchip MPP Patch"
     run_silent "Downloading patch" wget -nv "$PATCH_URL" -O mpp.patch
     run_silent "Applying mpp.patch" patch -p1 --ignore-whitespace -i mpp.patch

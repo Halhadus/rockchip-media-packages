@@ -13,7 +13,7 @@ The build system compiles the following components:
 - **ffmpeg** (Patched with MPP & RGA support)
 - **libv4l-rkmpp** (V4L plugin for Rockchip)
 - **drm-cursor** (really I don't know what is that)
-- **firefox-mpp** (Firefox 139.x patched with V4L2/MPP support for HW decoding)
+- **firefox-mpp** (Firefox 139.x patched with V4L2/MPP support for HW decoding) (thanks to hbiyik for patch)
 
 ## 🚀 Building packages
 
