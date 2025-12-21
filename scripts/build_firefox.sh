@@ -15,7 +15,7 @@ WORK_DIR="$BASE_DIR/build_workspace"
 OUTPUT_DIR="$BASE_DIR/output"
 LOG_FILE="$OUTPUT_DIR/build_firefox_log_$(date +%Y%m%d).txt"
 
-FIREFOX_VERSION="139.0.4"
+FIREFOX_VERSION="139.0.4-1"
 GECKO_BASE="4c065f1df299065c305fb48b36cdae571a43d97c"
 GECKO_BRANCH="mpp-release"
 PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_BASE}...${GECKO_BRANCH}.patch"
