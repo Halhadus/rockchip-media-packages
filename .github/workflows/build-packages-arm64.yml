@@ -79,6 +79,7 @@ jobs:
 
       - name: Execute Firefox Build Script
         run: |
+          export CCACHE_DISABLE=1
           chmod +x scripts/build_firefox.sh
           ./scripts/build_firefox.sh
         shell: bash
