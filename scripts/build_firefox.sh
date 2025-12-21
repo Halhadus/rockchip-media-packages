@@ -15,9 +15,9 @@ WORK_DIR="$BASE_DIR/build_workspace"
 OUTPUT_DIR="$BASE_DIR/output"
 LOG_FILE="$OUTPUT_DIR/build_firefox_log_$(date +%Y%m%d).txt"
 
-FIREFOX_VERSION="debian/136.0.3-1"
+FIREFOX_VERSION="debian/139.0.4-1"
 GECKO_COMB="4c065f1df299065c305fb48b36cdae571a43d97c"
-GECKO_COMI="fd77de823324a7306cc13c853cc2a40319ac4305"
+GECKO_COMI="mpp-release"
 PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_COMB}...${GECKO_COMI}.patch"
 
 log_header() {
@@ -58,8 +58,8 @@ prepare_environment() {
 
 install_build_deps() {
     log_header "Installing Build Dependencies"
-    run_silent "Installing build dependencies via mk-build-deps" \
-        mk-build-deps --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
+    #run_silent "Installing build dependencies via mk-build-deps"
+    mk-build-deps --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
 }
 
 build_firefox_mpp() {
