@@ -16,9 +16,9 @@ OUTPUT_DIR="$BASE_DIR/output"
 LOG_FILE="$OUTPUT_DIR/build_firefox_log_$(date +%Y%m%d).txt"
 
 FIREFOX_VERSION="debian/136.0.3-1"
-GECKO_BASE="4c065f1df299065c305fb48b36cdae571a43d97c"
-GECKO_BRANCH="mpp-release"
-PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_BASE}...${GECKO_BRANCH}.patch"
+GECKO_COMB="4c065f1df299065c305fb48b36cdae571a43d97c"
+GECKO_COMI="fd77de823324a7306cc13c853cc2a40319ac4305"
+PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_COMB}...${GECKO_COMI}.patch"
 
 log_header() {
     echo -e "${BLUE}:: $1${NC}" | tee -a "$LOG_FILE"
