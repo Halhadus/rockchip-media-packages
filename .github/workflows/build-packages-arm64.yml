@@ -75,7 +75,7 @@ jobs:
 
       - name: Install minimal deps for script
         run: |
-          apt-get install -y --no-install-recommends git ca-certificates wget curl devscripts
+          apt-get install -y --no-install-recommends git ca-certificates wget curl devscripts git build-essential debhelper equivs
 
       - name: Execute Firefox Build Script
         run: |

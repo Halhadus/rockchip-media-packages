@@ -58,8 +58,8 @@ prepare_environment() {
 
 install_build_deps() {
     log_header "Installing Build Dependencies"
-    #run_silent "Installing build dependencies via mk-build-deps"
-    mk-build-deps --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
+    run_silent "Installing build dependencies via mk-build-deps" \
+        mk-build-deps --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
 }
 
 build_firefox_mpp() {
