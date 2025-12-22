@@ -24,7 +24,7 @@ HOST_TRIPLE="aarch64-linux-gnu"
 export DEB_BUILD_OPTIONS="noddebs nocheck nodebug parallel=$(nproc)"
 export DEB_BUILD_MAINT_OPTIONS="optimize=-lto"
 export MOZ_DEBUG_FLAGS="-g0"
-export LDFLAGS="-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
+export LDFLAGS="-Wl,--no-keep-memory"
 export PKG_CONFIG_PATH="/usr/lib/${HOST_TRIPLE}/pkgconfig"
 export PKG_CONFIG_ALLOW_CROSS=1
 
@@ -66,22 +66,24 @@ prepare_environment() {
 
 apply_optimizations() {
     log_header "Applying Resource Saving Tweaks & Cross Config"
-    debian/rules clean
+    run_silent "Cleaning environment" debian/rules clean
     run_silent "Disabling Debug in rules" sed -i 's/--enable-debug-symbols/--disable-debug-symbols/g' debian/rules
     run_silent "Disabling Tests in rules" sed -i 's/--enable-tests/--disable-tests/g' debian/rules
     run_silent "Fixing debian/l10n/gen" sed -i "s|parser.parse(/'|parser.parse('file:///|g" debian/l10n/gen
     echo "Adding options to firefox.mozconfig"
     cat <<EOF >> debian/firefox.mozconfig
-export CC=clang
-export CXX=clang++
+export CC="clang --target=aarch64-linux-gnu"
+export CXX="clang++ --target=aarch64-linux-gnu"
+export CC_aarch64_unknown_linux_gnu="clang --target=aarch64-linux-gnu"
+export CXX_aarch64_unknown_linux_gnu="clang++ --target=aarch64-linux-gnu"
 export AR=llvm-ar
 export NM=llvm-nm
 export RANLIB=llvm-ranlib
-export CFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
-export CXXFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
-export LDFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu -fuse-ld=lld -Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
-export BINDGEN_CFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu"
-export RUSTFLAGS="-C debuginfo=0"
+export CFLAGS="--target=aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
+export CXXFLAGS="--target=aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
+export LDFLAGS="--target=aarch64-linux-gnu -fuse-ld=lld -Wl,--no-keep-memory"
+export BINDGEN_CFLAGS="--target=aarch64-linux-gnu"
+export RUSTFLAGS="-C debuginfo=0 -C linker=clang -C link-arg=--target=aarch64-linux-gnu -C link-arg=-fuse-ld=lld"
 ac_add_options --target=aarch64-linux-gnu
 ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
@@ -94,7 +96,9 @@ ac_add_options --enable-linker=lld
 ac_add_options --without-wasm-sandboxed-libraries
 mk_add_options MOZ_MAKE_FLAGS="$(nproc)"
 EOF
-    log_header "Patching debian/rules to use custom config"
+    run_silent "Removing crashreporter from installer" sed -i '/crashreporter/d' debian/firefox.install
+    run_silent "Removing crashhelper from installer" sed -i '/crashhelper/d' debian/firefox.install
+    run_silent "Adding mpptest to installer" sh -c "echo 'usr/lib/firefox/mpptest' >> debian/firefox.install"
     log_success "Optimizations & Cross-config applied."
 }
 

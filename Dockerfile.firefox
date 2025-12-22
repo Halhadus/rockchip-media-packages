@@ -56,7 +56,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     rustup target add aarch64-unknown-linux-gnu
 
 RUN echo '[target.aarch64-unknown-linux-gnu]' > $CARGO_HOME/config.toml && \
-    echo 'linker = "aarch64-linux-gnu-gcc"' >> $CARGO_HOME/config.toml
+    echo 'linker = "clang"' >> $CARGO_HOME/config.toml && \
+    echo 'rustflags = ["-C", "link-arg=--target=aarch64-linux-gnu", "-C", "link-arg=-fuse-ld=lld"]' >> $CARGO_HOME/config.toml
 
 ENV RUST_TARGET=aarch64-unknown-linux-gnu
 ENV CARGO_BUILD_TARGET=aarch64-unknown-linux-gnu
