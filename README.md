@@ -27,6 +27,7 @@ git clone [https://github.com/Halhadus/rockchip-media-packages.git](https://gith
 cd rockchip-media-packages
 chmod +x run.sh
 ./run.sh
+```
 
 ## Debian Repository
 
