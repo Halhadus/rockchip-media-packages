@@ -66,13 +66,12 @@ prepare_environment() {
 
 apply_optimizations() {
     log_header "Applying Resource Saving Tweaks & Cross Config"
-    if [ -f "debian/rules" ]; then
-        run_silent "Disabling Debug in rules" sed -i 's/--enable-debug-symbols/--disable-debug-symbols/g' debian/rules
-        run_silent "Disabling Tests in rules" sed -i 's/--enable-tests/--disable-tests/g' debian/rules
-    fi
-    
-    echo "Creating .mozconfig"
-    cat <<EOF > .mozconfig
+    debian/rules clean
+    run_silent "Disabling Debug in rules" sed -i 's/--enable-debug-symbols/--disable-debug-symbols/g' debian/rules
+    run_silent "Disabling Tests in rules" sed -i 's/--enable-tests/--disable-tests/g' debian/rules
+    run_silent "Fixing debian/l10n/gen" sed -i "s|parser.parse(/'|parser.parse('file:///|g" debian/l10n/gen
+    echo "Adding options to firefox.mozconfig"
+    cat <<EOF >> debian/firefox.mozconfig
 export CC=clang
 export CXX=clang++
 export AR=llvm-ar
@@ -88,17 +87,14 @@ ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-tests
 ac_add_options --disable-crashreporter
-ac_add_options --disable-telemetry
-ac_add_options --disable-firefox-studies
-ac_add_options --disable-pocket
 ac_add_options --disable-updater
-ac_add_options --disable-datareporting
 ac_add_options --enable-lto=thin
 ac_add_options --enable-optimize
 ac_add_options --enable-linker=lld
+ac_add_options --without-wasm-sandboxed-libraries
 mk_add_options MOZ_MAKE_FLAGS="$(nproc)"
 EOF
-    export MOZCONFIG="$(pwd)/.mozconfig"
+    log_header "Patching debian/rules to use custom config"
     log_success "Optimizations & Cross-config applied."
 }
 
@@ -113,12 +109,12 @@ build_firefox_mpp() {
     fi
     cd firefox
     run_silent "Checking out tag: $FIREFOX_VERSION" git checkout -f "$FIREFOX_VERSION"    
+    apply_optimizations
     log_header "Applying Rockchip MPP Patch"
     run_silent "Downloading patch" wget -nv "$PATCH_URL" -O mpp.patch
     run_silent "Applying mpp.patch" patch -p1 --ignore-whitespace -i mpp.patch
-    apply_optimizations
     log_header "Compiling firefox for $TARGET_ARCH"
-    run_silent "Building firefox package" dpkg-buildpackage -a"$TARGET_ARCH" -us -uc -b -d
+    run_silent "Building firefox package" dpkg-buildpackage -a"$TARGET_ARCH" -us -uc -b -d -nc
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "firefox built successfully."
 }
