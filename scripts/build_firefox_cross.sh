@@ -71,7 +71,25 @@ apply_optimizations() {
     run_silent "Disabling Tests in rules" sed -i 's/--enable-tests/--disable-tests/g' debian/rules
     run_silent "Fixing debian/l10n/gen" sed -i "s|parser.parse(/'|parser.parse('file:///|g" debian/l10n/gen
     echo "Adding options to firefox.mozconfig"
-    cat <<EOF >> debian/firefox.mozconfig
+    cat <<EOF > debian/firefox.mozconfig
+ac_add_options --with-app-name=firefox
+ac_add_options --enable-release
+ac_add_options --enable-default-toolkit=cairo-gtk3-wayland
+ac_add_options --with-google-location-service-api-keyfile=$topsrcdir/debian/google.key
+ac_add_options --with-google-safebrowsing-api-keyfile=$topsrcdir/debian/google.key
+ac_add_options --with-mozilla-api-keyfile=$topsrcdir/debian/mls.key
+ac_add_options --with-system-zlib
+ac_add_options --disable-strip
+ac_add_options --disable-install-strip
+ac_add_options --enable-system-ffi
+ac_add_options --with-system-libevent
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-libvpx
+ac_add_options --disable-updater
+ac_add_options --with-unsigned-addon-scopes=app,system
+ac_add_options --allow-addon-sideload
+ac_add_options --enable-alsa
 export CC="clang --target=aarch64-linux-gnu"
 export CXX="clang++ --target=aarch64-linux-gnu"
 export CC_aarch64_unknown_linux_gnu="clang --target=aarch64-linux-gnu"
@@ -96,9 +114,9 @@ ac_add_options --enable-linker=lld
 ac_add_options --without-wasm-sandboxed-libraries
 mk_add_options MOZ_MAKE_FLAGS="$(nproc)"
 EOF
-    run_silent "Removing crashreporter from installer" sed -i '/crashreporter/d' debian/firefox.install
-    run_silent "Removing crashhelper from installer" sed -i '/crashhelper/d' debian/firefox.install
-    run_silent "Adding mpptest to installer" sh -c "echo 'usr/lib/firefox/mpptest' >> debian/firefox.install"
+    run_silent "Removing crashreporter from installer" sed -i '/crashreporter/d' debian/browser.install.in
+    run_silent "Removing crashhelper from installer" sed -i '/crashhelper/d' debian/browser.install.in
+    run_silent "Adding mpptest to installer" sh -c "grep -q 'usr/lib/@browser@/mpptest' debian/browser.install.in || echo 'usr/lib/@browser@/mpptest' >> debian/browser.install.in"
     log_success "Optimizations & Cross-config applied."
 }
 
