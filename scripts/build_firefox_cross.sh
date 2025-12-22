@@ -21,14 +21,10 @@ PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_COMB}...${GECKO_C
 TARGET_ARCH="arm64"
 HOST_TRIPLE="aarch64-linux-gnu"
 
-export DEB_BUILD_OPTIONS="nocheck nodebug parallel=$(nproc)"
+export DEB_BUILD_OPTIONS="noddebs nocheck nodebug parallel=$(nproc)"
 export DEB_BUILD_MAINT_OPTIONS="optimize=-lto"
-export RUSTFLAGS="-C linker=${HOST_TRIPLE}-gcc -C debuginfo=0 -C opt-level=2"
 export MOZ_DEBUG_FLAGS="-g0"
 export LDFLAGS="-Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
-
-export CC="${HOST_TRIPLE}-gcc"
-export CXX="${HOST_TRIPLE}-g++"
 export PKG_CONFIG_PATH="/usr/lib/${HOST_TRIPLE}/pkgconfig"
 export PKG_CONFIG_ALLOW_CROSS=1
 
@@ -68,12 +64,6 @@ prepare_environment() {
     fi
 }
 
-install_build_deps() {
-    log_header "Installing Build Dependencies"
-    run_silent "Installing build dependencies via mk-build-deps" \
-        mk-build-deps -a "$TARGET_ARCH" --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
-}
-
 apply_optimizations() {
     log_header "Applying Resource Saving Tweaks & Cross Config"
     if [ -f "debian/rules" ]; then
@@ -83,16 +73,32 @@ apply_optimizations() {
     
     echo "Creating .mozconfig"
     cat <<EOF > .mozconfig
+export CC=clang
+export CXX=clang++
+export AR=llvm-ar
+export NM=llvm-nm
+export RANLIB=llvm-ranlib
+export CFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
+export CXXFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
+export LDFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu -fuse-ld=lld -Wl,--no-keep-memory -Wl,--reduce-memory-overheads"
+export BINDGEN_CFLAGS="--target=aarch64-linux-gnu --sysroot=/usr/aarch64-linux-gnu"
+export RUSTFLAGS="-C debuginfo=0"
 ac_add_options --target=aarch64-linux-gnu
 ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-tests
 ac_add_options --disable-crashreporter
-ac_add_options --disable-lto
+ac_add_options --disable-telemetry
+ac_add_options --disable-firefox-studies
+ac_add_options --disable-pocket
+ac_add_options --disable-updater
+ac_add_options --disable-datareporting
+ac_add_options --enable-lto=thin
 ac_add_options --enable-optimize
-ac_add_options --enable-linker=gold
+ac_add_options --enable-linker=lld
 mk_add_options MOZ_MAKE_FLAGS="$(nproc)"
 EOF
+    export MOZCONFIG="$(pwd)/.mozconfig"
     log_success "Optimizations & Cross-config applied."
 }
 
@@ -110,10 +116,9 @@ build_firefox_mpp() {
     log_header "Applying Rockchip MPP Patch"
     run_silent "Downloading patch" wget -nv "$PATCH_URL" -O mpp.patch
     run_silent "Applying mpp.patch" patch -p1 --ignore-whitespace -i mpp.patch
-    install_build_deps
     apply_optimizations
     log_header "Compiling firefox for $TARGET_ARCH"
-    run_silent "Building firefox package" dpkg-buildpackage -a"$TARGET_ARCH" -us -uc -b
+    run_silent "Building firefox package" dpkg-buildpackage -a"$TARGET_ARCH" -us -uc -b -d
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "firefox built successfully."
 }

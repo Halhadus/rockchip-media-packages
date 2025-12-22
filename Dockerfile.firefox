@@ -10,25 +10,50 @@ RUN dpkg --add-architecture arm64 && \
 RUN apt-get install -y --no-install-recommends \
     build-essential \
     crossbuild-essential-arm64 \
-    ca-certificates \
     cmake \
-    debhelper \
-    devscripts \
-    equivs \
     git \
-    meson \
     pkg-config \
-    rsync \
-    wget \
-    curl \
     python3 \
     python3-dev \
-    rustc \
-    cargo \
-    bindgen \
+    rustup \
+    clang \
+    llvm-dev \
+    lld \
+    nasm \
+    nodejs \
+    cbindgen \
+    zip \
+    unzip \
+    wget \
+    curl \
+    ca-certificates \
     libc6-dev:arm64 \
-    libstdc++-12-dev:arm64 \
+    libstdc++-dev:arm64 \
+    libx11-dev:arm64 \
+    libx11-xcb-dev:arm64 \
+    libxt-dev:arm64 \
+    libgtk-3-dev:arm64 \
+    libglib2.0-dev:arm64 \
+    libnspr4-dev:arm64 \
+    libnss3-dev:arm64 \
+    libasound2-dev:arm64 \
+    libdbus-1-dev:arm64 \
+    libevent-dev:arm64 \
+    libvpx-dev:arm64 \
+    libasound2-dev:arm64 \
+    libpulse-dev:arm64 \
+    zlib1g-dev:arm64 \
     && rm -rf /var/lib/apt/lists/*
+
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    rustup target add aarch64-unknown-linux-gnu
+
+RUN echo '[target.aarch64-unknown-linux-gnu]' > $CARGO_HOME/config.toml && \
+    echo 'linker = "aarch64-linux-gnu-gcc"' >> $CARGO_HOME/config.toml
 
 ENV RUST_TARGET=aarch64-unknown-linux-gnu
 ENV CARGO_BUILD_TARGET=aarch64-unknown-linux-gnu
