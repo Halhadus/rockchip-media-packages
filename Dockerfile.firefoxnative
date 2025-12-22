@@ -1,0 +1,36 @@
+FROM --platform=linux/arm64 debian:trixie
+
+LABEL maintainer="Halhadus"
+LABEL description="Native build environment for Firefox MPP inside ARM64 container"
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources && \
+    apt-get update
+
+RUN apt-get install -y --no-install-recommends \
+    build-essential \
+    debhelper \
+    devscripts \
+    equivs \
+    git \
+    wget \
+    curl \
+    ca-certificates \
+    pkg-config \
+    clang \
+    llvm \
+    lld \
+    python3 \
+    python3-dev \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+WORKDIR /root
+
+COPY scripts/ /root/scripts/
+
+RUN chmod +x /root/scripts/build_firefox_native.sh
+
+CMD ["/root/scripts/build_firefox_native.sh"]

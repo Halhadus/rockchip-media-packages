@@ -18,15 +18,10 @@ GECKO_COMB="4c065f1df299065c305fb48b36cdae571a43d97c"
 GECKO_COMI="mpp-release"
 PATCH_URL="https://github.com/hbiyik/gecko-dev/compare/${GECKO_COMB}...${GECKO_COMI}.patch"
 
-TARGET_ARCH="arm64"
-HOST_TRIPLE="aarch64-linux-gnu"
-
 export DEB_BUILD_OPTIONS="noddebs nocheck nodebug parallel=$(nproc)"
 export DEB_BUILD_MAINT_OPTIONS="optimize=-lto"
 export MOZ_DEBUG_FLAGS="-g0"
 export LDFLAGS="-Wl,--no-keep-memory"
-export PKG_CONFIG_PATH="/usr/lib/${HOST_TRIPLE}/pkgconfig"
-export PKG_CONFIG_ALLOW_CROSS=1
 
 log_header() {
     echo -e "${BLUE}:: $1${NC}" | tee -a "$LOG_FILE"
@@ -64,13 +59,19 @@ prepare_environment() {
     fi
 }
 
+install_build_deps() {
+    log_header "Installing Build Dependencies"
+    cd "$WORK_DIR/firefox"
+    run_silent "Running mk-build-deps" mk-build-deps -i -r --tool 'apt-get -y --no-install-recommends' debian/control
+}
+
 apply_optimizations() {
-    log_header "Applying Resource Saving Tweaks & Cross Config"
+    log_header "Applying Resource Saving Tweaks & Native Config"
     run_silent "Cleaning environment" debian/rules clean
     run_silent "Disabling Debug in rules" sed -i 's/--enable-debug-symbols/--disable-debug-symbols/g' debian/rules
     run_silent "Disabling Tests in rules" sed -i 's/--enable-tests/--disable-tests/g' debian/rules
     run_silent "Fixing debian/l10n/gen" sed -i "s|parser.parse(/'|parser.parse('file:///|g" debian/l10n/gen
-    echo "Adding options to firefox.mozconfig"
+    echo "Adding options to firefox.mozconfig"    
     cat <<EOF > debian/firefox.mozconfig
 ac_add_options --with-app-name=firefox
 ac_add_options --enable-release
@@ -90,19 +91,15 @@ ac_add_options --disable-updater
 ac_add_options --with-unsigned-addon-scopes=app,system
 ac_add_options --allow-addon-sideload
 ac_add_options --enable-alsa
-export CC="clang --target=aarch64-linux-gnu"
-export CXX="clang++ --target=aarch64-linux-gnu"
-export CC_aarch64_unknown_linux_gnu="clang --target=aarch64-linux-gnu"
-export CXX_aarch64_unknown_linux_gnu="clang++ --target=aarch64-linux-gnu"
+export CC="clang"
+export CXX="clang++"
 export AR=llvm-ar
 export NM=llvm-nm
 export RANLIB=llvm-ranlib
-export CFLAGS="--target=aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
-export CXXFLAGS="--target=aarch64-linux-gnu -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
-export LDFLAGS="--target=aarch64-linux-gnu -fuse-ld=lld -Wl,--no-keep-memory"
-export BINDGEN_CFLAGS="--target=aarch64-linux-gnu"
-export RUSTFLAGS="-C debuginfo=0 -C linker=clang -C link-arg=--target=aarch64-linux-gnu -C link-arg=-fuse-ld=lld"
-ac_add_options --target=aarch64-linux-gnu
+export CFLAGS="-march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
+export CXXFLAGS="-march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76 -O2"
+export LDFLAGS="-fuse-ld=lld -Wl,--no-keep-memory"
+export RUSTFLAGS="-C debuginfo=0 -C linker=clang -C link-arg=-fuse-ld=lld"
 ac_add_options --disable-debug
 ac_add_options --disable-debug-symbols
 ac_add_options --disable-tests
@@ -111,17 +108,16 @@ ac_add_options --disable-updater
 ac_add_options --enable-lto=thin
 ac_add_options --enable-optimize
 ac_add_options --enable-linker=lld
-ac_add_options --without-wasm-sandboxed-libraries
 mk_add_options MOZ_MAKE_FLAGS="$(nproc)"
 EOF
     run_silent "Removing crashreporter from installer" sed -i '/crashreporter/d' debian/browser.install.in
     run_silent "Removing crashhelper from installer" sed -i '/crashhelper/d' debian/browser.install.in
     run_silent "Adding mpptest to installer" sh -c "grep -q 'usr/lib/@browser@/mpptest' debian/browser.install.in || echo 'usr/lib/@browser@/mpptest' >> debian/browser.install.in"
-    log_success "Optimizations & Cross-config applied."
+    log_success "Optimizations applied."
 }
 
 build_firefox_mpp() {
-    log_header "Build Process: firefox ($TARGET_ARCH)"
+    log_header "Build Process: firefox"
     cd "$WORK_DIR"
     rm -rf firefox*
     log_header "Fetching Source Code"
@@ -130,13 +126,14 @@ build_firefox_mpp() {
             git clone https://salsa.debian.org/mozilla-team/firefox.git firefox
     fi
     cd firefox
-    run_silent "Checking out tag: $FIREFOX_VERSION" git checkout -f "$FIREFOX_VERSION"    
+    run_silent "Checking out tag: $FIREFOX_VERSION" git checkout -f "$FIREFOX_VERSION"        
+    install_build_deps
     apply_optimizations
     log_header "Applying Rockchip MPP Patch"
     run_silent "Downloading patch" wget -nv "$PATCH_URL" -O mpp.patch
     run_silent "Applying mpp.patch" patch -p1 --ignore-whitespace -i mpp.patch
-    log_header "Compiling firefox for $TARGET_ARCH"
-    run_silent "Building firefox package" dpkg-buildpackage -a"$TARGET_ARCH" -us -uc -b -d -nc
+    log_header "Compiling firefox"
+    run_silent "Building firefox package" dpkg-buildpackage -us -uc -b -d -nc
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "firefox built successfully."
 }
