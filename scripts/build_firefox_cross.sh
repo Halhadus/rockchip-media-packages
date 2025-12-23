@@ -111,13 +111,27 @@ EOF
     run_silent "Removing crashreporter from installer" sed -i '/crashreporter/d' debian/browser.install.in
     run_silent "Removing crashhelper from installer" sed -i '/crashhelper/d' debian/browser.install.in
     run_silent "Adding mpptest to installer" sh -c "grep -q 'usr/lib/@browser@/mpptest' debian/browser.install.in || echo 'usr/lib/@browser@/mpptest' >> debian/browser.install.in"
+    log_header "Adding libraries to installer"
+    LIBS=(
+        "usr/lib/@browser@/libfreeblpriv3.so"
+        "usr/lib/@browser@/libnspr4.so"
+        "usr/lib/@browser@/libnss3.so"
+        "usr/lib/@browser@/libnssutil3.so"
+        "usr/lib/@browser@/libplc4.so"
+        "usr/lib/@browser@/libplds4.so"
+        "usr/lib/@browser@/libsmime3.so"
+        "usr/lib/@browser@/libsoftokn3.so"
+        "usr/lib/@browser@/libssl3.so"
+    )
+    for LIB in "${LIBS[@]}"; do
+        run_silent "Adding $LIB" sh -c "grep -q '$LIB' debian/browser.install.in || echo '$LIB' >> debian/browser.install.in"
+    done
     log_success "Optimizations & Cross-config applied."
 }
 
 build_firefox_mpp() {
     log_header "Build Process: firefox ($TARGET_ARCH)"
     cd "$WORK_DIR"
-    rm -rf firefox*
     log_header "Fetching Source Code"
     if [ ! -d "firefox" ]; then
         run_silent "Cloning" \

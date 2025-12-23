@@ -57,9 +57,44 @@ jobs:
           if-no-files-found: error
           retention-days: 7
 
+  build-firefox:
+    name: Build Firefox MPP
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 360 
+    container:
+      image: debian:trixie
+      options: --privileged --platform linux/arm64
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure APT Sources
+        run: |
+          sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources
+          apt-get update -qq
+
+      - name: Install minimal deps for script
+        run: |
+          apt-get install -y --no-install-recommends git ca-certificates wget curl devscripts git build-essential debhelper equivs
+
+      - name: Execute Firefox Build Script
+        run: |
+          export CCACHE_DISABLE=1
+          chmod +x scripts/build_firefox_native.sh
+          ./scripts/build_firefoxnative.sh
+        shell: bash
+
+      - name: Upload Firefox Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: firefox-mpp-deb
+          path: output/*.deb
+          if-no-files-found: error
+          retention-days: 7
+
   publish-repo:
     name: Publish APT Repository
-    needs: [build-media]
+    needs: [build-media, build-firefox]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
