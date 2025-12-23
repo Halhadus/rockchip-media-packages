@@ -60,29 +60,31 @@ jobs:
   build-firefox:
     name: Build Firefox MPP
     runs-on: ubuntu-24.04-arm
-    timeout-minutes: 360 
-    container:
-      image: debian:trixie
-      options: --privileged --platform linux/arm64
+    timeout-minutes: 360
     steps:
+      - name: Maximize Build Space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 2048
+          swap-size-mb: 2048
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Configure APT Sources
+      - name: Build Docker Image
         run: |
-          sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources
-          apt-get update -qq
+          docker build -t firefox-builder -f Dockerfile.firefoxnative .
 
-      - name: Install minimal deps for script
+      - name: Run Build inside Docker
         run: |
-          apt-get install -y --no-install-recommends git ca-certificates wget curl devscripts git build-essential debhelper equivs
-
-      - name: Execute Firefox Build Script
-        run: |
-          export CCACHE_DISABLE=1
-          chmod +x scripts/build_firefox_native.sh
-          ./scripts/build_firefox_native.sh
-        shell: bash
+          docker run --privileged \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            firefox-builder /bin/bash -c "/root/scripts/build_firefox_native.sh"
 
       - name: Upload Firefox Artifacts
         uses: actions/upload-artifact@v4
