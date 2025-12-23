@@ -81,7 +81,7 @@ jobs:
         run: |
           export CCACHE_DISABLE=1
           chmod +x scripts/build_firefox_native.sh
-          ./scripts/build_firefoxnative.sh
+          ./scripts/build_firefox_native.sh
         shell: bash
 
       - name: Upload Firefox Artifacts
