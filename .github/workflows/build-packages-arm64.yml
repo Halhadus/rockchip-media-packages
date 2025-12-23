@@ -71,9 +71,15 @@ jobs:
           remove-android: 'true'
           remove-haskell: 'true'
           remove-codeql: 'true'
+          remove-docker-images: 'true'
 
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Create Work Directories
+        run: |
+          mkdir -p output
+          mkdir -p build_workspace
 
       - name: Build Docker Image
         run: |
@@ -81,10 +87,11 @@ jobs:
 
       - name: Run Build inside Docker
         run: |
-          docker run --privileged \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            firefox-builder /bin/bash -c "/root/scripts/build_firefox_native.sh"
+          docker run --rm --privileged \
+            -v ${{ github.workspace }}/output:/root/output \
+            -v ${{ github.workspace }}/build_workspace:/root/build_workspace \
+            firefox-builder \
+            /bin/bash -c "/root/scripts/build_firefox_native.sh"
 
       - name: Upload Firefox Artifacts
         uses: actions/upload-artifact@v4
