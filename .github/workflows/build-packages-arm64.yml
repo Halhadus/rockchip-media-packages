@@ -81,7 +81,7 @@ jobs:
           mkdir -p output
           mkdir -p build_workspace
 
-  - name: Run Build inside Docker
+      - name: Run Build inside Docker
         run: |
           docker run --rm --privileged \
             -v ${{ github.workspace }}/output:/root/output \
