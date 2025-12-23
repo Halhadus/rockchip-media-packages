@@ -78,14 +78,8 @@ ac_add_options --enable-default-toolkit=cairo-gtk3-wayland
 ac_add_options --with-google-location-service-api-keyfile=\$topsrcdir/debian/google.key
 ac_add_options --with-google-safebrowsing-api-keyfile=\$topsrcdir/debian/google.key
 ac_add_options --with-mozilla-api-keyfile=\$topsrcdir/debian/mls.key
-ac_add_options --with-system-zlib
 ac_add_options --disable-strip
 ac_add_options --disable-install-strip
-ac_add_options --enable-system-ffi
-ac_add_options --with-system-libevent
-ac_add_options --with-system-nspr
-ac_add_options --with-system-nss
-ac_add_options --with-system-libvpx
 ac_add_options --disable-updater
 ac_add_options --with-unsigned-addon-scopes=app,system
 ac_add_options --allow-addon-sideload
