@@ -141,7 +141,7 @@ build_firefox_mpp() {
     run_silent "Downloading patch" wget -nv "$PATCH_URL" -O mpp.patch
     run_silent "Applying mpp.patch" patch -p1 --ignore-whitespace -i mpp.patch
     log_header "Compiling firefox"
-    run_silent "Building firefox package" dpkg-buildpackage -us -uc -b -d -nc
+    dpkg-buildpackage -us -uc -b -d -nc
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "firefox built successfully."
 }
