@@ -1,0 +1,3899 @@
+Package: armbian-opi5plus-halhadus-config
+Version: 1.0.4
+Architecture: arm64
+Maintainer: Halhadus <eneshakans45@proton.me>
+Installed-Size: 26
+Depends: zstd, xz-utils, clinfo, vulkan-tools, mesa-vulkan-drivers, glmark2-es2-drm, vkmark, glmark2-es2-wayland, lm-sensors, fastfetch, git, smartmontools, usbutils, pciutils, binutils, build-essential, meson, libtool, pkgconf, cmake, autoconf, automake, file, mpv, librga2, librga-dev, librockchip-mpp1, librockchip-mpp-dev, rockchip-mpp-demos, librockchip-vpu0, libv4l-0t64, libv4l-dev, libv4l-rkmpp, rockchip-multimedia-config, v4l-utils, qv4l2, qvidcap, ir-keytable, dvb-tools, libdvbv5-0t64, libdvbv5-dev, ffmpeg
+Filename: pool/main/armbian-opi5plus-halhadus-config_1.0.4_arm64.deb
+Size: 3124
+MD5sum: 06ed24df19d8032c47027913e289809c
+SHA1: 1eb97db097d10301aa6d2f86a1550f8eb975eea4
+SHA256: a63cc893feab78a166e4f63af932857e594f3b8fa9b6b8a3fe8019d1be92fe68
+Section: admin
+Priority: optional
+Description: Orange Pi 5 Plus Halhadus Configuration Package
+
+Package: dvb-tools
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 459
+Depends: libdvbv5-0t64 (= 1.30.1-1), libc6 (>= 2.38)
+Filename: pool/main/dvb-tools_1.30.1-1_arm64.deb
+Size: 122864
+MD5sum: 7b753252be356ca1a407e55023d6c04e
+SHA1: 00be0df71176daa781b0003555836f252fe934f2
+SHA256: 55beef5dcc9d7ac9f434cc67bacaf798290013f2777dd5a52781ab0b666f20ee
+Section: utils
+Priority: optional
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Collection of command line DVB utilities
+ This is a series of tools written to help testing and working with DVB,
+ using its latest V5 API. The tools can also work with the DVBv3 API.
+ .
+ The current tools are:
+ .
+ dvb-fe-tool: a simple test application, that reads from the frontend.
+ it also allows one to change the default delivery system.
+ In the future, it may be used to change any property via command line.
+ .
+ dvb-format-convert: converts from zap and scan initial-tuning-data-file
+ into the new format defined to work with DVBv5.
+ .
+ dvbv5-scan: a DVBv5 scan tool.
+ .
+ dvbv5-zap: a DVBv5 zap tool. It allows one to tune into a DVB channel,
+ and to watch to a DVB service (e. g. receiving the video and audio
+ streams, via another application using the dvr device).
+
+Package: dvb-tools-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 238
+Depends: dvb-tools (= 1.30.1-1)
+Filename: pool/main/dvb-tools-dbgsym_1.30.1-1_arm64.deb
+Size: 91468
+MD5sum: c40746220a1ac509f1328d559a503e17
+SHA1: 76df097b961bddc1c798a47157277bbe28e28dab
+SHA256: 101e05505cd930c38107eca76ac0389ad93d1e543505ab7fd7804fced3780ecf
+Section: debug
+Priority: optional
+Description: debug symbols for dvb-tools
+Build-Ids: 1d324462db90c924bda03d35e9697d191565ec65 2f5e261fe83b362f62e8e382e97c3ef8c1cad0aa 33b9894138be6d9594c1ee520bca79426f886975 618b8c5e1582ff8f89b37ec49e3320a0d2ca9045 a181fa570a099920d4eb75a8ca0f59362033d14d
+
+Package: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 2829
+Depends: libavcodec61 (>= 7:7.1), libavdevice61 (>= 7:7.0), libavfilter10 (>= 7:7.0), libavformat61 (>= 7:7.0), libavutil59 (>= 7:7.1), libc6 (>= 2.35), libplacebo349 (>= 7.349.0), libpostproc58 (>= 7:7.0), libsdl2-2.0-0 (>= 2.0.12), libswresample5 (>= 7:7.0), libswscale8 (>= 7:7.0)
+Suggests: ffmpeg-doc
+Filename: pool/main/ffmpeg_7.1.3-0+deb13u1_arm64.deb
+Size: 1981900
+MD5sum: ecadec7faf1fac9dea56fd416d6a97ed
+SHA1: 2b23822c6d06a200b507eafebc164207a66effa7
+SHA256: 3a3981c0279fdbaf0649f6f8972fbc1df66d02b4117bbb0db634890615f1ad76
+Section: video
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://ffmpeg.org/
+Description: Tools for transcoding, streaming and playing of multimedia files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This package contains:
+  * ffmpeg: a command line tool to convert multimedia files between formats
+  * ffplay: a simple media player based on SDL and the FFmpeg libraries
+  * ffprobe: a simple multimedia stream analyzer
+  * qt-faststart: a utility to rearrange Quicktime files
+
+Package: ffmpeg-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 1641
+Depends: ffmpeg (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/ffmpeg-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 848660
+MD5sum: 80aa72166e5a990deebf0612669ff115
+SHA1: ef2fb5e6972d50762ac2dfa755f3bd6b28dafb29
+SHA256: 0881ff0b1cb929f6ff1ac4171f3f4224073f81d4804bdac979ca2f4a61b813e3
+Section: debug
+Priority: optional
+Description: debug symbols for ffmpeg
+Build-Ids: 3d410877f624489f22c3ce1fb1b3b4559860f1e9 55a508776ba1a3ddcc01b160c419118b2f05ced1 614a481a0f8cbdfbd7732ce58921cd30f7815df3 b59c6e2338467530ccea45594e73cf101cb18dd4
+
+Package: ffmpeg-doc
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: all
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 38093
+Depends: libjs-jquery, libjs-bootstrap5
+Filename: pool/main/ffmpeg-doc_7.1.3-0+deb13u1_all.deb
+Size: 2323112
+MD5sum: 0a7c3768ec8ec2b1ac34f7e2219ec542
+SHA1: 070fa2b76c67cce610eecaaa5ce57b3cc7731d20
+SHA256: 8f9c41be09f56a16691450da42231d2974b6ae3219a4f3a009278320d372d54b
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://ffmpeg.org/
+Description: Documentation of the FFmpeg multimedia framework
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This package contains the HTML documentation for the FFmpeg multimedia
+ framework including the API documentation created by doxygen and the manpages
+ for the libraries.
+
+Package: firefox
+Version: 139.0.4-1
+Architecture: arm64
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 238440
+Depends: libasound2t64 (>= 1.0.16), libatk1.0-0t64 (>= 1.12.4), libc6 (>= 2.38), libcairo-gobject2 (>= 1.10.0), libcairo2 (>= 1.10.0), libdbus-1-3 (>= 1.10), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.3.5), libgcc-s1 (>= 4.5), libgdk-pixbuf-2.0-0 (>= 2.22.0), libglib2.0-0t64 (>= 2.38.0), libgtk-3-0t64 (>= 3.13.7), libharfbuzz0b (>= 0.6.0), libnspr4 (>= 2:4.32~), libnss3 (>= 2:3.110~), libpango-1.0-0 (>= 1.14.0), libpangocairo-1.0-0 (>= 1.14.0), libstdc++6 (>= 12), libx11-6, libx11-xcb1, libxcb-shm0, libxcb1, libxcomposite1 (>= 1:0.4.6), libxcursor1 (>> 1.1.2), libxdamage1 (>= 1:1.1), libxext6, libxfixes3, libxi6, libxrandr2 (>= 2:1.4.0), libxrender1 (>= 1:0.9.12), zlib1g (>= 1:1.1.4), fontconfig, procps, debianutils (>= 1.16)
+Recommends: libavcodec61 | libavcodec-extra61 | libavcodec60 | libavcodec-extra60 | libavcodec59 | libavcodec-extra59 | libavcodec58 | libavcodec-extra58 | libavcodec57 | libavcodec-extra57 | libavcodec56 | libavcodec-extra56 | libavcodec55 | libavcodec-extra55 | libavcodec54 | libavcodec-extra54 | libavcodec53 | libavcodec-extra53
+Suggests: fonts-stix | otf-stix, fonts-lmodern, libgssapi-krb5-2 | libkrb53, libcanberra0, pulseaudio
+Provides: gnome-www-browser, www-browser
+Filename: pool/main/firefox_139.0.4-1_arm64.deb
+Size: 62034884
+MD5sum: 2cd465fa4c5c2e136a2f8257be2451b0
+SHA1: 1a14919037f204a334de71658b9572b780012f64
+SHA256: 5e2a3477477de4a1f12233ca38bc2d5d6fee62f923aa9bbde8c5b5a6dc24143d
+Section: web
+Priority: optional
+Description: Mozilla Firefox web browser
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+
+Package: firefox-l10n-ach
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 351
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ach_139.0.4-1_all.deb
+Size: 231128
+MD5sum: b6f2da54fdc6b37a778bcc0ffe58060b
+SHA1: f2a99a9afc168639b504b95bd01cf2e19f584010
+SHA256: 70c4a5212ba9d3b1866363d9280c8b02378c71769745c5bf7751607f89f39552
+Section: localization
+Priority: optional
+Description: Acoli language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Acoli.
+
+Package: firefox-l10n-af
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 327
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-af
+Filename: pool/main/firefox-l10n-af_139.0.4-1_all.deb
+Size: 207376
+MD5sum: eb6ee54a5a3ebddfe1e79733f8230d0e
+SHA1: 396fb4c9b9db3ed00a3ce02fb41d30ee0630d3bb
+SHA256: 6d2ee0f792b68979918b46d02afb0bbbe20ec337ab95a9eec5d0facd5e2b1f2a
+Section: localization
+Priority: optional
+Description: Afrikaans language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Afrikaans.
+
+Package: firefox-l10n-all
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 104
+Depends: firefox-l10n-ach, firefox-l10n-af, firefox-l10n-an, firefox-l10n-ar, firefox-l10n-ast, firefox-l10n-az, firefox-l10n-be, firefox-l10n-bg, firefox-l10n-bn, firefox-l10n-br, firefox-l10n-bs, firefox-l10n-ca, firefox-l10n-ca-valencia, firefox-l10n-cak, firefox-l10n-cs, firefox-l10n-cy, firefox-l10n-da, firefox-l10n-de, firefox-l10n-dsb, firefox-l10n-el, firefox-l10n-en-ca, firefox-l10n-en-gb, firefox-l10n-eo, firefox-l10n-es-ar, firefox-l10n-es-cl, firefox-l10n-es-es, firefox-l10n-es-mx, firefox-l10n-et, firefox-l10n-eu, firefox-l10n-fa, firefox-l10n-ff, firefox-l10n-fi, firefox-l10n-fr, firefox-l10n-fur, firefox-l10n-fy-nl, firefox-l10n-ga-ie, firefox-l10n-gd, firefox-l10n-gl, firefox-l10n-gn, firefox-l10n-gu-in, firefox-l10n-he, firefox-l10n-hi-in, firefox-l10n-hr, firefox-l10n-hsb, firefox-l10n-hu, firefox-l10n-hy-am, firefox-l10n-ia, firefox-l10n-id, firefox-l10n-is, firefox-l10n-it, firefox-l10n-ja, firefox-l10n-ka, firefox-l10n-kab, firefox-l10n-kk, firefox-l10n-km, firefox-l10n-kn, firefox-l10n-ko, firefox-l10n-lij, firefox-l10n-lt, firefox-l10n-lv, firefox-l10n-mk, firefox-l10n-mr, firefox-l10n-ms, firefox-l10n-my, firefox-l10n-nb-no, firefox-l10n-ne-np, firefox-l10n-nl, firefox-l10n-nn-no, firefox-l10n-oc, firefox-l10n-pa-in, firefox-l10n-pl, firefox-l10n-pt-br, firefox-l10n-pt-pt, firefox-l10n-rm, firefox-l10n-ro, firefox-l10n-ru, firefox-l10n-sat, firefox-l10n-sc, firefox-l10n-sco, firefox-l10n-si, firefox-l10n-sk, firefox-l10n-skr, firefox-l10n-sl, firefox-l10n-son, firefox-l10n-sq, firefox-l10n-sr, firefox-l10n-sv-se, firefox-l10n-szl, firefox-l10n-ta, firefox-l10n-te, firefox-l10n-tg, firefox-l10n-th, firefox-l10n-tl, firefox-l10n-tr, firefox-l10n-trs, firefox-l10n-uk, firefox-l10n-ur, firefox-l10n-uz, firefox-l10n-vi, firefox-l10n-xh, firefox-l10n-zh-cn, firefox-l10n-zh-tw
+Filename: pool/main/firefox-l10n-all_139.0.4-1_all.deb
+Size: 29232
+MD5sum: 486b1630f318bbf8ddfed2b01d8c3a3c
+SHA1: 6c624cadfbcbd36f36edf57140f6dfbd77fa8d00
+SHA256: d9282622e3727d88070112422a63bf48c77f0275315b8d8b270cc9477721d5b8
+Section: metapackages
+Priority: optional
+Description: All language packages for Firefox (meta)
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This is a metapackage depending on all available localizations of Firefox.
+
+Package: firefox-l10n-an
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 388
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-an
+Filename: pool/main/firefox-l10n-an_139.0.4-1_all.deb
+Size: 270596
+MD5sum: 75c1f1d5e1aa9308c079e28c74b532b1
+SHA1: 724b1cea1f9c90a30fef62258f44aaf4156e7c40
+SHA256: f92c21de14ba1747a2d61e073030e0668badfc02cbfd8a48e4bafa4239908bad
+Section: localization
+Priority: optional
+Description: Aragonese language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Aragonese.
+
+Package: firefox-l10n-ar
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 484
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-ar
+Filename: pool/main/firefox-l10n-ar_139.0.4-1_all.deb
+Size: 370808
+MD5sum: e5e285915dad114a6435aebe02a6842f
+SHA1: 66c7d9f8218e496328d4405a4b755772273c6820
+SHA256: f6faf715b82b2e004bd6b2353a713016e5fb5e28e7e52fdc9827c43be03ddcb8
+Section: localization
+Priority: optional
+Description: Arabic language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Arabic.
+
+Package: firefox-l10n-ast
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 367
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ast_139.0.4-1_all.deb
+Size: 248876
+MD5sum: 6706ecc03806bd31b4b0f3034bf531ab
+SHA1: ff2b04f3a66ff0f026bfbf272c3eec23e8c32e19
+SHA256: fb65532077ee8a361af300f63fb576a073beba0d8b16e0a80fba2217d29c33f6
+Section: localization
+Priority: optional
+Description: Asturian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Asturian.
+
+Package: firefox-l10n-az
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 373
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-az_139.0.4-1_all.deb
+Size: 255244
+MD5sum: 6957e8481546dfeca41b9d4a4376eeaa
+SHA1: 6115336012f0e467df65819166b5e47e4cf9182e
+SHA256: 504320b6d0afe098c1288769c352bda90b22a012b59201ab28616e2c37888ca0
+Section: localization
+Priority: optional
+Description: Azerbaijani language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Azerbaijani.
+
+Package: firefox-l10n-be
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 562
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-be
+Filename: pool/main/firefox-l10n-be_139.0.4-1_all.deb
+Size: 452324
+MD5sum: ffc510ceb522716095363d34db496f27
+SHA1: c38be620147c32795d08b23532445cac8b29fa8c
+SHA256: e25e47e002c20f4adc28ef0bbc4a0d8b8815a88de16c589eafb0aaec3e65440b
+Section: localization
+Priority: optional
+Description: Belarusian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Belarusian.
+
+Package: firefox-l10n-bg
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 494
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-bg | myspell-bg
+Filename: pool/main/firefox-l10n-bg_139.0.4-1_all.deb
+Size: 381188
+MD5sum: 3941a3cf6d7a5e39e1396c103f0a24b8
+SHA1: 720c17db7179d4b468574a225e3ac787aed4038a
+SHA256: e6eceb21122834ba0e751d0abda6d3d21dd428cbf83042ad1751012e743056c8
+Section: localization
+Priority: optional
+Description: Bulgarian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Bulgarian.
+
+Package: firefox-l10n-bn
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 459
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Breaks: firefox-l10n-bn-bd (<< 68), firefox-l10n-bn-in (<< 68)
+Replaces: firefox-l10n-bn-bd (<< 68), firefox-l10n-bn-in (<< 68)
+Provides: firefox-l10n-bn-bd, firefox-l10n-bn-in
+Filename: pool/main/firefox-l10n-bn_139.0.4-1_all.deb
+Size: 344088
+MD5sum: ec44d1cbe72f7d2a279e5677e87a836a
+SHA1: 8cdaeee95534972027b391668a3efec0f3174e3e
+SHA256: ce52df35add8b7d0f9f0a492b75f8dd5a45d404347952e1cd4e70e5234c3f5f0
+Section: localization
+Priority: optional
+Description: Bengali language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Bengali.
+
+Package: firefox-l10n-br
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 444
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-br
+Filename: pool/main/firefox-l10n-br_139.0.4-1_all.deb
+Size: 329308
+MD5sum: d0021c705e3bb03d635da81a54dae097
+SHA1: e10e448e7fd4e3246c05834d1f27db3c941e80cc
+SHA256: aaae406b66a6df61515632253773254d6eae86cde2f9a4904a29c4e6019e02da
+Section: localization
+Priority: optional
+Description: Breton language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Breton.
+
+Package: firefox-l10n-bs
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 417
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-bs
+Filename: pool/main/firefox-l10n-bs_139.0.4-1_all.deb
+Size: 301196
+MD5sum: e5bb5b03cd4c65002423c30dabdb42e9
+SHA1: f5fd92e3b9c26a8487d70dd888df320a42a007d3
+SHA256: 4f30af89a1885a7e99a000b7cfaf778f0f0737649c31408dd7c353c831d6c4a9
+Section: localization
+Priority: optional
+Description: Bosnian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Bosnian.
+
+Package: firefox-l10n-ca
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 450
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-ca
+Filename: pool/main/firefox-l10n-ca_139.0.4-1_all.deb
+Size: 336272
+MD5sum: 90d99e8fc1047d109b6778b2acc5019d
+SHA1: 324b8f294409d2e8b2ca851c9f58f3be1267c51b
+SHA256: 12bc3f579947d804467c1d28b173443cbcf3f9e5065612a49b69f545308f4f1f
+Section: localization
+Priority: optional
+Description: Catalan language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Catalan.
+
+Package: firefox-l10n-ca-valencia
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 411
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ca-valencia_139.0.4-1_all.deb
+Size: 288136
+MD5sum: aa175a69bb1064c9a0b796d4d94a1161
+SHA1: 274309f23c7c34c6d6d1c9400d3a1ddc10b3a7ff
+SHA256: 4c32866179c6d5c04153e72b065ceb33ad107505a16b71a8020bf0f0f62c2c17
+Section: localization
+Priority: optional
+Description: Catalan (Valencia) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Catalan (Valencia).
+
+Package: firefox-l10n-cak
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 440
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-cak_139.0.4-1_all.deb
+Size: 324556
+MD5sum: 3b2209e8915d8118a2791031cd2629d5
+SHA1: c975f3e3ced131425a3295dbef79c0387dfca750
+SHA256: eb17c4873c913d01bead7da5caf9cb4b0069d84ae903db00c6db2886e4c21a34
+Section: localization
+Priority: optional
+Description: Kaqchikel language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Kaqchikel.
+
+Package: firefox-l10n-cs
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 521
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-cs
+Filename: pool/main/firefox-l10n-cs_139.0.4-1_all.deb
+Size: 409748
+MD5sum: 269dbb97d728deb91f402058ede97e0e
+SHA1: d933eec41bcc7250a81989be1c3c45eeac1d92dd
+SHA256: 717f5505df38ef0a821f7688fec6d34d39ca668fb6707333cb5f54767bcb7b55
+Section: localization
+Priority: optional
+Description: Czech language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Czech.
+
+Package: firefox-l10n-cy
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 491
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-cy_139.0.4-1_all.deb
+Size: 378332
+MD5sum: 3ebea6cb35d5b605d3d24b5bf7366f1c
+SHA1: e4e650fc140f4b1fccb0032b5152f27da1d13b71
+SHA256: 30acac8d64d25d16ce052186719b81506ee07742bb25b7ee1d5ac6ae94196955
+Section: localization
+Priority: optional
+Description: Welsh language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Welsh.
+
+Package: firefox-l10n-da
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 480
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-da | myspell-da
+Filename: pool/main/firefox-l10n-da_139.0.4-1_all.deb
+Size: 366604
+MD5sum: cac03713954a6061648885b1590aec74
+SHA1: fca162ba8e0f2fbf7d2ed08001c5f2959d0ebab9
+SHA256: a3a4d1d12bb02d755aaaeecf602a77b673a7232ef85cf086232bc89117055e8b
+Section: localization
+Priority: optional
+Description: Danish language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Danish.
+
+Package: firefox-l10n-de
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 501
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-de-de | hunspell-de-at | hunspell-de-ch
+Filename: pool/main/firefox-l10n-de_139.0.4-1_all.deb
+Size: 388708
+MD5sum: ed2d68b26519b287ae7bf4d586278052
+SHA1: 8aa09d5f2d28bd2a2ee340e6ec4908a2c1971cf8
+SHA256: 5d7a482fb902ba3baf1e8196ec6cf83af8b4bd857b9605d8b0002ab0f2b14a32
+Section: localization
+Priority: optional
+Description: German language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in German.
+
+Package: firefox-l10n-dsb
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 512
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-dsb_139.0.4-1_all.deb
+Size: 399180
+MD5sum: d7b013fd4ffc73ae5858089f9a181c43
+SHA1: d993a01a51aaa2bcf81dc0ab7206fdb9cffe4f74
+SHA256: b27c6b0640faf5d55bdd52d90b65a83803a5104408dd3080642151265b932309
+Section: localization
+Priority: optional
+Description: Lower Sorbian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Lower Sorbian.
+
+Package: firefox-l10n-el
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 578
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-el | myspell-el-gr
+Filename: pool/main/firefox-l10n-el_139.0.4-1_all.deb
+Size: 467940
+MD5sum: 6554a1ac33a4d34799d7e0255be898a5
+SHA1: 7d0b70333c4db40df34b76af415cdbbae2124cb6
+SHA256: 334fdd4341587e15ae29af1fd689fa4d86bd57cde09bdb6c80b25fb97b1ed1cb
+Section: localization
+Priority: optional
+Description: Modern Greek language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Modern Greek.
+
+Package: firefox-l10n-en-ca
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 458
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-en-gb | hunspell-en-us
+Filename: pool/main/firefox-l10n-en-ca_139.0.4-1_all.deb
+Size: 341836
+MD5sum: 6af645bc15d6f939e69d9b488b85bc73
+SHA1: 77c575e6bb63254ab0643e8ed950d4ec0d2ece29
+SHA256: 2708005529ca991ba59cc1ab1d66fa41161541891834989b5d5d943eb38c49c3
+Section: localization
+Priority: optional
+Description: English (Canada) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in English (Canada).
+
+Package: firefox-l10n-en-gb
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 460
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-en-gb | hunspell-en-us
+Filename: pool/main/firefox-l10n-en-gb_139.0.4-1_all.deb
+Size: 343784
+MD5sum: 11e0f7d8cac7500dbc1ec0f360073e30
+SHA1: c7a5b6c079f761742ac55c0b753a1ef73617fda8
+SHA256: a2c3810c0a341027edb5f1aa94d72a37ec3eb96d61174eafe981101d0509efac
+Section: localization
+Priority: optional
+Description: English (United Kingdom) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in English (United Kingdom).
+
+Package: firefox-l10n-eo
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 482
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-eo
+Filename: pool/main/firefox-l10n-eo_139.0.4-1_all.deb
+Size: 369124
+MD5sum: a7a3014d1c2a6cf8da14ba2723bf1ce8
+SHA1: 3a58c6ad0dec3a985eed9f8d3b1e6a01888970bf
+SHA256: 831eb66d5651a9b2d3ca3733a74f842f89c1d9a73507f412852e3ac458d34f8e
+Section: localization
+Priority: optional
+Description: Esperanto language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Esperanto.
+
+Package: firefox-l10n-es-ar
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 494
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-es | myspell-es
+Filename: pool/main/firefox-l10n-es-ar_139.0.4-1_all.deb
+Size: 379460
+MD5sum: f8c57e50077b7de93a0dd71c3e68f5c3
+SHA1: b2c3bd12814542225b6151ffebcc2daa1adb15d8
+SHA256: f25d4c3d7e42cead9bdbd6290b6653793e91d404c8736363a7e8e4672ae94426
+Section: localization
+Priority: optional
+Description: Spanish (Argentina) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Spanish (Argentina).
+
+Package: firefox-l10n-es-cl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 495
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-es | myspell-es
+Filename: pool/main/firefox-l10n-es-cl_139.0.4-1_all.deb
+Size: 380104
+MD5sum: eb3b06e129557e2fa80f07701bfd21a0
+SHA1: 3eb2df8b9dd4da34956f53f6aa0cb46433666d06
+SHA256: 76c414ac4499e2dfa4ac25389cc60a6d46f315fa34944a661ae6e8cb29d6b7b7
+Section: localization
+Priority: optional
+Description: Spanish (Chile) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Spanish (Chile).
+
+Package: firefox-l10n-es-es
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 496
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-es | myspell-es
+Filename: pool/main/firefox-l10n-es-es_139.0.4-1_all.deb
+Size: 380872
+MD5sum: d3f01608acfa5c971913533e6aef874a
+SHA1: fa5420ca06b9df4182242c0ea176fa28e0e53296
+SHA256: a80f7967f0d6f17a9864d62df0509b3be29c80f9a78a7a37a4ae7e59b33fbca7
+Section: localization
+Priority: optional
+Description: Spanish (Spain) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Spanish (Spain).
+
+Package: firefox-l10n-es-mx
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 489
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-es | myspell-es
+Filename: pool/main/firefox-l10n-es-mx_139.0.4-1_all.deb
+Size: 373936
+MD5sum: 8e55565af643051c45e97c5c5127ca51
+SHA1: 966da771a7e8093e716fa4ec085dfce468d77e58
+SHA256: ac0c3ce530e68c89414d2870d7aec453e4f4a77d5f39aadc1ac2923af81ea243
+Section: localization
+Priority: optional
+Description: Spanish (Mexico) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Spanish (Mexico).
+
+Package: firefox-l10n-et
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 412
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-et
+Filename: pool/main/firefox-l10n-et_139.0.4-1_all.deb
+Size: 296004
+MD5sum: c5fbf2f14f11d637cc8f226298273f10
+SHA1: 23cb692cec634ddd980a6043ca71ada6b14caf4d
+SHA256: cbc05c3b86b44c2c96bb1c78a637c6d66dc6ec1a5875b1d7d459374595569634
+Section: localization
+Priority: optional
+Description: Estonian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Estonian.
+
+Package: firefox-l10n-eu
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 463
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-eu
+Filename: pool/main/firefox-l10n-eu_139.0.4-1_all.deb
+Size: 349100
+MD5sum: aeb262a13ee48903f2730bc6a354d57a
+SHA1: 6cf2d74297579f217db6392b7df8ec2d3bbbc871
+SHA256: a65b3b95b750a2bee63fec8e4cbdda429b0fbe01c15e167004d6bf8467873390
+Section: localization
+Priority: optional
+Description: Basque language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Basque.
+
+Package: firefox-l10n-fa
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 465
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-fa
+Filename: pool/main/firefox-l10n-fa_139.0.4-1_all.deb
+Size: 351212
+MD5sum: c3f967272c6db21066c96978d64d1479
+SHA1: 1c603ff6c043df0bc8e1df91451ed03ea5bd639b
+SHA256: 59bfe1ea4649b8bf1c47533b24069474e99654ec3e6136661b5d0017f186b3ac
+Section: localization
+Priority: optional
+Description: Persian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Persian.
+
+Package: firefox-l10n-ff
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 366
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ff_139.0.4-1_all.deb
+Size: 248404
+MD5sum: dd93cf66d4f190a1ee03920d9c705c3e
+SHA1: 4486c3688791c7a32844dc4fe485e35370327efc
+SHA256: c744119f08119f975d743d7ee63f2c7b47a3ef298d9f53e2811f8c89f3739c83
+Section: localization
+Priority: optional
+Description: Fulah language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Fulah.
+
+Package: firefox-l10n-fi
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 477
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: xul-ext-mozvoikko
+Filename: pool/main/firefox-l10n-fi_139.0.4-1_all.deb
+Size: 364240
+MD5sum: 2f2dc44ffcd3a687c5e19d0c964ec34f
+SHA1: 957e359cdfb789c17b6ec416cd952a8d838560d1
+SHA256: e41a132fe710498d9ccf3a2ce3a73ccdd97bcc318ac612361d51ff0ca33e47ab
+Section: localization
+Priority: optional
+Description: Finnish language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Finnish.
+
+Package: firefox-l10n-fr
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 506
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-fr | myspell-fr | myspell-fr-gut
+Filename: pool/main/firefox-l10n-fr_139.0.4-1_all.deb
+Size: 393728
+MD5sum: 247c8fb5354a5eca4cd4fc561e4c68f2
+SHA1: a703707f8a74e1fb5598033330c09c1d0ba3b46e
+SHA256: 3282b8178c5b7681a57148ceb112f8a1411d234d03f5e666562ece8f58e920fc
+Section: localization
+Priority: optional
+Description: French language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in French.
+
+Package: firefox-l10n-fur
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 497
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-fur_139.0.4-1_all.deb
+Size: 383920
+MD5sum: 7eac3038a590042efaebafe41cdfd6a5
+SHA1: 83de1ce36b564731db28af7b0ce2b7511c5864c5
+SHA256: 14a9228b7007b08674897494d43099e2daeef8f1316d682ae69aea448c7bdae8
+Section: localization
+Priority: optional
+Description: Friulian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Friulian.
+
+Package: firefox-l10n-fy-nl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 491
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-fy-nl_139.0.4-1_all.deb
+Size: 375672
+MD5sum: b60739e7429cbd0cdb52d42a414c9dea
+SHA1: 433becf995d9c71f52bdba4146a29b21e6ef6b42
+SHA256: 080efa38b57569e9e4aaf2be4b2aabe3f2a24a40f07c9a8e9e826e05f0e1dc82
+Section: localization
+Priority: optional
+Description: Western Frisian (Netherlands) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Western Frisian (Netherlands).
+
+Package: firefox-l10n-ga-ie
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 371
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-ga
+Filename: pool/main/firefox-l10n-ga-ie_139.0.4-1_all.deb
+Size: 250576
+MD5sum: 43f99aea389d500b1692c85a5fa3d634
+SHA1: 5c7c026c785ad42ed6bf041ee64c54a6dd2fa9e4
+SHA256: 27b5791cdcd5a343ec3d0b5b477fce9be1c8409e8a3d28d3ae8a1885e724c893
+Section: localization
+Priority: optional
+Description: Irish (Ireland) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Irish (Ireland).
+
+Package: firefox-l10n-gd
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 450
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-gd | myspell-gd
+Filename: pool/main/firefox-l10n-gd_139.0.4-1_all.deb
+Size: 335244
+MD5sum: f87445dc57962ab6e60042f3caedf42c
+SHA1: 738d309479e1c502ee027485192aca37004fd623
+SHA256: f40c2adf88e61081bfd737819d7906b2465f3ff2ab26075e43801bfe364843ab
+Section: localization
+Priority: optional
+Description: Scottish Gaelic language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Scottish Gaelic.
+
+Package: firefox-l10n-gl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 456
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-gl-es | hunspell-gl
+Filename: pool/main/firefox-l10n-gl_139.0.4-1_all.deb
+Size: 342036
+MD5sum: 08848e72716ab5f128790014694be261
+SHA1: accbeee5d6a6d471657b51f0e586871f7511f033
+SHA256: 7f2b252389fd7f9ad01791088891be452f74d022ab778b571303a11265546a43
+Section: localization
+Priority: optional
+Description: Galician language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Galician.
+
+Package: firefox-l10n-gn
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 495
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-gn_139.0.4-1_all.deb
+Size: 382300
+MD5sum: 503032b8dc5ada38e5a2e9753f25bda2
+SHA1: 5dd9948d67e7c5d030369b5cb4c34f4f87942ed7
+SHA256: c109b59ab468472c0c5b89864997a5375de9706149856aba610b6722cb0dcbe6
+Section: localization
+Priority: optional
+Description: Guarani language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Guarani.
+
+Package: firefox-l10n-gu-in
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 410
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-gu
+Filename: pool/main/firefox-l10n-gu-in_139.0.4-1_all.deb
+Size: 291416
+MD5sum: 32d6f5566cc890f9197111976d589cc7
+SHA1: f85ab4575e3b646fa4d861473b1773b3c2312f29
+SHA256: 3d8bed516f4ebbf369608a665bc0a6551b83979daf2245b88d7668cbc0e4b397
+Section: localization
+Priority: optional
+Description: Gujarati (India) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Gujarati (India).
+
+Package: firefox-l10n-he
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 490
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-he | myspell-he
+Filename: pool/main/firefox-l10n-he_139.0.4-1_all.deb
+Size: 377096
+MD5sum: 17dcc838efa314ef7e06f9f9804a3994
+SHA1: 508eefd5ebe81baf4c69683c553ff2143cda1bb5
+SHA256: 04bb7c3ca800207c08d3cc8977c689da40b4a89f8a7866f6b779a3341c1c21e4
+Section: localization
+Priority: optional
+Description: Hebrew language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Hebrew.
+
+Package: firefox-l10n-hi-in
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 426
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-hi
+Filename: pool/main/firefox-l10n-hi-in_139.0.4-1_all.deb
+Size: 307484
+MD5sum: a5d15aca28ffb9873480795f58bd27bf
+SHA1: d6cd2026bc4a5064ef16b8d4249f51bb04cfcead
+SHA256: e0d2005bb5f9ef816b8531024562e62c36575522aec79ab296aec08ce37380a6
+Section: localization
+Priority: optional
+Description: Hindi (India) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Hindi (India).
+
+Package: firefox-l10n-hr
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 476
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-hr
+Filename: pool/main/firefox-l10n-hr_139.0.4-1_all.deb
+Size: 362480
+MD5sum: 4d9d03dd5bf65cd1a472a3dd92fb7fdf
+SHA1: 70754fc63e53823e0b93613cabf1f4b2a82bdc15
+SHA256: caa6c63874b54829f09580460e75f41af792eae22b01d4773a361a1edf7d7a4f
+Section: localization
+Priority: optional
+Description: Croatian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Croatian.
+
+Package: firefox-l10n-hsb
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 509
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-hsb_139.0.4-1_all.deb
+Size: 396244
+MD5sum: a57f4c129bb789ec1f3e4bd69498972f
+SHA1: a5d38b41bf97735d4ebaab3d030124ca420848d6
+SHA256: 613befe04842595f1b4c37349532cf34f7226231eaeffc8da5543af961c21f61
+Section: localization
+Priority: optional
+Description: Upper Sorbian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Upper Sorbian.
+
+Package: firefox-l10n-hu
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 513
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-hu | myspell-hu
+Filename: pool/main/firefox-l10n-hu_139.0.4-1_all.deb
+Size: 401072
+MD5sum: 5d9e9438a3f346dd242a3b1ce79644da
+SHA1: c090fbf2af2e587f7866d6bedd03a5b8c6eccf48
+SHA256: 26d46f805c630cfc4142decd3f170e0ac3c9a95822d9f9d1373583f5ee341c06
+Section: localization
+Priority: optional
+Description: Hungarian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Hungarian.
+
+Package: firefox-l10n-hy-am
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 498
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-hy
+Filename: pool/main/firefox-l10n-hy-am_139.0.4-1_all.deb
+Size: 382728
+MD5sum: 96147434f21f7a0a2230fecc212d9bc7
+SHA1: 51c104a180efac48fb08c32a8ed35fa97ad80146
+SHA256: 9fe5a34fc72dfdf1aea691593cb50570c9a92c66e075cc57da5f5f4178251866
+Section: localization
+Priority: optional
+Description: Armenian (Armenia) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Armenian (Armenia).
+
+Package: firefox-l10n-ia
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 479
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ia_139.0.4-1_all.deb
+Size: 366352
+MD5sum: 69aae610e2a757a249076735ea3072c5
+SHA1: 99a1539159cbb9eb07569472dc48f9af1a521f66
+SHA256: 46dbf13e10efc80352ed989b5df99bdd8350db5bde91eb1ff5acbfbc73f97b56
+Section: localization
+Priority: optional
+Description: Interlingua language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Interlingua.
+
+Package: firefox-l10n-id
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 471
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-id
+Filename: pool/main/firefox-l10n-id_139.0.4-1_all.deb
+Size: 357888
+MD5sum: 705b50ccaa3d5a6412e02fc2cc266663
+SHA1: 99dcd6402ac8757e9cc6e7e22e848025651eb195
+SHA256: eb775ce43995d617507ae984413b70e2ec573544bb17735a869540f450f3b1ff
+Section: localization
+Priority: optional
+Description: Indonesian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Indonesian.
+
+Package: firefox-l10n-is
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 481
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-is
+Filename: pool/main/firefox-l10n-is_139.0.4-1_all.deb
+Size: 367404
+MD5sum: 6a7731e716a28fca4a00c1a7571834a1
+SHA1: a392db69048a0bc4e2d934379cdf2dff03adc359
+SHA256: 545026472b865b01ac60d386f5206f62f00ab784757f818679d6d9d8104a4c40
+Section: localization
+Priority: optional
+Description: Icelandic language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Icelandic.
+
+Package: firefox-l10n-it
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 490
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-it
+Filename: pool/main/firefox-l10n-it_139.0.4-1_all.deb
+Size: 377072
+MD5sum: fd78ac9c218cc1b2827bc869ac41236f
+SHA1: bb3b5494895cb47aa5e046ecc62961b5cd7bb5d3
+SHA256: e565904c50b1f28eb71269585c0d87aa6e01918ee7cdb8313cffde01d30721db
+Section: localization
+Priority: optional
+Description: Italian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Italian.
+
+Package: firefox-l10n-ja
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 524
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ja_139.0.4-1_all.deb
+Size: 412144
+MD5sum: 8ee09a6ef653ffaf79bc95bf1d7c6726
+SHA1: e498a1725342c9c8562236c1f2e30fa942a36086
+SHA256: 837121f1a814b0fe25acb429de78cfd44961f8995c4c2e684affab7ab0e87fcc
+Section: localization
+Priority: optional
+Description: Japanese language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Japanese.
+
+Package: firefox-l10n-ka
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 536
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ka_139.0.4-1_all.deb
+Size: 424688
+MD5sum: 4ec25372293c00119fa4e86f35c0f4b4
+SHA1: 6d463e88dada1c13a4c31419c3e2a07d6d02e36a
+SHA256: a3e09244bc3bde7da629e8c7ffb4399c02d05a09c46146dbc9e53acb8f7a8d65
+Section: localization
+Priority: optional
+Description: Georgian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Georgian.
+
+Package: firefox-l10n-kab
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 470
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-kab_139.0.4-1_all.deb
+Size: 355556
+MD5sum: 7282b38ec2bc871504bce6b612637e37
+SHA1: 90cdd439af0baf2eee7cdf257cac7c96bd65a935
+SHA256: d4e861babcdcf22ed9eabbed7fdf30c9318c05f3aa95525ba850539f193920a7
+Section: localization
+Priority: optional
+Description: Kabyle language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Kabyle.
+
+Package: firefox-l10n-kk
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 545
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-kk
+Filename: pool/main/firefox-l10n-kk_139.0.4-1_all.deb
+Size: 433800
+MD5sum: b99f1103649dabed048bc7b6602e1330
+SHA1: 7218abb0cf0c896adbe3a7a2fc292cdc2cc62f14
+SHA256: 5136549058e55d0dcaf688171a8c1a7929e1fc452df1e29351dc7618a89a1644
+Section: localization
+Priority: optional
+Description: Kazakh language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Kazakh.
+
+Package: firefox-l10n-km
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 400
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-km_139.0.4-1_all.deb
+Size: 283128
+MD5sum: 175fe96c7979478b18f3a8626df8dd2f
+SHA1: f199d5ca03d073cbcb32bc419bfe8b8a4af27279
+SHA256: 1f00aaaddd319e92051021aed7fab984f4dd12b59008bf126cf7398b11f42922
+Section: localization
+Priority: optional
+Description: Khmer language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Khmer.
+
+Package: firefox-l10n-kn
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 386
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-kn_139.0.4-1_all.deb
+Size: 268256
+MD5sum: 9b6c4fbfede6a8cb987b35c666033e69
+SHA1: d47d53af8c40156516b259f1a9fa3e21d6a0c39a
+SHA256: 1169222e828499b0fcc4a36eb9ba307af4d554dd13b48f801d2cffcbdc14ea44
+Section: localization
+Priority: optional
+Description: Kannada language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Kannada.
+
+Package: firefox-l10n-ko
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 510
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-ko
+Filename: pool/main/firefox-l10n-ko_139.0.4-1_all.deb
+Size: 397196
+MD5sum: f5535bde9e63790a41cec2c6e7b7436d
+SHA1: f592ec20f3730991d08473f2ef994a1cbc893049
+SHA256: 831b6186e2f249de7fa10850c3f2da54387a2ced3276edb828e6c1f1f4e00f84
+Section: localization
+Priority: optional
+Description: Korean language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Korean.
+
+Package: firefox-l10n-lij
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 373
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-lij_139.0.4-1_all.deb
+Size: 254884
+MD5sum: fc9e9f2b361a80182a006fe97482b157
+SHA1: 1db5ee540f92b05d753fbacb537ba66a49a11287
+SHA256: 76d9a789e27e6455d80c111b0becd14293653076df2e8d4963f8020d3482b102
+Section: localization
+Priority: optional
+Description: Ligurian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Ligurian.
+
+Package: firefox-l10n-lt
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 431
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-lt
+Filename: pool/main/firefox-l10n-lt_139.0.4-1_all.deb
+Size: 315932
+MD5sum: c6f2e0e785ab1e74e62b143308773b67
+SHA1: d2ab1f68ed80dad1ba2ca9ddb161c78948d9ed32
+SHA256: 6ecdfcadfcec5d9b72baae41ab77b3c33125a9930d4184169867f49523c61219
+Section: localization
+Priority: optional
+Description: Lithuanian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Lithuanian.
+
+Package: firefox-l10n-lv
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 438
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-lv | myspell-lv
+Filename: pool/main/firefox-l10n-lv_139.0.4-1_all.deb
+Size: 323076
+MD5sum: f41c6d8f1cc9f9fb74fc3f869aa4273d
+SHA1: 5083c8203ac2019a5934d452658bcb65f1f218c9
+SHA256: 821389c21586697cfde9034548454ae0cbce23e5653d32717ccb8a6f18246e12
+Section: localization
+Priority: optional
+Description: Latvian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Latvian.
+
+Package: firefox-l10n-mk
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 370
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-mk_139.0.4-1_all.deb
+Size: 252016
+MD5sum: 274dc777a81f3d6daa92d53ff24de1af
+SHA1: a973f103290f4bd7ac7614fe0adaf92a54ce6b44
+SHA256: 87bb725cd7c91f9ab487ee4e3e4a1a8b849348b8ebf775c524eda3fad54f5572
+Section: localization
+Priority: optional
+Description: Macedonian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Macedonian.
+
+Package: firefox-l10n-mr
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 408
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-mr_139.0.4-1_all.deb
+Size: 290892
+MD5sum: 8da26730b1aa814ce8c66a2c5b4345c2
+SHA1: fcab5dd060c50fea4d5dd3c9c33bcf4b6487153b
+SHA256: 9354c06124f90a6d4e14520bbe937b3e186a85a95df66d0f4214184c5d1d5309
+Section: localization
+Priority: optional
+Description: Marathi language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Marathi.
+
+Package: firefox-l10n-ms
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 353
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ms_139.0.4-1_all.deb
+Size: 234524
+MD5sum: 3e119d8bca0b5ece5d8b8ce57c502a7f
+SHA1: b93397a67fc5384e3c427d5a14909b66eb08ef74
+SHA256: 6717cf9358fd61ec2edff1292e883b85031686e61b27240e7a12d14da8ccd9cb
+Section: localization
+Priority: optional
+Description: Malay language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Malay.
+
+Package: firefox-l10n-my
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 396
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-my_139.0.4-1_all.deb
+Size: 279216
+MD5sum: d29355a086234c05780c0f40c761e6ee
+SHA1: 4efba5d4c9d8fa2556e65fb1026c98cb92c5ce43
+SHA256: 51ecbdd935cd342310fbc6591964eb24d8c315108f1e11cbe23861d0c1559571
+Section: localization
+Priority: optional
+Description: Burmese language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Burmese.
+
+Package: firefox-l10n-nb-no
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 470
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-nb
+Filename: pool/main/firefox-l10n-nb-no_139.0.4-1_all.deb
+Size: 353840
+MD5sum: 28f45303ea8d82b5f14c593d6de0206a
+SHA1: 132b1d45dc4203a9dbf702cdfa714c9243623fdc
+SHA256: 07c05c381fbafcca79420c85a4c972a814faa1388a790cd2b3a22b62d5ca24f6
+Section: localization
+Priority: optional
+Description: Norwegian Bokmål (Norway) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Norwegian Bokmål (Norway).
+
+Package: firefox-l10n-ne-np
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 402
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-ne
+Filename: pool/main/firefox-l10n-ne-np_139.0.4-1_all.deb
+Size: 282412
+MD5sum: 71a159848860ca3664e46f2e7c627b5f
+SHA1: 4b1d381e83ded3f944655b6e240caa72031082b3
+SHA256: e46d7872fe736329c9b8776c8d8738e1f7eeecf756cb2a4e9aac84d7bd5ccf2e
+Section: localization
+Priority: optional
+Description: Nepali (Nepal) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Nepali (Nepal).
+
+Package: firefox-l10n-nl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 485
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-nl
+Filename: pool/main/firefox-l10n-nl_139.0.4-1_all.deb
+Size: 372448
+MD5sum: 486c73827c026a0e13e5b08e1afa4c0b
+SHA1: 5ef09ad8bdc62886274ca96397cd0e271edb3a69
+SHA256: 00bb70e3aac64f8bb2670e4633cf1082a45e48d3f939fe3369e6ed253a98f850
+Section: localization
+Priority: optional
+Description: Dutch language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Dutch.
+
+Package: firefox-l10n-nn-no
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 477
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-nn
+Filename: pool/main/firefox-l10n-nn-no_139.0.4-1_all.deb
+Size: 361760
+MD5sum: bfc1475846ee8dc69520806093ec585b
+SHA1: 74a36d8ca5fd16da23f634e900ce3f583d97f983
+SHA256: 35c1a4cc65ef46a28fcc7720a9f157403abc498d9930f9ee54d817a5e815559f
+Section: localization
+Priority: optional
+Description: Norwegian Nynorsk (Norway) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Norwegian Nynorsk (Norway).
+
+Package: firefox-l10n-oc
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 461
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-oc
+Filename: pool/main/firefox-l10n-oc_139.0.4-1_all.deb
+Size: 347468
+MD5sum: 99d080e19af78fd8816980f225915ce0
+SHA1: d6cb8743399d9d2fc229cb8536ea52f67e01262b
+SHA256: b6085f3592139a461f067a5abfade17dbc390504dc80942df8f3b34b2b3ae30f
+Section: localization
+Priority: optional
+Description: Occitan language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Occitan.
+
+Package: firefox-l10n-pa-in
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 535
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-pa-in_139.0.4-1_all.deb
+Size: 421116
+MD5sum: 2cc7505b5303cf393f2fa2079635ab3f
+SHA1: d49c38835e8e569cef99e213842af19261dfd286
+SHA256: 28ee97fcdf595919d65e83790df2aaf79d3e19f65d631de75c8396b1d2e0ca59
+Section: localization
+Priority: optional
+Description: Panjabi (India) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Panjabi (India).
+
+Package: firefox-l10n-pl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 502
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-pl | myspell-pl
+Filename: pool/main/firefox-l10n-pl_139.0.4-1_all.deb
+Size: 389460
+MD5sum: 98e7844e5266e4343c8cda743f5a24fb
+SHA1: df5ca7764e9f43ecd414d97be10350d209ecb223
+SHA256: 97494a0e3334443ddd09636065586aa3a185f17149839b703d75dea8ac4a6409
+Section: localization
+Priority: optional
+Description: Polish language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Polish.
+
+Package: firefox-l10n-pt-br
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 489
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-pt-br | myspell-pt-br
+Filename: pool/main/firefox-l10n-pt-br_139.0.4-1_all.deb
+Size: 374260
+MD5sum: e78d70f7ecd9c7e3eb9c14a3a5258da3
+SHA1: cf9597c72c686d32a9fbfd125d01ec5e89d80016
+SHA256: d3d35b9e1550e242a26fff660f08d88c84a6430496f0943b0a0da131a5410cda
+Section: localization
+Priority: optional
+Description: Portuguese (Brazil) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Portuguese (Brazil).
+
+Package: firefox-l10n-pt-pt
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 495
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-pt-pt | myspell-pt-pt
+Filename: pool/main/firefox-l10n-pt-pt_139.0.4-1_all.deb
+Size: 380132
+MD5sum: 17a05687add24efbac783a35763d7bfa
+SHA1: b8c5e781e7277b46eba034bd0616aebecaa2ef14
+SHA256: c75ae55a4562dd42f5366c1f47fe07efb22c76a48ca77796501777b96a31ec1a
+Section: localization
+Priority: optional
+Description: Portuguese (Portugal) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Portuguese (Portugal).
+
+Package: firefox-l10n-rm
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 487
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-rm_139.0.4-1_all.deb
+Size: 374256
+MD5sum: 5c2762ea5c8207149bb9fad7e63fd52a
+SHA1: f4fb1389e5dc5aef967297bb7db24cf3d4e4ad07
+SHA256: a2dc54c7c3ed1406e7df9d4d9a3e963de54008dc3332e08621c38103594186f8
+Section: localization
+Priority: optional
+Description: Romansh language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Romansh.
+
+Package: firefox-l10n-ro
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 418
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-ro
+Filename: pool/main/firefox-l10n-ro_139.0.4-1_all.deb
+Size: 302012
+MD5sum: 34bf8e447e5ba87d2fb01e939aca6888
+SHA1: b2ae15272a6185dfeb0c13ddc66d8cccc84beb9c
+SHA256: b539c0fecdf932ade49913e651ca63675f2f593935dae06f8da5b666d2659d79
+Section: localization
+Priority: optional
+Description: Romanian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Romanian.
+
+Package: firefox-l10n-ru
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 567
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-ru | myspell-ru
+Filename: pool/main/firefox-l10n-ru_139.0.4-1_all.deb
+Size: 456552
+MD5sum: 7ad73acd81ea2fc73adbfa84f163e844
+SHA1: a03e333f684dda44735ff826fb6a0df4b575701a
+SHA256: ff6fefc2865a85bd494ab3d205d5f6191cd7636d5e97f410986f9061f0aca446
+Section: localization
+Priority: optional
+Description: Russian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Russian.
+
+Package: firefox-l10n-sat
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 509
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-sat_139.0.4-1_all.deb
+Size: 396232
+MD5sum: df8bc3859ed8e810fd8d72b0d1eecfcf
+SHA1: 469c9f2ba225ad9a7c06e9dadf5529d364f48610
+SHA256: 83a806f77093b77025a1a84ead8e5da8b165f920113504731f27458a35288920
+Section: localization
+Priority: optional
+Description: Santali language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Santali.
+
+Package: firefox-l10n-sc
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 455
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-sc_139.0.4-1_all.deb
+Size: 341064
+MD5sum: 118c93cd526cd704ad7c7ddfb8a15f74
+SHA1: acee7e484b31b02d0c5ef12d1bad54bded0a8885
+SHA256: 20baf873cefefe6ddecef8368c0616badf7c802346e91520504d9352ec35d514
+Section: localization
+Priority: optional
+Description: Sardinian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Sardinian.
+
+Package: firefox-l10n-sco
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 378
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-sco_139.0.4-1_all.deb
+Size: 259984
+MD5sum: 8856c4988cdee1c1b9f4b34e3651410c
+SHA1: 231c241538f2efeff9f37b2f06cf04e214431bcf
+SHA256: 4213516a67b9e57eea4d1d9d7dd55f8584649ab10a04c542a3eb061ce64e1a08
+Section: localization
+Priority: optional
+Description: Scots language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Scots.
+
+Package: firefox-l10n-si
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 458
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-si
+Filename: pool/main/firefox-l10n-si_139.0.4-1_all.deb
+Size: 343660
+MD5sum: 2ff68e5b18e39376b9b9850757487d1e
+SHA1: d7538e7aa793fa901a66141ca54c9d981c0f329f
+SHA256: 0b3cb1af380a308a621cfdc450807d44060f5e3b532d526a547ddbd61058e9fc
+Section: localization
+Priority: optional
+Description: Sinhala language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Sinhala.
+
+Package: firefox-l10n-sk
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 514
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-sk | myspell-sk
+Filename: pool/main/firefox-l10n-sk_139.0.4-1_all.deb
+Size: 402724
+MD5sum: 9601a3221533383286c2b59b8e9d2fb4
+SHA1: f3d912a7326dbc9866702308765f9bae2dc20819
+SHA256: 3bbedafeba2d8e40e0089fea3ae08fa8dacbd953c8d5f1ce6dff6121c37654a4
+Section: localization
+Priority: optional
+Description: Slovak language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Slovak.
+
+Package: firefox-l10n-skr
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 532
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-skr_139.0.4-1_all.deb
+Size: 419316
+MD5sum: 23af2655e42a6a2ceaaca9105603bba5
+SHA1: e5fdb0802cde4fb6c8f3c82271ab0e99a29729e4
+SHA256: fb276bcac3d4338ed4b033d8c4e19c8c373b3c4ad90b318b0582a807415e2e06
+Section: localization
+Priority: optional
+Description: Saraiki language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Saraiki.
+
+Package: firefox-l10n-sl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 490
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-sl
+Filename: pool/main/firefox-l10n-sl_139.0.4-1_all.deb
+Size: 376716
+MD5sum: 925bbd886ebd83e144a47039f138fc7b
+SHA1: 09a1fcee35a25fa9abb70a63bbc45e96491036ae
+SHA256: 8cd098d000b1a4baa04993c2cd6cdc1fb194aa6363dd6dbd2e1b53a33732aa2b
+Section: localization
+Priority: optional
+Description: Slovenian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Slovenian.
+
+Package: firefox-l10n-son
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 333
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-son_139.0.4-1_all.deb
+Size: 213128
+MD5sum: 01c5e414e0133e19ef9e52eba155cc94
+SHA1: af04d33944c566aa037afb1aa9b4ee48f48a5d90
+SHA256: cbfd4023fe0914155bcfc0cc64d3fce4646a92e0925b3d7900b3afa925215192
+Section: localization
+Priority: optional
+Description: Songhai languages language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Songhai languages.
+
+Package: firefox-l10n-sq
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 503
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: myspell-sq
+Filename: pool/main/firefox-l10n-sq_139.0.4-1_all.deb
+Size: 390264
+MD5sum: 4e266913c3b0fc248b3ebe58a668e7a2
+SHA1: e44e579f1d53b92ad34d59b6ebae3e9239f62c76
+SHA256: 39d823a7541c7d4f8704f8a7edc27967eab342394fb4dcbe49624d16afeb456a
+Section: localization
+Priority: optional
+Description: Albanian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Albanian.
+
+Package: firefox-l10n-sr
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 497
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-sr
+Filename: pool/main/firefox-l10n-sr_139.0.4-1_all.deb
+Size: 384416
+MD5sum: 1b9f3a02a2ef25b6df18be3fb62c7556
+SHA1: e6797f96d61085c8919bf636bc755bc26755e450
+SHA256: d1310687154c5608a536b457bb2d103e1f37f909a385851e5b22ac6a513e659c
+Section: localization
+Priority: optional
+Description: Serbian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Serbian.
+
+Package: firefox-l10n-sv-se
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 484
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-sv-se
+Filename: pool/main/firefox-l10n-sv-se_139.0.4-1_all.deb
+Size: 368904
+MD5sum: 018465018a5b430c3403c7cf17110f5b
+SHA1: 8cf74d91749a823796499a202fcff5128c48e4f3
+SHA256: 9f6e43ba0e279c3b761e87528a8cce39797c88415bacc78a8a091e69cb7141ae
+Section: localization
+Priority: optional
+Description: Swedish (Sweden) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Swedish (Sweden).
+
+Package: firefox-l10n-szl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 397
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-szl_139.0.4-1_all.deb
+Size: 279332
+MD5sum: a9d7e0d47fd88b9b16db0f3fe883bcea
+SHA1: 367192bb48ba6bbe642faa0eddb2ba3f645f6da7
+SHA256: 2310e33fee92609e06c30c4238cbc02755f56b52c1ab47487550cb88540c1d93
+Section: localization
+Priority: optional
+Description: Silesian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Silesian.
+
+Package: firefox-l10n-ta
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 391
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ta_139.0.4-1_all.deb
+Size: 273852
+MD5sum: 57c3fd66a1c1e3dc7abe1deefe2c48f1
+SHA1: fe298628ce65c128ef72f1cbec25f4fce9f61439
+SHA256: 2cdf6da70e8d89134778040c8c95a7980fff0f633d9af0acbbf0044687aa42c2
+Section: localization
+Priority: optional
+Description: Tamil language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Tamil.
+
+Package: firefox-l10n-te
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 431
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-te
+Filename: pool/main/firefox-l10n-te_139.0.4-1_all.deb
+Size: 315060
+MD5sum: 2d9b3bf02f97b74cad651fd0ed77f9e5
+SHA1: fb1359822d46bce4cb9af4dd6098b45fbe792ff4
+SHA256: dd10e72fed47ceda4354cd918ba5cb6bc85a661e3c6af15930f9f1e560a12c65
+Section: localization
+Priority: optional
+Description: Telugu language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Telugu.
+
+Package: firefox-l10n-tg
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 567
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-tg_139.0.4-1_all.deb
+Size: 456668
+MD5sum: b942c980c09f799ab88c77bf5d6f0493
+SHA1: ae37756cbadfb0f8a6cae42290fc434769e2d381
+SHA256: 1386cf8698e680624ae5d6691dde71aca31225b1b0b944ab0ec182c221455caf
+Section: localization
+Priority: optional
+Description: Tajik language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Tajik.
+
+Package: firefox-l10n-th
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 545
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-th
+Filename: pool/main/firefox-l10n-th_139.0.4-1_all.deb
+Size: 434040
+MD5sum: f0ed923ab44af1700d30187e7fb0a9bf
+SHA1: dd16b679a90d9182d7e2f7772f2d92ba6fa1a4a1
+SHA256: feabd6f3cc8704dfda9079049a95ab451fec3b9568fe2ce48cfffe36ee83a4e1
+Section: localization
+Priority: optional
+Description: Thai language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Thai.
+
+Package: firefox-l10n-tl
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 408
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-tl_139.0.4-1_all.deb
+Size: 292520
+MD5sum: f2a5379ea6a5f2a82bc2f647be681f39
+SHA1: 46206f21503548f37da450d60efbd120842f683d
+SHA256: 39db3b9519f1d368ed6f74b0646fea9e383fd3cdb4ec09ba1fe09ae9af775154
+Section: localization
+Priority: optional
+Description: Tagalog language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Tagalog.
+
+Package: firefox-l10n-tr
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 496
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-tr_139.0.4-1_all.deb
+Size: 383284
+MD5sum: 63bc4d3b355bae3cc55deca7f2c1aa49
+SHA1: d14566827b37853f256e90df47c91b8c180cdffa
+SHA256: d28fa7481d4de520e75287112328dfff556829b88b4c8a68e355506cab1b7bf2
+Section: localization
+Priority: optional
+Description: Turkish language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Turkish.
+
+Package: firefox-l10n-trs
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 378
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-trs_139.0.4-1_all.deb
+Size: 259432
+MD5sum: 4e69241b58ae65c4a068a1cc3f301d7a
+SHA1: a5329cbb1cf7383e891ce6dca2fa2b687c677f00
+SHA256: a030ca4e964176541c15ae641649c43a8fc800054b0d153d2e22f7ff373bea99
+Section: localization
+Priority: optional
+Description: Chicahuaxtla Triqui language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Chicahuaxtla Triqui.
+
+Package: firefox-l10n-uk
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 558
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-uk | myspell-uk
+Filename: pool/main/firefox-l10n-uk_139.0.4-1_all.deb
+Size: 448200
+MD5sum: 480094152ce07178f73986d0bdda712f
+SHA1: 6204719b8f76cfc7a739d1783fd56be317da338c
+SHA256: b0326b777e4947789ca353c4590f4c7d5e5329f0b0f8be0432b15ecb08055fd1
+Section: localization
+Priority: optional
+Description: Ukrainian language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Ukrainian.
+
+Package: firefox-l10n-ur
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 419
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-ur_139.0.4-1_all.deb
+Size: 303076
+MD5sum: 980e729d20e57f96de781be228e55589
+SHA1: addb26f7abe8f7d503d56cdc9f8f148f93469695
+SHA256: b646e8b5680af1fbf5990a93940be25d37f6ae7c8abbe791f054c374847bbd44
+Section: localization
+Priority: optional
+Description: Urdu language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Urdu.
+
+Package: firefox-l10n-uz
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 360
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-uz
+Filename: pool/main/firefox-l10n-uz_139.0.4-1_all.deb
+Size: 241848
+MD5sum: 3b5541dd94e1d34ed14fb854972e6c07
+SHA1: 6c49f5ebae2887e228fe940e18d8e6781f030455
+SHA256: b406afd411d38a1bc0837712eb374939677535ced836287fbb0ad8ecb32c48d4
+Section: localization
+Priority: optional
+Description: Uzbek language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Uzbek.
+
+Package: firefox-l10n-vi
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 513
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Recommends: hunspell-vi
+Filename: pool/main/firefox-l10n-vi_139.0.4-1_all.deb
+Size: 400724
+MD5sum: 5277acc8836a90364f274a75760a4c8f
+SHA1: b083bb9776f1013e531fccd4da6b80fe1adc52c9
+SHA256: cce70a08679048d6a61fae2f2713f239793383abb30edf72809e139a8ee463d5
+Section: localization
+Priority: optional
+Description: Vietnamese language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Vietnamese.
+
+Package: firefox-l10n-xh
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 334
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-xh_139.0.4-1_all.deb
+Size: 214384
+MD5sum: 35df262739e0e244aa1e07906e57c4d9
+SHA1: 95b7f4ed72af1b3ab0bbd5ff199fa2a306f45ca9
+SHA256: c7d27be11ea2b14fcde2a31de1f31c1590c036f533f6a7bcc568243b5517689e
+Section: localization
+Priority: optional
+Description: Xhosa language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Xhosa.
+
+Package: firefox-l10n-zh-cn
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 501
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-zh-cn_139.0.4-1_all.deb
+Size: 385620
+MD5sum: 0bd7f1f7734b4c8545dd4f175731a180
+SHA1: 8e1c9e37eed00cbc8007993a97b8813b5ea21762
+SHA256: 7796a39002ae18d9f33fb26c7883eba2b38e784106207c52d7f3063921cc9c39
+Section: localization
+Priority: optional
+Description: Chinese (China) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Chinese (China).
+
+Package: firefox-l10n-zh-tw
+Source: firefox
+Version: 139.0.4-1
+Architecture: all
+Maintainer: Maintainers of Mozilla-related packages <team+pkg-mozilla@tracker.debian.org>
+Installed-Size: 504
+Depends: firefox (>= 139.0.4-1), firefox (<< 139.0.4-1.1~)
+Filename: pool/main/firefox-l10n-zh-tw_139.0.4-1_all.deb
+Size: 388860
+MD5sum: 1311f42e2eba67e984a2e413fe8d9db4
+SHA1: 2cb3540db054646f3259ab7083ca40c19d43b2ee
+SHA256: 4252865cf8975676ece2b649f4bc627693dbc6f88d5cb462303cdc32a824e37b
+Section: localization
+Priority: optional
+Description: Chinese (Taiwan) language package for Firefox
+ Firefox is a powerful, extensible web browser with support for modern
+ web application technologies.
+ .
+ This package contains the localization of Firefox in Chinese (Taiwan).
+
+Package: ir-keytable
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 537
+Depends: libbpf1 (>= 1:0.6.0), libc6 (>= 2.38), libelf1t64 (>= 0.131)
+Recommends: udev
+Filename: pool/main/ir-keytable_1.30.1-1_arm64.deb
+Size: 156240
+MD5sum: 55067df6da3ef3605ae381cb45329322
+SHA1: 16a0463e6226be06918ceb571be6f565a2e076a5
+SHA256: f70c3afc00fb2fcea6c4fabe24135f110b3642a195e09764202759bfa948e1d7
+Section: utils
+Priority: optional
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Alter keymaps of Remote Controller devices
+ This package allows one to change the keymap of controller receivers.
+ Those receivers are found as infrared receivers on DVB sticks or on
+ framegrabber cards. Via ir-keytable the mapping from a scancode to
+ the generated event can be customized and made persistent.
+
+Package: ir-keytable-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 220
+Depends: ir-keytable (= 1.30.1-1)
+Filename: pool/main/ir-keytable-dbgsym_1.30.1-1_arm64.deb
+Size: 99992
+MD5sum: 4e5f564906d88502468b39eba29523d0
+SHA1: 7b2f39c294e731947af76437eeca5e37f57083dd
+SHA256: 79c94ec1253013d41a5d6a98631b66162788008c0b2007e627c7f1f29493da6e
+Section: debug
+Priority: optional
+Description: debug symbols for ir-keytable
+Build-Ids: 9b93dd58e27b8f3b45dc7a997249b6a53bc56ee4
+
+Package: libavcodec-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 21194
+Depends: libavcodec61 (= 7:7.1.3-0+deb13u1), libavutil-dev (= 7:7.1.3-0+deb13u1), libswresample-dev (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavcodec-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 6084196
+MD5sum: c2f9a44f77d715471cea5e55e72050fa
+SHA1: f7accd45f51fa91e0599804f6b486e127be762aa
+SHA256: e9974355b1f326e2cea144264721a2d80bc0e827d784e66789554a665f3d5210
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with de/encoders for audio/video codecs - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic encoding/decoding framework and
+ contains multiple decoders and encoders for audio, video and subtitle streams,
+ and several bitstream filters.
+ .
+ The shared architecture provides various services ranging from bit stream I/O
+ to DSP optimizations, and makes it suitable for implementing robust and fast
+ codecs as well as for experimentation.
+ .
+ This package contains the development files.
+
+Package: libavcodec-extra
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 90
+Depends: libavcodec-extra61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavcodec-extra_7.1.3-0+deb13u1_arm64.deb
+Size: 56972
+MD5sum: dc5171f30d740e1a451f8fea57df42ac
+SHA1: d0464c44bdb8f07a47af12f3ee8db0ac492a07da
+SHA256: 31d3f3f62006f9258212581a3c7f2d4558fb424c93b5cbe061572ea143a35c3d
+Section: metapackages
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra codecs (metapackage)
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This metapackage depends on the latest version of the libavcodec variant
+ that offers additional codec support. Application packages can depend
+ on it if they require or suggest this variant in a robust manner.
+
+Package: libavcodec-extra61
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 14257
+Depends: libaom3 (>= 3.2.0), libaribb24-0t64 (>= 1.0.3), libavutil59 (= 7:7.1.3-0+deb13u1), libc6 (>= 2.35), libcairo2 (>= 1.2.4), libcodec2-1.2 (>= 1.2.0), libdav1d7 (>= 1.1.0), libglib2.0-0t64 (>= 2.12.0), libgsm1 (>= 1.0.18), libjxl0.11 (>= 0.8.0), liblzma5 (>= 5.1.1alpha+20120614), libmp3lame0 (>= 3.100), libopencore-amrnb0 (>= 0.1.6), libopencore-amrwb0 (>= 0.1.6), libopenjp2-7 (>= 2.0.0), libopus0 (>= 1.1), librav1e0.7 (>= 0.5.1), librga2, librockchip-mpp1, librsvg2-2 (>= 2.52.5), libshine3 (>= 3.1.0), libsnappy1v5 (>= 1.2.2), libspeex1 (>= 1.2~), libsvtav1enc2 (>= 2.2.1), libswresample5 (>= 7:7.0), libtheoradec1 (>= 1.0), libtheoraenc1 (>= 1.0), libtwolame0 (>= 0.3.10), libva2 (>= 2.9.0), libvo-amrwbenc0 (>= 0.1.3), libvorbis0a (>= 1.1.2), libvorbisenc2 (>= 1.1.2), libvpx9 (>= 1.12.0), libwebp7 (>= 1.5.0), libwebpmux3 (>= 1.5.0), libx264-164 (>= 2:0.164.3108+git31e19f9), libx265-215 (>= 4.1), libxvidcore4 (>= 1.2.2), libzvbi0t64 (>= 0.2.35), zlib1g (>= 1:1.2.0)
+Suggests: libcuda1, libnvcuvid1, libnvidia-encode1
+Conflicts: libavcodec61
+Provides: libavcodec61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavcodec-extra61_7.1.3-0+deb13u1_arm64.deb
+Size: 5417588
+MD5sum: 5120b0f399bee4442f7745a5741e27d7
+SHA1: 90732115275f3178a0f189e46e21e6ca37ceed4b
+SHA256: 82e4d104c783dafab1691a48366e3d3ae9b9253a18a72c7651c59e1a7c60b78b
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with additional de/encoders for audio/video codecs
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic encoding/decoding framework and
+ contains multiple decoders and encoders for audio, video and subtitle streams,
+ and several bitstream filters.
+ .
+ The shared architecture provides various services ranging from bit stream I/O
+ to DSP optimizations, and makes it suitable for implementing robust and fast
+ codecs as well as for experimentation.
+ .
+ This package replaces the libavcodec60 package and contains the
+ following additional codecs:
+ .
+  * ARIB STD-B24 Captions (Subtitle Decoder)
+  * OpenCORE Adaptive Multi-Rate (AMR) Narrow-Band (Encoder/Decoder)
+  * OpenCORE Adaptive Multi-Rate (AMR) Wide-Band (Decoder)
+  * Android VisualOn Adaptive Multi-Rate (AMR) Wide-Band (Encoder)
+ .
+ Because this package links against libraries that are licensed under
+ Apache License 2.0, the resulting binaries are distributed under the
+ GPL version 3 or later.
+
+Package: libavcodec-extra61-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 22296
+Depends: libavcodec-extra61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavcodec-extra61-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 21702264
+MD5sum: 19302649185c3386662f356a40a7208e
+SHA1: 74fd4545db0c034da8a682deb0983881f8dcf04e
+SHA256: 4d65b817b859aa84b57b81517dd7bc5f5d93c2a4772af84d495b700da071c162
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavcodec-extra61
+Build-Ids: 8ea0feff2309a56d657e928c2e085dcfea1dd333
+
+Package: libavcodec61
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 14257
+Depends: libaom3 (>= 3.2.0), libavutil59 (= 7:7.1.3-0+deb13u1), libc6 (>= 2.35), libcairo2 (>= 1.2.4), libcodec2-1.2 (>= 1.2.0), libdav1d7 (>= 1.1.0), libglib2.0-0t64 (>= 2.12.0), libgsm1 (>= 1.0.18), libjxl0.11 (>= 0.8.0), liblzma5 (>= 5.1.1alpha+20120614), libmp3lame0 (>= 3.100), libopenjp2-7 (>= 2.0.0), libopus0 (>= 1.1), librav1e0.7 (>= 0.5.1), librga2, librockchip-mpp1, librsvg2-2 (>= 2.52.5), libshine3 (>= 3.1.0), libsnappy1v5 (>= 1.2.2), libspeex1 (>= 1.2~), libsvtav1enc2 (>= 2.2.1), libswresample5 (>= 7:7.0), libtheoradec1 (>= 1.0), libtheoraenc1 (>= 1.0), libtwolame0 (>= 0.3.10), libva2 (>= 2.9.0), libvorbis0a (>= 1.1.2), libvorbisenc2 (>= 1.1.2), libvpx9 (>= 1.12.0), libwebp7 (>= 1.5.0), libwebpmux3 (>= 1.5.0), libx264-164 (>= 2:0.164.3108+git31e19f9), libx265-215 (>= 4.1), libxvidcore4 (>= 1.2.2), libzvbi0t64 (>= 0.2.35), zlib1g (>= 1:1.2.0)
+Suggests: libcuda1, libnvcuvid1, libnvidia-encode1
+Filename: pool/main/libavcodec61_7.1.3-0+deb13u1_arm64.deb
+Size: 5403200
+MD5sum: 66f4dda68193b8e2ea9c7240e0a2a24a
+SHA1: 56183fa7ea43d3e33e622d19ed755b781db93057
+SHA256: f80c956b9f1e65936d627afdc6194d9091e69069821c8c6cd613180ed6a82729
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with de/encoders for audio/video codecs - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic encoding/decoding framework and
+ contains multiple decoders and encoders for audio, video and subtitle streams,
+ and several bitstream filters.
+ .
+ The shared architecture provides various services ranging from bit stream I/O
+ to DSP optimizations, and makes it suitable for implementing robust and fast
+ codecs as well as for experimentation.
+ .
+ This package contains the runtime files.
+
+Package: libavcodec61-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 22270
+Depends: libavcodec61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavcodec61-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 21676060
+MD5sum: 8899ce724de5cea64bc9818bcddc9303
+SHA1: 13e7b33ce3399a4e100ece872202fe1661133757
+SHA256: 6bdff8cdf2755fb23b49c20ad70c9aeb9df5605889d92056cc8c7e24702497d0
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavcodec61
+Build-Ids: 7823eb18498de2f02ad1f2812300737849ef2704
+
+Package: libavdevice-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 459
+Depends: libavcodec-dev (= 7:7.1.3-0+deb13u1), libavdevice61 (= 7:7.1.3-0+deb13u1), libavfilter-dev (= 7:7.1.3-0+deb13u1), libavformat-dev (= 7:7.1.3-0+deb13u1), libavutil-dev (= 7:7.1.3-0+deb13u1), libpostproc-dev (= 7:7.1.3-0+deb13u1), libswscale-dev (= 7:7.1.3-0+deb13u1), libswresample-dev (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavdevice-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 130552
+MD5sum: 6be33cb82c0986ce380160b509a57279
+SHA1: 06db0001d40aa9b4c29b311e8158094f14b89145
+SHA256: e33fcff1529b0aed1fd1161ede6dc38fb54617a49bc5fdb7b2c11ef2de2c4819
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for handling input and output devices - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for grabbing from and rendering to
+ many common multimedia input/output devices, and supports several input and
+ output devices, including Video4Linux2, VfW, DShow, and ALSA.
+ .
+ This package contains the development files.
+
+Package: libavdevice61
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 355
+Depends: libasound2t64 (>= 1.0.16), libavc1394-0 (>= 0.5.3), libavcodec61 (>= 7:7.0), libavfilter10 (>= 7:7.0), libavformat61 (= 7:7.1.3-0+deb13u1), libavutil59 (= 7:7.1.3-0+deb13u1), libc6 (>= 2.34), libcaca0 (>= 0.99.beta20), libcdio-cdda2t64 (>= 10.2+2.0.0), libcdio-paranoia2t64 (>= 10.2+2.0.0), libdc1394-25 (>= 2.2.6), libdrm2 (>= 2.4.101), libgl1, libiec61883-0 (>= 1.2.0), libjack-jackd2-0 (>= 1.9.10+20150825) | libjack-0.125, libopenal1 (>= 1.14), libpulse0 (>= 0.99.1), libraw1394-11 (>= 2.1.2), libsdl2-2.0-0 (>= 2.0.12), libx11-6, libxcb-shape0, libxcb-shm0, libxcb-xfixes0, libxcb1, libxext6, libxv1
+Filename: pool/main/libavdevice61_7.1.3-0+deb13u1_arm64.deb
+Size: 116200
+MD5sum: 7da74735bce09c80595c4e9e65598f8f
+SHA1: 3763edbff590d13c9c2161c0fe7b1565e57be5fa
+SHA256: 8beff7170614df02a9e5ff296f1a180f3b76e1a2c83bc1c17c49797676f65811
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for handling input and output devices - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for grabbing from and rendering to
+ many common multimedia input/output devices, and supports several input and
+ output devices, including Video4Linux2, VfW, DShow, and ALSA.
+ .
+ This package contains the runtime files.
+
+Package: libavdevice61-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 264
+Depends: libavdevice61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavdevice61-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 221860
+MD5sum: 1c5c008f6b642af9e4cfb84817d6818c
+SHA1: 5bce2a4cea5362be697fe4e146cec13b93824565
+SHA256: 32c78e9583d1fcae6aded14967d2ee2c16386d3c16cbd35186f2e06f6a71c9ff
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavdevice61
+Build-Ids: 6c5cda41108c5f1260478aa139a4f00608652fa4
+
+Package: libavfilter-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 8651
+Depends: libavcodec-dev (= 7:7.1.3-0+deb13u1), libavfilter10 (= 7:7.1.3-0+deb13u1), libavformat-dev (= 7:7.1.3-0+deb13u1), libavutil-dev (= 7:7.1.3-0+deb13u1), libpostproc-dev (= 7:7.1.3-0+deb13u1), libswresample-dev (= 7:7.1.3-0+deb13u1), libswscale-dev (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavfilter-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 2002796
+MD5sum: cebf74abc0cf6618ea98d0a04b92d8fd
+SHA1: 2e2aa5f3a33da778046dbcee2ecb15e4725fbcf9
+SHA256: 11f02dc689d18143e251be6244b51a482d0f4cc4d3d36c7817429e6b3f60cce2
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library containing media filters - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic audio/video filtering framework containing
+ several filters, sources and sinks.
+ .
+ This package contains the development files.
+
+Package: libavfilter-extra
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 90
+Depends: libavfilter-extra10 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavfilter-extra_7.1.3-0+deb13u1_arm64.deb
+Size: 56964
+MD5sum: 4e2bac01c6d22cc3ff1c72f4c4f918e9
+SHA1: 72f98a42e5cdde2e9f30e43c8a971a8238153de8
+SHA256: 5f6c63661204da8057bfbcc62a95d9321e320ec867e0b96b370ef0a201cd7ccf
+Section: metapackages
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra filters (metapackage)
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This metapackage depends on the latest version of the libavfilter variant
+ that offers additional filter support. Application packages can depend
+ on it if they require or suggest this variant in a robust manner.
+
+Package: libavfilter-extra10
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 12849
+Depends: libass9 (>= 1:0.15.0), libavcodec61 (= 7:7.1.3-0+deb13u1), libavformat61 (>= 7:7.0), libavutil59 (= 7:7.1.3-0+deb13u1), libbs2b0 (>= 3.1.0+dfsg), libc6 (>= 2.38), libflite1 (>= 1.4-release-9~), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.2.1), libfribidi0 (>= 0.19.2), libharfbuzz0b (>= 0.9.9), liblilv-0-0 (>= 0.14.2~dfsg0), libmysofa1 (>= 0.7~), libplacebo349 (>= 7.349.0), libpocketsphinx3 (>= 0.8+5prealpha+1), libpostproc58 (>= 7:7.0), librga2, librubberband2 (>= 3.3.0+dfsg), libsphinxbase3t64 (>= 0.8+5prealpha), libstdc++6 (>= 13.1), libswresample5 (>= 7:7.0), libswscale8 (>= 7:7.0), libtesseract5 (>= 5.5.0), libva2 (>= 1.7.3), libvidstab1.1, libzimg2 (>= 0.3.1), libzmq5 (>= 3.2.3+dfsg), ocl-icd-libopencl1 | libopencl1, ocl-icd-libopencl1 (>= 1.0) | libopencl-1.2-1, zlib1g (>= 1:1.1.4)
+Conflicts: libavfilter10
+Provides: libavfilter10 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavfilter-extra10_7.1.3-0+deb13u1_arm64.deb
+Size: 3695980
+MD5sum: c5870935af9406d005cbeca50e0d2a70
+SHA1: 2ad332337cab08dad0f1063aa0ce533780cb4edd
+SHA256: c737d1ee258beea18eca182a3fe63eba0a2f2d06f110b76cb77b8ed23e9b768f
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra media filters - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic audio/video filtering framework containing
+ several filters, sources and sinks.
+ .
+ This package replaces the libavfilter6 package and contains the
+ following additional filters:
+ .
+  * Optical Character Recognition (uses Tesseract)
+ .
+ Because this package links against libraries that are licensed under
+ Apache License 2.0, the resulting binaries are distributed under the
+ GPL version 3 or later.
+
+Package: libavfilter-extra10-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 8298
+Depends: libavfilter-extra10 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavfilter-extra10-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 6849136
+MD5sum: 65c17d970fca71a66b332c776473079c
+SHA1: 45c8a419bb84ed3e8b80dce8eaf7876368dc2ec0
+SHA256: 7b3d2b8f79d77a8e41dcb38f0fdfae62d892ab4aadaa7e970d05ffc48c1cb247
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavfilter-extra10
+Build-Ids: 899d9b8d82a7408f8ba29ae88ba13baa2303ccff
+
+Package: libavfilter10
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 12849
+Depends: libass9 (>= 1:0.15.0), libavcodec61 (= 7:7.1.3-0+deb13u1), libavformat61 (>= 7:7.0), libavutil59 (= 7:7.1.3-0+deb13u1), libbs2b0 (>= 3.1.0+dfsg), libc6 (>= 2.38), libflite1 (>= 1.4-release-9~), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.2.1), libfribidi0 (>= 0.19.2), libharfbuzz0b (>= 0.9.9), liblilv-0-0 (>= 0.14.2~dfsg0), libmysofa1 (>= 0.7~), libplacebo349 (>= 7.349.0), libpocketsphinx3 (>= 0.8+5prealpha+1), libpostproc58 (>= 7:7.0), librga2, librubberband2 (>= 3.3.0+dfsg), libsphinxbase3t64 (>= 0.8+5prealpha), libstdc++6 (>= 13.1), libswresample5 (>= 7:7.0), libswscale8 (>= 7:7.0), libva2 (>= 1.7.3), libvidstab1.1, libzimg2 (>= 0.3.1), libzmq5 (>= 3.2.3+dfsg), ocl-icd-libopencl1 | libopencl1, ocl-icd-libopencl1 (>= 1.0) | libopencl-1.2-1, zlib1g (>= 1:1.1.4)
+Filename: pool/main/libavfilter10_7.1.3-0+deb13u1_arm64.deb
+Size: 3695004
+MD5sum: 26302b8ecb62e14f1ddf1a1a2dbed12b
+SHA1: 6dc3a9851f6d602e584ccd78fbccd3d29a268f6b
+SHA256: 66aefcbf6fdf77baf0fcb2c68d8e9313cdb37ce3cf68a29abae000f904687f3b
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library containing media filters - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic audio/video filtering framework containing
+ several filters, sources and sinks.
+ .
+ This package contains the runtime files.
+
+Package: libavfilter10-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 8293
+Depends: libavfilter10 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavfilter10-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 6846516
+MD5sum: 2de9ae684572ba0208486e337894f9dd
+SHA1: cdeb898784cd1f77924d90ea6b299421f90ce94b
+SHA256: 3863a65f4d4bf35d23d57ef27a917ef721efb7813b7109ff844634b0024f10ad
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavfilter10
+Build-Ids: c90d7b62cc633743b6afd98094587944afb17454
+
+Package: libavformat-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 6293
+Depends: libavcodec-dev (= 7:7.1.3-0+deb13u1), libavformat61 (= 7:7.1.3-0+deb13u1), libavutil-dev (= 7:7.1.3-0+deb13u1), libswresample-dev (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavformat-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 1386016
+MD5sum: c747df41bd655450dbda345c235721d5
+SHA1: c95e1ae69e58846d91722d56cdc52c43093364bc
+SHA256: 4e7a65f09230141f6637779eb99bf299ff1e5a48bdba3e8c956e55078013b5a2
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with (de)muxers for multimedia containers - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for multiplexing and demultiplexing
+ (muxing and demuxing) audio, video and subtitle streams. It encompasses
+ multiple muxers and demuxers for multimedia container formats. It also
+ supports several input and output protocols to access a media resource.
+ .
+ This package contains the development files.
+
+Package: libavformat-extra
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 90
+Depends: libavformat-extra61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavformat-extra_7.1.3-0+deb13u1_arm64.deb
+Size: 56980
+MD5sum: e515e5bcbb835f65d86cfb5073138314
+SHA1: 637565aaa1cf7e5f0bf83a8ab3d296b505cf07fe
+SHA256: 6db9705bbeff6a21e13e4b23b313861087625119cfb4d91db11a1dd625eb5b7c
+Section: metapackages
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra (de)muxers (metapackage)
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This metapackage depends on the latest version of the libavformat variant
+ that offers additional (de)muxers support. Application packages can depend
+ on it if they require or suggest this variant in a robust manner.
+
+Package: libavformat-extra61
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3116
+Depends: libavcodec61 (= 7:7.1.3-0+deb13u1), libavutil59 (= 7:7.1.3-0+deb13u1), libbluray2 (>= 1:0.2.2), libbz2-1.0, libc6 (>= 2.38), libchromaprint1 (>= 1.3.2), libdvdnav4 (>= 6.1.0), libdvdread8t64 (>= 6.1.0), libgme0 (>= 0.5.5), libgnutls30t64 (>= 3.8.1), libopenmpt0t64 (>= 0.3.0), librabbitmq4 (>= 0.6.0), librist4 (>= 0.2.6+dfsg), libsmbclient0 (>= 2:4.0.3+dfsg1), libsrt1.5-gnutls (>= 1.5.4), libssh-4 (>= 0.8.0), libxml2 (>= 2.7.4), libzmq5 (>= 4.0.1+dfsg), zlib1g (>= 1:1.2.0.2)
+Conflicts: libavformat61
+Provides: libavformat61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavformat-extra61_7.1.3-0+deb13u1_arm64.deb
+Size: 1131720
+MD5sum: d8b0fd1ee88e9954cb2893735c90db25
+SHA1: ef9041a44e0503e91586012c4c413441d37b0c80
+SHA256: f754a0832c41d43dd5be32493eb15ad624edd8939a7924dcfae3ca78fe479bae
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with additional (de)muxers for multimedia containers
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for multiplexing and demultiplexing
+ (muxing and demuxing) audio, video and subtitle streams. It encompasses
+ multiple muxers and demuxers for multimedia container formats. It also
+ supports several input and output protocols to access a media resource.
+ .
+ This package replaces the libavformat58 package and contains the
+ following additional (de)muxers:
+ .
+  * SMB protocol (using libsmbclient)
+ .
+ Because this package links against libraries that are licensed under
+ Apache License 2.0 or GPL version 3, the resulting binaries are distributed
+ under the GPL version 3 or later.
+
+Package: libavformat-extra61-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3721
+Depends: libavformat-extra61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavformat-extra61-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 3554432
+MD5sum: e7c11bdbd3229247bca5c92cddf946bf
+SHA1: 7861708feaccf245406a45822f0ca7f2599e0116
+SHA256: c6d5ecd8cbdab083d01b4f511ed92a81232e223b17da676791a7f865d93ce900
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavformat-extra61
+Build-Ids: 53c9613e5e1384b46afb3eac5496f5885f503165
+
+Package: libavformat61
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3113
+Depends: libavcodec61 (= 7:7.1.3-0+deb13u1), libavutil59 (= 7:7.1.3-0+deb13u1), libbluray2 (>= 1:0.2.2), libbz2-1.0, libc6 (>= 2.38), libchromaprint1 (>= 1.3.2), libdvdnav4 (>= 6.1.0), libdvdread8t64 (>= 6.1.0), libgme0 (>= 0.5.5), libgnutls30t64 (>= 3.8.1), libopenmpt0t64 (>= 0.3.0), librabbitmq4 (>= 0.6.0), librist4 (>= 0.2.6+dfsg), libsrt1.5-gnutls (>= 1.5.4), libssh-4 (>= 0.8.0), libxml2 (>= 2.7.4), libzmq5 (>= 4.0.1+dfsg), zlib1g (>= 1:1.2.0.2)
+Filename: pool/main/libavformat61_7.1.3-0+deb13u1_arm64.deb
+Size: 1130356
+MD5sum: 498ffa3988831e7861dc44e741997a07
+SHA1: d86c661ad3599425e1a5f7cff29ac4b3dc3ec380
+SHA256: 730755c172c116e1f96fcda90ff87dcf9e3b3fae07e2e4dec1f2f893a38f1c80
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with (de)muxers for multimedia containers - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for multiplexing and demultiplexing
+ (muxing and demuxing) audio, video and subtitle streams. It encompasses
+ multiple muxers and demuxers for multimedia container formats. It also
+ supports several input and output protocols to access a media resource.
+ .
+ This package contains the runtime files.
+
+Package: libavformat61-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3714
+Depends: libavformat61 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavformat61-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 3548756
+MD5sum: b5ad22a6f2b1561048d329a6ff155301
+SHA1: 0f39989121749da9ab098c38fb13dff4a661365e
+SHA256: 0a62860f6fe2507381e5c1b93a0354b8ad64e19f0b1131facf582e532223fbfc
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavformat61
+Build-Ids: a2ddd07308d7e6ccfe7d50b047036eda67d5a3f1
+
+Package: libavutil-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 2401
+Depends: libavutil59 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavutil-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 546032
+MD5sum: 4d499e738d0e2f83dc595bdec717cef8
+SHA1: ad20f7a5a58f83a3ac0577b27dc752e77e04b1dd
+SHA256: 611068bcaf3cb178d0c8f32b2cbcca667c5f022d48aa288965644e8cb351c63c
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with functions for simplifying programming - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library is a utility library to aid portable multimedia programming.
+ It contains safe portable string functions, random number generators, data
+ structures, additional mathematics functions, cryptography and multimedia
+ related functionality (like enumerations for pixel and sample formats).
+ It is not a library for code needed by both libavcodec and libavformat.
+ The goal for this library is to be modular, small, efficient and useful.
+ .
+ This package contains the development files.
+
+Package: libavutil59
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 1148
+Depends: libc6 (>= 2.38), libdrm2 (>= 2.4.66), librockchip-mpp1, libva-drm2 (>= 1.3), libva-x11-2 (>= 1.3), libva2 (>= 2.21.0), libvdpau1 (>= 0.2), libx11-6, ocl-icd-libopencl1 | libopencl1, ocl-icd-libopencl1 (>= 1.0) | libopencl-1.2-1
+Filename: pool/main/libavutil59_7.1.3-0+deb13u1_arm64.deb
+Size: 387480
+MD5sum: 746c1840ec7fe690e03113607485bd32
+SHA1: ea99284c8c0e475ca772c0fe56ab8a4d77eaf1bf
+SHA256: 2aaa254f445202849cc76eb625303f217db5117ff9cb331d0a70430a980bce25
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with functions for simplifying programming - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library is a utility library to aid portable multimedia programming.
+ It contains safe portable string functions, random number generators, data
+ structures, additional mathematics functions, cryptography and multimedia
+ related functionality (like enumerations for pixel and sample formats).
+ It is not a library for code needed by both libavcodec and libavformat.
+ The goal for this library is to be modular, small, efficient and useful.
+ .
+ This package contains the runtime files.
+
+Package: libavutil59-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 1088
+Depends: libavutil59 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libavutil59-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 1014728
+MD5sum: 4c43d47be1de3012be371eb60a7fc93a
+SHA1: 02e06f39fc0c143a33f3c38219ce1dfeef2aeef1
+SHA256: 6803aa3fa8bbd67b07896109c5b645e462b80207f725f4f7e378a067834ac705
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libavutil59
+Build-Ids: 6b70a842e7dbba9b1bb293ff905d0354ce887582
+
+Package: libdrm-cursor
+Version: 1.4.1-1
+Architecture: arm64
+Maintainer: Jeffy Chen <jeffy.chen@rock-chips.com>
+Installed-Size: 84
+Depends: libc6 (>= 2.38), libdrm2 (>= 2.4.71), libegl1, libgbm1 (>= 17.3.0~rc1), libgles2
+Filename: pool/main/libdrm-cursor_1.4.1-1_arm64.deb
+Size: 19496
+MD5sum: afd4d00065490488b77c619dcd5c9718
+SHA1: 7b28015c8f66e084ad9792ff973395d17141d5d7
+SHA256: df032fc8fe8d1f2d4f4a57ff31e36998359aaa38d899ba7a7b8fae57d750ceaf
+Section: libs
+Priority: optional
+Homepage: https://github.com/JeffyCN/libdrm-cursor
+Description: A hook of drm cursor APIs to fake cursor plane.
+
+Package: libdrm-cursor-dbgsym
+Source: libdrm-cursor
+Version: 1.4.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Jeffy Chen <jeffy.chen@rock-chips.com>
+Installed-Size: 70
+Depends: libdrm-cursor (= 1.4.1-1)
+Filename: pool/main/libdrm-cursor-dbgsym_1.4.1-1_arm64.deb
+Size: 52108
+MD5sum: 6718e0c8c97b33eaca3ae41e42e4f479
+SHA1: ac60a26116bab4ad024e26084ce46cfcf3f75be1
+SHA256: eac24de8fcfa2918b07e6987eb84ac2ff5b2bafa33439fb9a0922e5abbd8d96d
+Section: debug
+Priority: optional
+Description: debug symbols for libdrm-cursor
+Build-Ids: cbac6a6881e0f17a47b478f30e4bdf6363a7ee11
+
+Package: libdrm-cursor-dev
+Source: libdrm-cursor
+Version: 1.4.1-1
+Architecture: arm64
+Maintainer: Jeffy Chen <jeffy.chen@rock-chips.com>
+Installed-Size: 14
+Filename: pool/main/libdrm-cursor-dev_1.4.1-1_arm64.deb
+Size: 3048
+MD5sum: 1165730ef9a67d572554d680bcc0096f
+SHA1: a143d835cf8bacffe145460df4de51b6350871b7
+SHA256: 5c3a228140ce3cc49dffcf95a6a557f1ce3bcdae9a71ba92cad2ba0e081f69c9
+Section: libdevel
+Priority: optional
+Homepage: https://github.com/JeffyCN/libdrm-cursor
+Description: A hook of drm cursor APIs to fake cursor plane.
+
+Package: libdvbv5-0t64
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 572
+Depends: libc6 (>= 2.38), libudev1 (>= 183)
+Breaks: libdvbv5-0 (<< 1.30.1-1)
+Replaces: libdvbv5-0
+Provides: libdvbv5-0 (= 1.30.1-1)
+Filename: pool/main/libdvbv5-0t64_1.30.1-1_arm64.deb
+Size: 179204
+MD5sum: 7271b0a653230edde419f644cc7c2e75
+SHA1: 6942f2606f9c3c55be4eca1f801bd675549f2533
+SHA256: 3d4bd0ea74b8c83cd05f39beae15117b460aac5567f5b1873b2a3725b76fd564
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Libraries to control, scan and zap on Digital TV channels
+ This library provides functions to work with DVB devices that
+ implement the DVB v5 API.
+ .
+ This package contains the shared libraries.
+
+Package: libdvbv5-0t64-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 265
+Depends: libdvbv5-0t64 (= 1.30.1-1)
+Filename: pool/main/libdvbv5-0t64-dbgsym_1.30.1-1_arm64.deb
+Size: 233328
+MD5sum: 8320d3dc4e8e84b709f25a2cebe8313e
+SHA1: 4c6f93ef96cdb9e3567b45bd4fdff9dc91de469c
+SHA256: fcf819e1fba896293208d3dd8c7fca30b4188dd30b28ffc0acb7eb9a3122e643
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libdvbv5-0t64
+Build-Ids: f748011cd494ddd718b4b7df4008cf8abd348ed0
+
+Package: libdvbv5-dev
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 1067
+Depends: libdvbv5-0t64 (= 1.30.1-1), libudev-dev
+Suggests: pkgconf, libdvbv5-doc
+Filename: pool/main/libdvbv5-dev_1.30.1-1_arm64.deb
+Size: 230800
+MD5sum: 0a38aaa1d053c1e430b5265ed363b7ff
+SHA1: 493f2c433d156c0a2301c7dc38cd9aa110986d26
+SHA256: 623bcfaf0c238d52367d07434761b39aaad6acf1879f2d322ae098919e3576aa
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Development files for libdvbv5
+ This library provides functions to work with DVB devices that
+ implement the DVB v5 API.
+ .
+ This package contains the development files.
+
+Package: libdvbv5-doc
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: all
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 5666
+Suggests: devhelp
+Filename: pool/main/libdvbv5-doc_1.30.1-1_all.deb
+Size: 416144
+MD5sum: 1ba4ab8420e8286bc6e9e9cb5d18c993
+SHA1: f2738c66f2cdd5e7183e519b41460261e5173c82
+SHA256: 791ab7a164323492ec56e9277bc63a4a2aeb03f8d426c1489e935943c6f2007d
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Doxygen generated documentation for libdvbv5
+ This library provides functions to work with DVB devices that
+ implement the DVB v5 API.
+ .
+ This package provides doxygen generated documentation for the library.
+
+Package: libpostproc-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 158
+Depends: libavutil-dev (= 7:7.1.3-0+deb13u1), libpostproc58 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libpostproc-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 79812
+MD5sum: a05ff2a763136abbca8bf71f3b4ee21d
+SHA1: 86105e2bb103f31dafb8705198d6425e250c12ef
+SHA256: c6f35c683a7c288df4bc87e2bae710aa5c87308e1b1802c58f366e0d3d0d6256
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for post processing - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides video post processing.
+ .
+ This package contains the development files.
+
+Package: libpostproc58
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 166
+Depends: libavutil59 (>= 7:7.0), libc6 (>= 2.17)
+Filename: pool/main/libpostproc58_7.1.3-0+deb13u1_arm64.deb
+Size: 79144
+MD5sum: 50fd8572bf9abec7abf9bb2b83d78603
+SHA1: 6e03de513c380185cc43af88898920e3519e4fbf
+SHA256: 2f1ebdb38e7fdb89a204425b9c86291c3c3e504d94a76d376709728fd57f84b8
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for post processing - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides video post processing.
+ .
+ This package contains the runtime files.
+
+Package: libpostproc58-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 66
+Depends: libpostproc58 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libpostproc58-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 51892
+MD5sum: 1c3d1320a95b1b1290f7983baae99c56
+SHA1: 9e1fa53270ca9751d65c32481f42896adc05cde2
+SHA256: bbe5e24c266c022d4c2f7a348003d58d18a556c337cc8f730861b72f666a8a79
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libpostproc58
+Build-Ids: 829abca6b206f4490cb49d53b4d406472ff05e73
+
+Package: librga-dev
+Source: librga
+Version: 2.2.0-1
+Architecture: arm64
+Maintainer: Putin Lee <putin.li@rock-chips.com>
+Installed-Size: 150
+Filename: pool/main/librga-dev_2.2.0-1_arm64.deb
+Size: 24268
+MD5sum: a7e6649724cf5af86a93128ed99f0c60
+SHA1: e294b9f8f1ca449e20a733e0347296a3073febf2
+SHA256: fc708442415974fd3f7f45f9f47633864b6fbeadae607de3d2b7edc64a1df01a
+Section: libdevel
+Priority: optional
+Homepage: https://github.com/rockchip-linux/linux-rga
+Description: Userspace interface to Rockchip RGA 2D accelerator
+
+Package: librga2
+Source: librga
+Version: 2.2.0-1
+Architecture: arm64
+Maintainer: Putin Lee <putin.li@rock-chips.com>
+Installed-Size: 282
+Depends: libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 11)
+Filename: pool/main/librga2_2.2.0-1_arm64.deb
+Size: 80480
+MD5sum: 3a91bc30410411daca055fdeb00650f9
+SHA1: a4ea837caa6556177d0605c41e770c3a6e919541
+SHA256: 1f813539ce9fcc7552a8a9dd2d5e3e5cea69cec9a480f72f192f8a3b1bcc8ef3
+Section: libs
+Priority: optional
+Homepage: https://github.com/rockchip-linux/linux-rga
+Description: Userspace interface to Rockchip RGA 2D accelerator
+
+Package: librga2-dbgsym
+Source: librga
+Version: 2.2.0-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Putin Lee <putin.li@rock-chips.com>
+Installed-Size: 407
+Depends: librga2 (= 2.2.0-1)
+Filename: pool/main/librga2-dbgsym_2.2.0-1_arm64.deb
+Size: 381080
+MD5sum: 31dd03e57f5c7f74bb18e0b70769d580
+SHA1: 711a4fc0a27b3d7d06b3782fbff29d60a7d117fa
+SHA256: da1aa5dcf066976093bdca686515bd2950bcd7277955fb8e6a26207ace6d00e6
+Section: debug
+Priority: optional
+Description: debug symbols for librga2
+Build-Ids: 66656d1a6290254fb684558b96ebc0280b64baa1
+
+Package: librockchip-mpp-dev
+Source: mpp
+Version: 1.5.0-1
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 249
+Depends: librockchip-mpp1 (= 1.5.0-1)
+Filename: pool/main/librockchip-mpp-dev_1.5.0-1_arm64.deb
+Size: 56940
+MD5sum: c99aab369fca3cea2930157bf34d576f
+SHA1: c6b06b32a241e0c5348b960786f632d931097b66
+SHA256: fcbed5c475e5747487e9b59a19b17f66d0876de15aecc81a6bc29a32f3d4ec61
+Section: libdevel
+Priority: optional
+Homepage: http://www.rock-chips.com
+Description: Media Process Platform
+
+Package: librockchip-mpp1
+Source: mpp
+Version: 1.5.0-1
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 2642
+Depends: libc6 (>= 2.38)
+Filename: pool/main/librockchip-mpp1_1.5.0-1_arm64.deb
+Size: 911816
+MD5sum: 2d48328533f7330517836a702911b05a
+SHA1: c7a5c0e4c68c4d2d1227784e6d608eadeff2a2a6
+SHA256: befd624103795f53e225caa5cac557950939d36515a1d7ccf40ed1a5f9ce2ed3
+Section: libs
+Priority: optional
+Homepage: http://www.rock-chips.com
+Description: Media Process Platform
+
+Package: librockchip-mpp1-dbgsym
+Source: mpp
+Version: 1.5.0-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 286
+Depends: librockchip-mpp1 (= 1.5.0-1)
+Filename: pool/main/librockchip-mpp1-dbgsym_1.5.0-1_arm64.deb
+Size: 56300
+MD5sum: f1b59e7e2741cee1cecad2ed50089415
+SHA1: a4c3d5dcffd2ab0335a8bbab6964088e4cf31c23
+SHA256: 4adb894bbe43dc17aaddb03b03218ec74068b12553c7ba7f635428f198b592d5
+Section: debug
+Priority: optional
+Description: debug symbols for librockchip-mpp1
+Build-Ids: e0d330345dc75d5a99b7fe77e5fb47541d7e7135
+
+Package: librockchip-vpu0
+Source: mpp
+Version: 1.5.0-1
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 94
+Depends: libc6 (>= 2.34), librockchip-mpp1, libstdc++6 (>= 5)
+Filename: pool/main/librockchip-vpu0_1.5.0-1_arm64.deb
+Size: 37888
+MD5sum: a66b3172df29d53a53170d13600cf755
+SHA1: 8873d696e8078da48b22b957a33317630a1e99eb
+SHA256: 246cf80cc4e305927981ee62e612474661b6ff2a794a1a93617e9b005c14c5da
+Section: libs
+Priority: optional
+Homepage: http://www.rock-chips.com
+Description: Media Process Platform
+
+Package: librockchip-vpu0-dbgsym
+Source: mpp
+Version: 1.5.0-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 27
+Depends: librockchip-vpu0 (= 1.5.0-1)
+Filename: pool/main/librockchip-vpu0-dbgsym_1.5.0-1_arm64.deb
+Size: 5008
+MD5sum: 27a2e0b0563aaae190e9ef2c8f88c0bd
+SHA1: 037abe1ea210a8daea66da874eae69809912dca7
+SHA256: cf07278978cf12e509cd8f71578422fc01ff1a7b8c36675803696c9f852b5e50
+Section: debug
+Priority: optional
+Description: debug symbols for librockchip-vpu0
+Build-Ids: 5c32b82c456921cf68efc78664f2b1e73db3ff70
+
+Package: libswresample-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 289
+Depends: libavutil-dev (= 7:7.1.3-0+deb13u1), libswresample5 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libswresample-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 105356
+MD5sum: d155702986c9d524a9c69fceb58405b4
+SHA1: 086e2341893447e74b4b342e4207056a8b767f29
+SHA256: 422ed11b57017e452a02cda9c61668bf7276ca28e43a14e8e730938845612642
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for audio resampling, rematrixing etc. - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized audio resampling, rematrixing
+ and sample format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Resampling is the process of changing the audio rate, for example from a
+    high sample rate of 44100Hz to 8000Hz. Audio conversion from high to low
+    sample rate is a lossy process. Several resampling options and algorithms
+    are available.
+  * Rematrixing is the process of changing the channel layout, for example from
+    stereo to mono. When the input channels cannot be mapped to the output
+    streams, the process is lossy, since it involves different gain factors
+    and mixing. Various other audio conversions (e.g. stretching and padding)
+    are enabled through dedicated options.
+  * Format conversion is the process of converting the type of samples, for
+    example from 16-bit signed samples to unsigned 8-bit or float samples.
+    It also handles packing conversion, when passing from packed layout (all
+    samples belonging to distinct channels interleaved in the same buffer), to
+    planar layout (all samples belonging to the same channel stored in a
+    dedicated buffer or "plane").
+ .
+ This package contains the development files.
+
+Package: libswresample5
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 230
+Depends: libavutil59 (>= 7:7.0), libc6 (>= 2.29), libsoxr0 (>= 0.1.0)
+Filename: pool/main/libswresample5_7.1.3-0+deb13u1_arm64.deb
+Size: 94332
+MD5sum: c5a47583ad67e33ff75f052013f8ccf2
+SHA1: d19d402cb3ae5da6564acc0d58fa22b2404e59a8
+SHA256: b12ed382fd7a0a799ae01bf2bdea4e2866f0ab293bcc7bdab36e9356e516b872
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for audio resampling, rematrixing etc. - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized audio resampling, rematrixing
+ and sample format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Resampling is the process of changing the audio rate, for example from a
+    high sample rate of 44100Hz to 8000Hz. Audio conversion from high to low
+    sample rate is a lossy process. Several resampling options and algorithms
+    are available.
+  * Rematrixing is the process of changing the channel layout, for example from
+    stereo to mono. When the input channels cannot be mapped to the output
+    streams, the process is lossy, since it involves different gain factors
+    and mixing. Various other audio conversions (e.g. stretching and padding)
+    are enabled through dedicated options.
+  * Format conversion is the process of converting the type of samples, for
+    example from 16-bit signed samples to unsigned 8-bit or float samples.
+    It also handles packing conversion, when passing from packed layout (all
+    samples belonging to distinct channels interleaved in the same buffer), to
+    planar layout (all samples belonging to the same channel stored in a
+    dedicated buffer or "plane").
+ .
+ This package contains the runtime files.
+
+Package: libswresample5-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 120
+Depends: libswresample5 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libswresample5-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 98704
+MD5sum: 728ec51e69ee834367e4837abfc8d5e1
+SHA1: 2d896b4f5dfe8ba859f599bd7e3f7866c71f717e
+SHA256: 471dae0bd6cf4e1b3f3c0db1a0a6f809da8c6e74d486a6aa91e127782ee7139b
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libswresample5
+Build-Ids: 7d7480a9894a7aabd6bbb5d8676fb4ae453dc240
+
+Package: libswscale-dev
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 864
+Depends: libavutil-dev (= 7:7.1.3-0+deb13u1), libswscale8 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libswscale-dev_7.1.3-0+deb13u1_arm64.deb
+Size: 228400
+MD5sum: 691a8b6b9670149b27f7bc12eccce82c
+SHA1: c6573bb1764fbf1c12d6e871bc8781daf02e1c9c
+SHA256: e15ac8823efe215e27ac7da4e820f4fba6f546e49fdad429a1a2a2b6b4067ad3
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for image scaling and various conversions - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized image scaling and colorspace and pixel
+ format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Rescaling is the process of changing the video size. Several rescaling
+    options and algorithms are available. This is usually a lossy process.
+  * Pixel format conversion is the process of converting the image format and
+    colorspace of the image, for example from planar YUV420P to RGB24 packed.
+    It also handles packing conversion, that is converts from packed layout
+    (all pixels belonging to distinct planes interleaved in the same buffer),
+    to planar layout (all samples belonging to the same plane stored in a
+    dedicated buffer or "plane"). This is usually a lossy process in case the
+    source and destination colorspaces differ.
+ .
+ This package contains the development files.
+
+Package: libswscale8
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 614
+Depends: libavutil59 (= 7:7.1.3-0+deb13u1), libc6 (>= 2.34)
+Filename: pool/main/libswscale8_7.1.3-0+deb13u1_arm64.deb
+Size: 206808
+MD5sum: 38b3bd09ad33071b25c6bcaf2b623710
+SHA1: f5274722487954b46b6c5c81024840be557e69d5
+SHA256: 531830f8e713c610ea1bb5c5ef49b107864ea70f6f6f60d692481c9505cc7275
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for image scaling and various conversions - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized image scaling and colorspace and pixel
+ format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Rescaling is the process of changing the video size. Several rescaling
+    options and algorithms are available. This is usually a lossy process.
+  * Pixel format conversion is the process of converting the image format and
+    colorspace of the image, for example from planar YUV420P to RGB24 packed.
+    It also handles packing conversion, that is converts from packed layout
+    (all pixels belonging to distinct planes interleaved in the same buffer),
+    to planar layout (all samples belonging to the same plane stored in a
+    dedicated buffer or "plane"). This is usually a lossy process in case the
+    source and destination colorspaces differ.
+ .
+ This package contains the runtime files.
+
+Package: libswscale8-dbgsym
+Source: ffmpeg
+Version: 7:7.1.3-0+deb13u1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 692
+Depends: libswscale8 (= 7:7.1.3-0+deb13u1)
+Filename: pool/main/libswscale8-dbgsym_7.1.3-0+deb13u1_arm64.deb
+Size: 649280
+MD5sum: 0d704311ad8345fc35196d2bbe35ad3f
+SHA1: 407db5552404360cbfe81611f4aab6a6078442e6
+SHA256: c06fe3129622cdef4c0ffa0239ecf84a98902550240db46c188745513414e5ef
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libswscale8
+Build-Ids: 4a35adfa6a1b65122183dcdd4a0aa6a6e41a5482
+
+Package: libv4l-0t64
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 481
+Depends: libv4lconvert0t64 (= 1.30.1-1), libc6 (>= 2.34)
+Breaks: libv4l-0 (<< 1.30.1-1)
+Replaces: libv4l-0
+Provides: libv4l-0 (= 1.30.1-1)
+Filename: pool/main/libv4l-0t64_1.30.1-1_arm64.deb
+Size: 116140
+MD5sum: 9bd8f6fd8757e8743830051bca97f371
+SHA1: c61d7847c8d6cbe06c31473613d2a92b8952a95a
+SHA256: defe5c629ac2b3bc2ea48b6c869661a97d4eebc14e4738baba4a99c3eabbc788
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Collection of video4linux support libraries
+ libv4l is a collection of libraries which adds a thin abstraction layer on
+ top of video4linux2 devices. The purpose of this (thin) layer is to make it
+ easy for application writers to support a wide variety of devices without
+ having to write separate code for different devices in the same class. libv4l
+ consists of 3 different libraries: libv4lconvert, libv4l1 and libv4l2.
+ .
+ libv4l1 offers the (deprecated) v4l1 API on top of v4l2 devices, independent
+ of the drivers for those devices supporting v4l1 compatibility (which many
+ v4l2 drivers do not).
+ .
+ libv4l2 offers the v4l2 API on top of v4l2 devices, while adding for the
+ application transparent libv4lconvert conversion where necessary.
+ .
+ This package contains the shared libraries.
+
+Package: libv4l-0t64-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 124
+Depends: libv4l-0t64 (= 1.30.1-1)
+Filename: pool/main/libv4l-0t64-dbgsym_1.30.1-1_arm64.deb
+Size: 77712
+MD5sum: 685d28c67ab17d20c066aa9c8330de1c
+SHA1: bf736f75472fcba686ab3c09cb83c3475043e332
+SHA256: cf01ace73713b03e87e568623a662d7be78c9caedfbc41602f7c271a42cfad34
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libv4l-0t64
+Build-Ids: 420254a65224a7282ce9b9943397cd36c6f247d7 64c864d78414e17adc71f3231f03ead7a058e423 b086cf703e949ec57ac2df1359b4cf4f92c0e10d cf84d4921b130670a5ee912c1a9f2751d523fdc6 eb3167354f66677c92b03276064347e50ff186d8
+
+Package: libv4l-dev
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 430
+Depends: libv4l-0t64 (= 1.30.1-1), libv4lconvert0t64 (= 1.30.1-1), libv4l2rds0t64 (= 1.30.1-1), libjpeg-dev
+Suggests: pkgconf
+Filename: pool/main/libv4l-dev_1.30.1-1_arm64.deb
+Size: 108652
+MD5sum: cff99c9769cdedfb1c60f7615968e005
+SHA1: 439b26f1117ae26f03946659e752174c164094dc
+SHA256: ac070e167ffe2e2f3144d75806af6cb6c61887d2d691c66b05b25831deb90dfc
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Collection of video4linux support libraries (development files)
+ libv4l is a collection of libraries which adds a thin abstraction layer on
+ top of video4linux2 devices. The purpose of this (thin) layer is to make it
+ easy for application writers to support a wide variety of devices without
+ having to write separate code for different devices in the same class. libv4l
+ consists of 3 different libraries: libv4lconvert, libv4l1 and libv4l2.
+ .
+ libv4lconvert offers functions to convert from any (known) pixelformat
+ to BGR24, RGB24, YUV420 and YVU420.
+ .
+ libv4l1 offers the (deprecated) v4l1 API on top of v4l2 devices, independent
+ of the drivers for those devices supporting v4l1 compatibility (which many
+ v4l2 drivers do not).
+ .
+ libv4l2 offers the v4l2 API on top of v4l2 devices, while adding for the
+ application transparent libv4lconvert conversion where necessary.
+ .
+ This package contains the development files.
+
+Package: libv4l-rkmpp
+Version: 1.8.0-1
+Architecture: arm64
+Maintainer: Jeffy Chen <jeffy.chen@rock-chips.com>
+Installed-Size: 210
+Depends: libc6 (>= 2.34), librockchip-mpp1
+Filename: pool/main/libv4l-rkmpp_1.8.0-1_arm64.deb
+Size: 44360
+MD5sum: 8cbb71ff84a5b178e99a3e428c6f359b
+SHA1: 2af10b3a8512f8611c3c25f2ec349cefed5d3e5f
+SHA256: 017fe28c8f9eff5793e91eefc91ff69c7bb7c6e462b707add1be5a99a25c819d
+Section: libs
+Priority: optional
+Homepage: https://github.com/JeffyCN/libv4l-rkmpp
+Description: A rockchip-mpp V4L2 wrapper plugin for chromium video dec and enc
+ A V4L2 plugin that wraps rockchip-mpp for the chromium's V4L2 video decoder and VEA.
+ .
+ The original idea comes from v4l-gst.
+
+Package: libv4l-rkmpp-dbgsym
+Source: libv4l-rkmpp
+Version: 1.8.0-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Jeffy Chen <jeffy.chen@rock-chips.com>
+Installed-Size: 167
+Depends: libv4l-rkmpp (= 1.8.0-1)
+Filename: pool/main/libv4l-rkmpp-dbgsym_1.8.0-1_arm64.deb
+Size: 149080
+MD5sum: 515de43ce9da020f035c6e50614c85eb
+SHA1: b6dde7e32324f925abd4ecd2e2fc6f837720a306
+SHA256: f4def50fd10725052050728ce99571568521526cefcc2623f29559cbdaaba611
+Section: debug
+Priority: optional
+Description: debug symbols for libv4l-rkmpp
+Build-Ids: a3e27587c7f43834002f154c52d194ee71c0cd2d
+
+Package: libv4l2rds0t64
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 178
+Depends: libc6 (>= 2.17)
+Breaks: libv4l2rds0 (<< 1.30.1-1)
+Replaces: libv4l2rds0
+Provides: libv4l2rds0 (= 1.30.1-1)
+Filename: pool/main/libv4l2rds0t64_1.30.1-1_arm64.deb
+Size: 88204
+MD5sum: df083dc95a221aed4fb941b3d1f6e5a8
+SHA1: e42e3c23a834da4a7ba700a804fa52b11a1d2fcf
+SHA256: 0fbb9db89930e81b436f64c08c3d8ff294da31b9af4b921321ec753fe243529e
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Video4Linux Radio Data System (RDS) decoding library
+ This library decodes a RDS stream obtained from a Video4Linux (V4L)
+ version 2 device. It supports both: the US based RBDS and European RDS
+ protocol.
+ .
+ This package contains the shared library.
+
+Package: libv4l2rds0t64-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 36
+Depends: libv4l2rds0t64 (= 1.30.1-1)
+Filename: pool/main/libv4l2rds0t64-dbgsym_1.30.1-1_arm64.deb
+Size: 21760
+MD5sum: f315833d97b15d7bc48fd2405d9c7ea9
+SHA1: d6748b693eef762757dbc266efe15db086922e6b
+SHA256: d03b77246a01c45fa6cc946365681a25bd2dc87f0edd30872412fb8c0455118f
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libv4l2rds0t64
+Build-Ids: c8743ae5783989ef7e0ccb097fcad91cec39f3f1
+
+Package: libv4lconvert0t64
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 442
+Depends: libc6 (>= 2.38), libjpeg62-turbo (>= 1.3.1)
+Breaks: libv4lconvert0 (<< 1.30.1-1)
+Replaces: libv4lconvert0
+Provides: libv4lconvert0 (= 1.30.1-1)
+Filename: pool/main/libv4lconvert0t64_1.30.1-1_arm64.deb
+Size: 150824
+MD5sum: bdd34efe87c97cc400456abaf2238ee3
+SHA1: 98dd613e4c49b2d6fd0985dc726554ec9df3b669
+SHA256: d2ecbe69ad3d9406cfac6d4bbc5830ddc7ab43d66db359a2c8f52397abb49405
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Video4linux frame format conversion library
+ libv4lconvert offers functions to convert from any (known) pixelformat
+ to BGR24, RGB24, YUV420 and YVU420.
+ .
+ This package contains the shared library.
+
+Package: libv4lconvert0t64-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 281
+Depends: libv4lconvert0t64 (= 1.30.1-1)
+Filename: pool/main/libv4lconvert0t64-dbgsym_1.30.1-1_arm64.deb
+Size: 214792
+MD5sum: 376f6c466b9285f8e9bd03254ef60674
+SHA1: eee415ed9a003f1f066e3e2b5c776920cee650d6
+SHA256: 3b9419be3e2126a6f5c6f6ba303f9d805efe6d56df4473b34b8317dacc1940a9
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libv4lconvert0t64
+Build-Ids: 17738b44eee23dfbc4f1462e6996077f0265cefd 6a231ba0551b9943feb9b954e1b211b48cc03e03 cbc5cf1c715e74d67649cc0e7f7be7994da85230
+
+Package: qv4l2
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 680
+Depends: libv4l-0t64 (= 1.30.1-1), libasound2t64 (>= 1.0.16), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libgl1, libqt5core5t64 (>= 5.15.1), libqt5gui5t64 (>= 5.10.0) | libqt5gui5-gles (>= 5.10.0), libqt5opengl5t64 (>= 5.0.2), libqt5widgets5t64 (>= 5.0.2), libstdc++6 (>= 12), libv4lconvert0t64 (>= 0.9.0~test5)
+Filename: pool/main/qv4l2_1.30.1-1_arm64.deb
+Size: 190292
+MD5sum: f5540fad91b20c88fb7e126f06a0772e
+SHA1: acc9fc4e355d274cffce7954a6f633db65724699
+SHA256: 81590e2329972b6e5f955eea7fc4072ee0cd3b32eaa4705df7340d32de51c90b
+Section: utils
+Priority: optional
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Test bench application for video4linux devices
+ Qt v4l2 control panel application. You can change all through the v4l2
+ interface exposed device controls.
+
+Package: qv4l2-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 2883
+Depends: qv4l2 (= 1.30.1-1)
+Filename: pool/main/qv4l2-dbgsym_1.30.1-1_arm64.deb
+Size: 2280304
+MD5sum: b31bd891cf207c7ef0da5f0d27ca9e81
+SHA1: 93a34392f866ddeff816fe0d9fb30c17a8b0fdf4
+SHA256: 051aec20c8c7ddc085a1cd78eded41f9e52e63240908310964b1f81b8086a0bb
+Section: debug
+Priority: optional
+Description: debug symbols for qv4l2
+Build-Ids: 50afe75bc3f494c9f014bb85666db081ed409ee3
+
+Package: qvidcap
+Source: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 462
+Depends: libv4l-0t64 (= 1.30.1-1), libc6 (>= 2.34), libgcc-s1 (>= 3.0), libgl1, libqt5core5t64 (>= 5.3.0), libqt5gui5t64 (>= 5.4.0) | libqt5gui5-gles (>= 5.4.0), libqt5widgets5t64 (>= 5.4.0), libstdc++6 (>= 4.9)
+Filename: pool/main/qvidcap_1.30.1-1_arm64.deb
+Size: 189180
+MD5sum: 46735ab9f2d6346d64ff95f01c21c75a
+SHA1: fc04894a0c3a8d86c7e967d3f72485a5f8c1cc45
+SHA256: 1e9683bf0eee61cb8371192fd41ec2d71e4e86a4e752e4c4a7d58655cdd4bea9
+Section: utils
+Priority: optional
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Capture test utility for video4linux devices
+ The qvidcap tool is used to test video4linux capture devices,
+ either using a video device, a file, or over network.
+ This application can also serve as a generic video/TV viewer application.
+
+Package: qvidcap-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 1403
+Depends: qvidcap (= 1.30.1-1)
+Filename: pool/main/qvidcap-dbgsym_1.30.1-1_arm64.deb
+Size: 1093968
+MD5sum: 389bc640cb7085a3afbdee1500d62f4b
+SHA1: 6381a7d70a0757e290b67dde825028995ebefee5
+SHA256: 6546ddccbcc39fd94aa31808a7b65a7706456742c2bb9b222b3c21c4e1311f15
+Section: debug
+Priority: optional
+Description: debug symbols for qvidcap
+Build-Ids: 8ae006f97d6ddbd568ce1a4a324da8537f5902a2
+
+Package: rockchip-mpp-demos
+Source: mpp
+Version: 1.5.0-1
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 1150
+Depends: librockchip-mpp1 (= 1.5.0-1), librockchip-vpu0 (= 1.5.0-1)
+Filename: pool/main/rockchip-mpp-demos_1.5.0-1_arm64.deb
+Size: 125224
+MD5sum: 97a6dbaa016a7bffe2381638e0c16d00
+SHA1: e7754497ef315f56c945bb9b64a13f6ded718bc8
+SHA256: e03c6caff405195f6e348694fb98aeaf0e86786c00993d70f2a074915b810512
+Section: libs
+Priority: optional
+Homepage: http://www.rock-chips.com
+Description: Media Process Platform Demos
+
+Package: rockchip-mpp-demos-dbgsym
+Source: mpp
+Version: 1.5.0-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Randy Li <randy.li@rock-chips.com>
+Installed-Size: 790
+Depends: rockchip-mpp-demos (= 1.5.0-1)
+Filename: pool/main/rockchip-mpp-demos-dbgsym_1.5.0-1_arm64.deb
+Size: 19608
+MD5sum: 3c40ec65a944d51f37e4ef3a201bcfec
+SHA1: 3a690961dd1630157f5bceb743f6ac50a467d1fb
+SHA256: cf176553b8e81b1533304245e4fcef47d04c69c775eeda3e3aa3c9d207702afd
+Section: debug
+Priority: optional
+Description: debug symbols for rockchip-mpp-demos
+Build-Ids: 27453379cf23e8b1fbbb9691e073aac2aac8a9ed 7ed2a8f48e9e2a8c2ae6430e65bc3f93e0ca3d46 88c0331db2e89f7cd5c8968e19d08dc1b4700bde 95d0776d827b12c24d999f25cc11e370c62a3ae6 96239eba84a13dfcd5583ed01bc257e8fa51d3ff 96e0f36205faf70fec39ce97ebbbd376310f1207 b1ad75d5a30bbe33e0c8ec6dde66d92acbb2a1b4 f22c147d22e59e4c524af0a83cfcca3143fbdf7d fa399cdf9aa7b5483739d133b018249b5b7b2b36
+
+Package: rockchip-multimedia-config
+Version: 1.0.2+noble
+Architecture: all
+Maintainer: Jianfeng Liu <liujianfeng1994@gmail.com>
+Installed-Size: 19
+Depends: udev
+Filename: pool/main/rockchip-multimedia-config_1.0.2+noble_all.deb
+Size: 3180
+MD5sum: e5d00849d06859420ad6bc158e147958
+SHA1: 9ce291243ebe6182829faa0e1d0cda3889a35f4e
+SHA256: f93f8be88e75019c7f7c0ed4f4acc5915930cf99582d3e84db91610c025f6fba
+Section: libs
+Priority: optional
+Homepage: https://github.com/amazingfate/rockchip-multimedia-config
+Description: System config for rockchip legacy multimedia
+
+Package: v4l-utils
+Version: 1.30.1-1
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 2992
+Depends: libv4l-0t64 (= 1.30.1-1), libv4l2rds0t64 (= 1.30.1-1), libc6 (>= 2.38), libgcc-s1 (>= 3.0), libstdc++6 (>= 13.1), libudev1 (>= 183)
+Breaks: ivtv-utils (<< 1.4.1-2), media-ctl
+Replaces: ivtv-utils (<< 1.4.1-2), media-ctl
+Filename: pool/main/v4l-utils_1.30.1-1_arm64.deb
+Size: 675600
+MD5sum: ccdb016fc1290091e0c8f2951565c2c8
+SHA1: f4302498ff9dc9f70db551d8a583d173291982e1
+SHA256: 4a7764f697fd976c5d5939fd48189ff612fc8bc97d3630646c5cf24bd0da8466
+Section: utils
+Priority: optional
+Homepage: https://linuxtv.org/wiki/index.php/V4l-utils
+Description: Collection of command line video4linux utilities
+ v4l-utils contains the following video4linux command line utilities:
+ .
+  decode_tm6000: decodes tm6000 proprietary format streams
+  rds-ctl: tool to receive and decode Radio Data System (RDS) streams
+  v4l2-compliance: tool to test v4l2 API compliance of drivers
+  v4l2-ctl, cx18-ctl, ivtv-ctl: tools to control v4l2 controls from the cmdline
+  v4l2-dbg: tool to directly get and set registers of v4l2 devices
+  v4l2-sysfs-path: sysfs helper tool
+
+Package: v4l-utils-dbgsym
+Source: v4l-utils
+Version: 1.30.1-1
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Gregor Jasny <gjasny@googlemail.com>
+Installed-Size: 7811
+Depends: v4l-utils (= 1.30.1-1)
+Filename: pool/main/v4l-utils-dbgsym_1.30.1-1_arm64.deb
+Size: 5308532
+MD5sum: 8b26952339f35636787cc8851b36e4db
+SHA1: e38739680d3c82763a4f3fe684486ab47cbd6c94
+SHA256: 6ef32a966f85ce23a87c2ed6d127baf923cbf501444bf5e2bf9dc23784d0bd1a
+Section: debug
+Priority: optional
+Description: debug symbols for v4l-utils
+Build-Ids: 1dc7dab22e32f6e94c00963e0732f00129d00dd2 32b308c51357f4fdf3828921c7e25d816cfac1ff 3b51fb9c2b9bad21e051dcc97b82675ec983f8fc 4471114e2eaa470211e6bb65626d6fefb169d247 52c6b928a13d6ecf5e804e3bab8d334c9cf2c78d 5a5b59332de74f9266864553b9fe00e00f4c3130 aa0c203c8bc09ad1aa23e88ad1e869ad2e36fd7c b9516f5dee9f6e4306b2e0b1d4f2db8f00a7045c bdb380115d5614011e574f9f6dcdf44a438d4488 c5609214b506a3c6be79794ec9835f858c5cd6fe cd8ebfb0f0c84c4879aff33ce4f48f89cca75faa d72577a77e2cf290f29df876f6e481264d68987f ef40610d618bf7a140ed95c1a4b10f25d8c416e3
+

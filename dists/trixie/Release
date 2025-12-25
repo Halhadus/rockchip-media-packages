@@ -1,0 +1,26 @@
+Origin: RockchipPackagesBuilder
+Label: Rockchip Media Packages Unofficial Repo
+Suite: trixie
+Codename: trixie
+Version: 1.0
+Architectures: arm64
+Components: main
+Description: Compiled Rockchip multimedia packages (incl. Firefox MPP)
+Date: Thu, 25 Dec 2025 17:26:20 +0000
+Date: Thu, 25 Dec 2025 17:26:20 +0000
+MD5Sum:
+ f1ac93a3cbfaabd2f4535a60b609266a              308 Release
+ 329ce18feadd5f033051906bf9a9c676           157111 main/binary-arm64/Packages
+ 5809cf6aad365d2c1eb5a14221447d7d            32565 main/binary-arm64/Packages.gz
+SHA1:
+ c18b79a3566cbd446dc0fb78dbfd18ece208aaae              308 Release
+ e7124173d216e893a2dc8bddd11a4fe2b370034a           157111 main/binary-arm64/Packages
+ 71875bc03d4ef241f657bfdf43e1f28f39ef0d29            32565 main/binary-arm64/Packages.gz
+SHA256:
+ 72c30772c4437e2499a8cd910b329623b4101517375a366e4d6d4fe72f8e4417              308 Release
+ 8c7dbf9c78391664badda54e6a921afec690492fb42884458e1cbead9294bc77           157111 main/binary-arm64/Packages
+ 6aac3b50bd7b32d8ea147f2f21f15c4ed0a7444aa72bd3382070c4d383aa15ca            32565 main/binary-arm64/Packages.gz
+SHA512:
+ 76eee701ed0ab7ca189063509b2f6b99a9f2f829793717d74244c4eadd8f8c016207446d59d55fbb10466e2553493accaea61040ac5752874898e48bf9d64b62              308 Release
+ f575eebb0d6ca431ec70f767ef06ecc932ecfef74a217c6325b66011a2ea010ec0836148fa2a7b8aac9145a6a2dc06ae07abac720ee1d8ead55bf8a654efbe4a           157111 main/binary-arm64/Packages
+ 81be927a0d803ed9befde8a88dac5666a087e913cbe1f88f1fc9b4578aecd7ce6aa5a4a431a42bad43d615fdf5c44121efc8b6072dec134c41bca899f432f79e            32565 main/binary-arm64/Packages.gz
