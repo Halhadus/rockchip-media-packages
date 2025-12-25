@@ -128,6 +128,12 @@ jobs:
           name: rockchip-media-deb
           path: repo-build
 
+      - name: Download Firefox Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: firefox-mpp-deb
+          path: repo-build
+
       - name: Setup Repository Tools
         run: |
           sudo apt-get update
