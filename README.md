@@ -24,7 +24,7 @@ You don't need to pollute your host system. Just use Docker.
 
 ```bash
 # Be sure Docker installed on your system
-git clone [https://github.com/Halhadus/rockchip-media-packages.git](https://github.com/Halhadus/rockchip-media-packages.git)
+git clone https://github.com/Halhadus/rockchip-media-packages.git --single-branch --depth 1
 cd rockchip-media-packages
 chmod +x run.sh
 ./run.sh
