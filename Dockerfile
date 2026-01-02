@@ -5,6 +5,8 @@ LABEL description="Build environment for Rockchip multimedia packages on Debian 
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmware/g' /etc/apt/sources.list.d/debian.sources
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     ca-certificates \
@@ -39,6 +41,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wayland-protocols \
     wget \
     xorg-dev \
+    libfdk-aac-dev \
+    libldacbt-enc-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
