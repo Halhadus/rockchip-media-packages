@@ -128,27 +128,6 @@ build_ffmpeg() {
     log_success "ffmpeg built successfully."
 }
 
-build_pipewire() {
-    log_header "Build Process: PipeWire (with FDK-AAC & LDAC)"
-    cd "$WORK_DIR"
-    rm -rf pipewire*
-    run_silent "Fetching PipeWire source via apt" apt-get source pipewire
-    PW_DIR=$(find . -maxdepth 1 -type d -name "pipewire-*" | head -n 1)
-    cd "$PW_DIR"
-    echo -e "${YELLOW}-> Enabling FDK-AAC and LDAC in debian/rules...${NC}"
-    sed -i 's/-Dbluez5-codec-aac=disabled/-Dbluez5-codec-aac=enabled/g' debian/rules
-    if ! grep -q "bluez5-codec-aac=enabled" debian/rules; then
-         sed -i '/-Dbluez5-codec-lc3=enabled/a \		-Dbluez5-codec-aac=enabled \\' debian/rules
-    fi
-    sed -i 's/-Dbluez5-codec-ldac=disabled/-Dbluez5-codec-ldac=enabled/g' debian/rules
-    echo -e "${YELLOW}-> Adding libfdk-aac-dev to build dependencies...${NC}"
-    sed -i 's/Build-Depends:/Build-Depends: libfdk-aac-dev, libldacbt-enc-dev,/' debian/control
-    install_build_deps
-    run_silent "Compiling and packaging: pipewire" dpkg-buildpackage -us -uc -b -j$(nproc) --no-check
-    mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
-    log_success "PipeWire (AAC/LDAC patched) built successfully."
-}
-
 prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
@@ -156,7 +135,6 @@ echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 build_v4l_utils
 build_standard_repos
 build_ffmpeg
-build_pipewire
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"
