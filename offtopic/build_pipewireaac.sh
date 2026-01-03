@@ -38,12 +38,14 @@ build_pipewire_aac() {
     run_silent "Fetching PipeWire source" apt-get source pipewire
     PW_DIR=$(find . -maxdepth 1 -type d -name "pipewire-*" | head -n 1)
     cd "$PW_DIR"
+    echo -e "${YELLOW}-> Removing Build-Conflicts from control file...${NC}"
+    sed -i '/Build-Conflicts/d' debian/control
     run_silent "Enabling AAC/LDAC in rules" sed -i 's/-Dbluez5-codec-aac=disabled/-Dbluez5-codec-aac=enabled/g' debian/rules
     sed -i 's/-Dbluez5-codec-ldac=disabled/-Dbluez5-codec-ldac=enabled/g' debian/rules
     sed -i 's/Build-Depends:/Build-Depends: libfdk-aac-dev, libldacbt-enc-dev,/' debian/control
     run_silent "Installing build-deps" mk-build-deps --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
     log_header "Compiling PipeWire"
-    run_silent "Building and packaging" dpkg-buildpackage -us -uc -b -j$(nproc) --no-check
+    run_silent "Building and packaging" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "PipeWire AAC/LDAC packages are ready in output folder."
 }

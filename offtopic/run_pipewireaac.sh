@@ -3,7 +3,7 @@
 set -e
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-IMAGE_NAME="pipwire-aac-builder"
+IMAGE_NAME="pipewire-aac-builder"
 DOCKERFILE="Dockerfile.pipewireaac"
 OUTPUT_DIR="$BASE_DIR/output"
 WORKSPACE_DIR="$BASE_DIR/build_workspace"
