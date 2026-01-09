@@ -7,7 +7,7 @@ on:
   push:
     paths:
       - 'scripts/**'
-      - 'Dockerfile'
+      - 'Dockerfile*'
       - '.github/workflows/**'
 
 permissions:

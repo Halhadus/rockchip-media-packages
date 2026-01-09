@@ -128,6 +128,38 @@ build_ffmpeg() {
     log_success "ffmpeg built successfully."
 }
 
+build_mpv() {
+    log_header "Build Process: mpv"
+    cd "$WORK_DIR"
+    rm -rf mpv*
+    MPV_FFMPEG_DIR="$WORK_DIR/ffmpeg_staging"
+    rm -rf "$MPV_FFMPEG_DIR"
+    mkdir -p "$MPV_FFMPEG_DIR"    
+    log_header "Extracting FFmpeg headers..."
+    find "$OUTPUT_DIR" -name "lib*-dev_*.deb" -exec dpkg -x {} "$MPV_FFMPEG_DIR" \;
+    MPV_LOCAL_INC="$MPV_FFMPEG_DIR/usr/include"
+    MPV_LOCAL_ARCH_INC="$MPV_FFMPEG_DIR/usr/include/aarch64-linux-gnu"
+    MPV_LOCAL_LIB="$MPV_FFMPEG_DIR/usr/lib/aarch64-linux-gnu"
+    MPV_LOCAL_PKG="$MPV_LOCAL_LIB/pkgconfig"
+    run_silent "Fetching mpv source via apt" apt-get source mpv
+    MPV_DIR=$(find . -maxdepth 1 -type d -name "mpv-*" | head -n 1)
+    cd "$MPV_DIR"
+    MPV_BRANCH="mpp"
+    MPV_BASE="b22a4da1df113cee07ea49b49ac2737f30fc998e"
+    MPV_PATCH_URL="https://github.com/hbiyik/mpv/compare/${MPV_BASE}...${MPV_BRANCH}.patch"
+    run_silent "Downloading mpv-mpp patch" wget -nv "$MPV_PATCH_URL" -O mpp.patch
+    run_silent "Applying Rockchip MPP/RGA patch" patch -p1 < mpp.patch
+    install_build_deps
+    run_silent "Compiling and packaging: mpv" \
+    env DEB_CFLAGS_MAINT_PREPEND="-I$MPV_LOCAL_INC -I$MPV_LOCAL_ARCH_INC" \
+    DEB_LDFLAGS_MAINT_PREPEND="-L$MPV_LOCAL_LIB" \
+    PKG_CONFIG_PATH="$MPV_LOCAL_PKG:$PKG_CONFIG_PATH" \
+    dpkg-buildpackage -us -uc -b -j$(nproc)
+    mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
+    rm -rf "$MPV_FFMPEG_DIR"
+    log_success "mpv built successfully."
+}
+
 prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
@@ -135,6 +167,7 @@ echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 build_v4l_utils
 build_standard_repos
 build_ffmpeg
+build_mpv
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"
