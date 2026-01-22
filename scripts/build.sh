@@ -82,7 +82,7 @@ build_v4l_utils() {
 build_standard_repos() {
     repos=(
         "https://github.com/JeffyCN/mirrors.git linux-rga-multi linux-rga"
-        "https://github.com/nyanmisaka/rk-mirror jellyfin-mpp mpp"
+        "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
         "https://github.com/JeffyCN/libv4l-rkmpp master libv4l-rkmpp"
         "https://github.com/amazingfate/rockchip-multimedia-config main rockchip-multimedia-config"
         "https://github.com/Halhadus/armbian-opi5plus-halhadus-config main armbian-opi5plus-halhadus-config"
