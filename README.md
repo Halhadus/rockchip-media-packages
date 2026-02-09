@@ -1,3 +1,6 @@
+# Repository Archived
+Archived repository because I'm no longer using Armbian and BSP kernel. I will create a new repository for ArchLinux and Mainline kernel. Also removed Github Pages part of repository.
+
 # Rockchip Multimedia Build System (Debian Trixie)
 
 This repository contains automated scripts and CI workflows to build Rockchip multimedia packages (MPP, RGA, FFmpeg with HW accel) and **Firefox** with hardware decoding support for **Debian Trixie (ARM64)**.
