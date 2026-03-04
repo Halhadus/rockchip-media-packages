@@ -192,7 +192,8 @@ EOF
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
     rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
-    run_silent "Compiling and packaging: Linux Kernel" make bindeb-pkg -j$(nproc) ARCH=arm64
+    #run_silent "Compiling and packaging: Linux Kernel" make bindeb-pkg -j$(nproc) ARCH=arm64
+    make bindeb-pkg -j$(nproc) ARCH=arm64
     mv ../linux-*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "Collabora Linux Kernel built successfully."
 }
