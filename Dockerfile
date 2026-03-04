@@ -43,6 +43,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     xorg-dev \
     libfdk-aac-dev \
     libldacbt-enc-dev \
+    patchutils \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
