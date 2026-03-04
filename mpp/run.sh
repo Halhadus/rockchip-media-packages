@@ -3,7 +3,7 @@
 set -e
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-IMAGE_NAME="rockchip-sid-builder"
+IMAGE_NAME="rockchip-trixie-builder"
 OUTPUT_DIR="$BASE_DIR/output"
 
 echo "=== Rockchip Unofficial Package Builder ==="

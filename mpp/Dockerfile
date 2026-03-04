@@ -1,7 +1,7 @@
-FROM debian:sid
+FROM debian:trixie
 
 LABEL maintainer="Halhadus"
-LABEL description="Build environment for Rockchip multimedia packages on Debian Sid"
+LABEL description="Build environment for Rockchip multimedia packages on Debian Trixie"
 
 ENV DEBIAN_FRONTEND=noninteractive
 

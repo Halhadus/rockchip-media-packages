@@ -53,9 +53,40 @@ install_build_deps() {
     run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y --no-install-recommends' debian/control
 }
 
+build_v4l_utils() {
+    log_header "Build Process: v4l-utils"
+    cd "$WORK_DIR"
+    rm -rf v4l-utils*
+    run_silent "Fetching source code via apt" apt-get source v4l-utils
+    V4L_DIR=$(find . -maxdepth 1 -type d -name "v4l-utils*" | head -n 1)
+    cd "$V4L_DIR"
+    V4L_PATCHES_BASE_URL="https://raw.githubusercontent.com/JeffyCN/meta-rockchip/master/recipes-multimedia/v4l2apps/v4l-utils"
+    V4L_PATCHES=(
+        "0001-libv4l2-Support-mmap-to-libv4l-plugin.patch"
+        "0002-libv4l-mplane-Filter-out-multiplane-formats.patch"
+        "0003-libv4l-Disallow-conversion-by-default.patch"
+    )
+    log_header "Applying Patches for v4l-utils"
+    for PATCH_NAME in "${V4L_PATCHES[@]}"; do
+        run_silent "Downloading patch: $PATCH_NAME" wget -nv "$V4L_PATCHES_BASE_URL/$PATCH_NAME" -O "$PATCH_NAME"
+        run_silent "Applying patch: $PATCH_NAME" patch -p1 < "$PATCH_NAME"
+    done
+    install_build_deps
+    rm -f ../*.deb ../*.changes ../*.buildinfo
+    run_silent "Compiling and packaging: v4l-utils" dpkg-buildpackage -us -uc -b
+    log_success "v4l-utils built successfully."
+    run_silent "Installing generated v4l-utils packages" dpkg -i ../*.deb
+    mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
+}
+
 build_standard_repos() {
     repos=(
+        "https://github.com/JeffyCN/mirrors.git linux-rga-multi linux-rga"
+        "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
+        "https://github.com/JeffyCN/libv4l-rkmpp master libv4l-rkmpp"
+        "https://github.com/amazingfate/rockchip-multimedia-config main rockchip-multimedia-config"
         "https://github.com/Halhadus/armbian-opi5plus-halhadus-config main armbian-opi5plus-halhadus-config"
+        "https://github.com/JeffyCN/drm-cursor master drm-cursor"
     )
 
     for repo_info in "${repos[@]}"; do
@@ -84,14 +115,13 @@ build_ffmpeg() {
     run_silent "Fetching ffmpeg source via apt" apt-get source ffmpeg
     FFMPEG_DIR=$(find . -maxdepth 1 -type d -name "ffmpeg-*" | head -n 1)
     cd "$FFMPEG_DIR"
-    run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
-    #run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
-    #run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
-    run_silent "Applying v4l2request.diff" patch -p1 < v4l2request.diff
-    #run_silent "Applying strps1.patch" patch -p1 < strps1.patch
-    #run_silent "Applying strps2.patch" patch -p1 < strps2.patch
-    echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
-    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-hwaccels \\' debian/rules
+    FFMPEG_BASE="bcef9167268961bd6cbb214278f9cdef3837843f"
+    FFMPEG_BRANCH="7.1"
+    FFMPEG_PATCH_URL="https://github.com/nyanmisaka/ffmpeg-rockchip/compare/${FFMPEG_BASE}...${FFMPEG_BRANCH}.patch"
+    run_silent "Downloading Rockchip MPP/RGA patch" wget -nv "$FFMPEG_PATCH_URL" -O mpp_rga.patch
+    run_silent "Applying Rockchip MPP/RGA patch" patch -p1 < mpp_rga.patch
+    echo -e "${YELLOW}-> Modifying debian/rules flags (enable rkmpp/rkrga)...${NC}"
+    sed -i '/--enable-libvpx/a \                --enable-version3 \\\n                --enable-rkmpp \\\n                --enable-rkrga \\' debian/rules
     install_build_deps
     run_silent "Compiling and packaging: ffmpeg" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
@@ -104,7 +134,7 @@ build_mpv() {
     rm -rf mpv*
     MPV_FFMPEG_DIR="$WORK_DIR/ffmpeg_staging"
     rm -rf "$MPV_FFMPEG_DIR"
-    mkdir -p "$MPV_FFMPEG_DIR"  
+    mkdir -p "$MPV_FFMPEG_DIR"    
     log_header "Extracting FFmpeg headers..."
     find "$OUTPUT_DIR" -name "lib*-dev_*.deb" -exec dpkg -x {} "$MPV_FFMPEG_DIR" \;
     MPV_LOCAL_INC="$MPV_FFMPEG_DIR/usr/include"
@@ -114,9 +144,11 @@ build_mpv() {
     run_silent "Fetching mpv source via apt" apt-get source mpv
     MPV_DIR=$(find . -maxdepth 1 -type d -name "mpv-*" | head -n 1)
     cd "$MPV_DIR"
-    MPV_PATCH_URL="https://github.com/mpv-player/mpv/compare/master...philipl:mpv:v4l2request.patch"
-    run_silent "Downloading mpv v4l2request patch" wget -nv "$MPV_PATCH_URL" -O v4l2-request.patch
-    run_silent "Applying mpv v4l2request patch" patch -p1 -N -i v4l2-request.patch
+    MPV_BRANCH="mpp"
+    MPV_BASE="b22a4da1df113cee07ea49b49ac2737f30fc998e"
+    MPV_PATCH_URL="https://github.com/hbiyik/mpv/compare/${MPV_BASE}...${MPV_BRANCH}.patch"
+    run_silent "Downloading mpv-mpp patch" wget -nv "$MPV_PATCH_URL" -O mpp.patch
+    run_silent "Applying Rockchip MPP/RGA patch" patch -p1 < mpp.patch
     install_build_deps
     run_silent "Compiling and packaging: mpv" \
     env DEB_CFLAGS_MAINT_PREPEND="-I$MPV_LOCAL_INC -I$MPV_LOCAL_ARCH_INC" \
@@ -128,53 +160,11 @@ build_mpv() {
     log_success "mpv built successfully."
 }
 
-build_collabora_kernel() {
-    log_header "Build Process: Linux Kernel (Collabora rockchip-devel)"
-    cd "$WORK_DIR"
-    local KERNEL_DIR="linux-collabora"
-    local REPO_URL="https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux.git"
-    local BRANCH="rockchip-devel"
-    if [ ! -d "$KERNEL_DIR" ]; then
-        run_silent "Cloning kernel repository ($BRANCH)" git clone --depth 1 --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
-    fi
-    cd "$KERNEL_DIR"
-    run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves rsync kmod
-    run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-    cat <<EOF > custom_kernel.config
-CONFIG_DEVFREQ_GOV_PERFORMANCE=y
-CONFIG_DEVFREQ_GOV_POWERSAVE=y
-CONFIG_PWM_ROCKCHIP=y
-CONFIG_ZRAM=m
-CONFIG_ZSMALLOC=y
-CONFIG_ZSTD_COMPRESS=y
-CONFIG_CRYPTO_ZSTD=y
-CONFIG_ZRAM_BACKEND_ZSTD=y
-CONFIG_SECURITY_LANDLOCK=y
-CONFIG_DRM_ACCEL_ROCKET=m
-CONFIG_DRM_ACCEL=y
-CONFIG_WIREGUARD=m
-CONFIG_LRU_GEN=y
-CONFIG_LRU_GEN_ENABLED=y
-CONFIG_PREEMPT=y
-CONFIG_TCP_CONG_BBR=y
-CONFIG_DEFAULT_TCP_CONG="bbr"
-CONFIG_PSI=y
-CONFIG_PSI_DEFAULT_DISABLED=n
-EOF
-    run_silent "Merging defconfig with custom config" ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
-    run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
-    rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
-    export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
-    run_silent "Compiling and packaging: Linux Kernel" make bindeb-pkg -j$(nproc) ARCH=arm64
-    mv ../linux-*.deb "$OUTPUT_DIR"/ 2>/dev/null
-    log_success "Collabora Linux Kernel built successfully."
-}
-
 prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
-build_collabora_kernel
+build_v4l_utils
 build_standard_repos
 build_ffmpeg
 build_mpv
