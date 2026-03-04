@@ -87,9 +87,9 @@ build_ffmpeg() {
     run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
     #run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
     #run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
-    run_silent "Applying v4l2request.diff" patch -p1 < v4l2request.diff
-    #run_silent "Applying strps1.patch" patch -p1 < strps1.patch
-    #run_silent "Applying strps2.patch" patch -p1 < strps2.patch
+    run_silent "Applying v4l2request.diff" git apply -3 --ignore-space-change --ignore-whitespace --exclude='.forgejo/CODEOWNERS' v4l2request.diff
+    #run_silent "Applying strps1.patch" git apply -3 --ignore-space-change --ignore-whitespace --exclude='.forgejo/CODEOWNERS' strps1.patch
+    #run_silent "Applying strps2.patch" git apply -3 --ignore-space-change --ignore-whitespace --exclude='.forgejo/CODEOWNERS' strps2.patch
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
     sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-hwaccels \\' debian/rules
     install_build_deps
@@ -192,8 +192,7 @@ EOF
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
     rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
-    #run_silent "Compiling and packaging: Linux Kernel" make bindeb-pkg -j$(nproc) ARCH=arm64
-    make bindeb-pkg -j$(nproc) ARCH=arm64
+    run_silent "Compiling and packaging: Linux Kernel" make bindeb-pkg -j$(nproc) ARCH=arm64
     mv ../linux-*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "Collabora Linux Kernel built successfully."
 }
@@ -202,10 +201,10 @@ prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
-build_collabora_kernel
 build_standard_repos
 build_ffmpeg
 build_mpv
+build_collabora_kernel
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"
