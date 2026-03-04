@@ -55,7 +55,7 @@ install_build_deps() {
 
 build_standard_repos() {
     repos=(
-        "https://github.com/Halhadus/armbian-opi5plus-halhadus-config main armbian-opi5plus-halhadus-config"
+        "https://github.com/Halhadus/debian-opi5plus-halhadus-config main debian-opi5plus-halhadus-config"
     )
 
     for repo_info in "${repos[@]}"; do
