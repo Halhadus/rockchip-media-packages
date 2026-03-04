@@ -138,7 +138,7 @@ build_collabora_kernel() {
         run_silent "Cloning kernel repository ($BRANCH)" git clone --depth 1 --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
     fi
     cd "$KERNEL_DIR"
-    run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves rsync kmod
+    run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves kmod fakeroot debhelper dpkg-dev python3-dev
     run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
     cat <<EOF > custom_kernel.config
 CONFIG_DEVFREQ_GOV_PERFORMANCE=y
