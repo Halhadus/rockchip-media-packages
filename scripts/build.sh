@@ -81,16 +81,24 @@ build_ffmpeg() {
     log_header "Build Process: ffmpeg"
     cd "$WORK_DIR"
     rm -rf ffmpeg*
+    log_header "Installing Collabora Kernel api headers..."
+    LIBC_DEV_PKG=$(find "$OUTPUT_DIR" -name "linux-libc-dev_*.deb" | head -n 1)
+    if [ -f "$LIBC_DEV_PKG" ]; then
+        run_silent "Installing $LIBC_DEV_PKG" dpkg -i "$LIBC_DEV_PKG"
+    else
+        log_error "linux-libc-dev package not found!"
+        exit 1
+    fi
     run_silent "Fetching ffmpeg source via apt" apt-get source ffmpeg
     FFMPEG_DIR=$(find . -maxdepth 1 -type d -name "ffmpeg-*" | head -n 1)
     cd "$FFMPEG_DIR"
     run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
-    #run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
-    #run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
+    run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
+    run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
     filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
     run_silent "Applying clean_v4l2request.diff" patch -p1 -i clean_v4l2request.diff
-    #run_silent "Applying strps1.patch" git apply --ignore-whitespace --ignore-space-change strps1.patch
-    #run_silent "Applying strps2.patch" git apply --ignore-whitespace --ignore-space-change strps2.patch
+    run_silent "Applying strps1.patch" git apply --ignore-whitespace --ignore-space-change strps1.patch
+    run_silent "Applying strps2.patch" git apply --ignore-whitespace --ignore-space-change strps2.patch
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
     sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-hwaccels \\' debian/rules
     install_build_deps
@@ -105,7 +113,7 @@ build_mpv() {
     rm -rf mpv*
     MPV_FFMPEG_DIR="$WORK_DIR/ffmpeg_staging"
     rm -rf "$MPV_FFMPEG_DIR"
-    mkdir -p "$MPV_FFMPEG_DIR"  
+    mkdir -p "$MPV_FFMPEG_DIR"
     log_header "Extracting FFmpeg headers..."
     find "$OUTPUT_DIR" -name "lib*-dev_*.deb" -exec dpkg -x {} "$MPV_FFMPEG_DIR" \;
     MPV_LOCAL_INC="$MPV_FFMPEG_DIR/usr/include"
@@ -212,6 +220,7 @@ CONFIG_NF_NAT_FTP=m
 CONFIG_NF_CONNTRACK_FTP=m
 CONFIG_NF_NAT_TFTP=m
 CONFIG_NF_CONNTRACK_TFTP=m
+CONFIG_BT_LE=y
 EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
@@ -226,10 +235,10 @@ prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
+build_collabora_kernel
 build_ffmpeg
 build_mpv
 build_standard_repos
-build_collabora_kernel
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"
