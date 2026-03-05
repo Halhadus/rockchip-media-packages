@@ -236,11 +236,10 @@ CONFIG_RTW89_8852BE=m
 CONFIG_HID_BATTERY_STRENGTH=y
 CONFIG_HIDRAW=y
 CONFIG_UHID=m
-# CONFIG_HZ_250 is not set
-# CONFIG_NO_HZ_IDLE is not set
-CONFIG_HZ_1000=y
-CONFIG_HZ=1000
-CONFIG_NO_HZ_FULL=y
+CONFIG_INPUT_UINPUT=m
+CONFIG_CRYPTO_USER_API_HASH=m
+CONFIG_CRYPTO_USER_API_SKCIPHER=m
+CONFIG_CRYPTO_USER_API_AEAD=m
 CONFIG_DEBUG_INFO_NONE=y
 EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
