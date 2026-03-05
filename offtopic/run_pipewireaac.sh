@@ -20,12 +20,12 @@ mkdir -p "$OUTPUT_DIR"
 mkdir -p "$WORKSPACE_DIR"
 
 echo "Building Docker image ($IMAGE_NAME)..."
-docker build --platform linux/arm64 -f "$BASE_DIR/$DOCKERFILE" -t "$IMAGE_NAME" "$BASE_DIR"
+docker build --network=host --platform linux/arm64 -f "$BASE_DIR/$DOCKERFILE" -t "$IMAGE_NAME" "$BASE_DIR"
 
 echo "Starting build container (ARM64)..."
 docker run --rm \
     --platform linux/arm64 \
-    --privileged \
+    --privileged --network=host \
     -v "$OUTPUT_DIR:/root/output" \
     -v "$WORKSPACE_DIR:/root/build_workspace" \
     "$IMAGE_NAME"
