@@ -240,6 +240,7 @@ CONFIG_INPUT_UINPUT=m
 CONFIG_CRYPTO_USER_API_HASH=m
 CONFIG_CRYPTO_USER_API_SKCIPHER=m
 CONFIG_CRYPTO_USER_API_AEAD=m
+CONFIG_BT_AOSPEXT=y
 CONFIG_DEBUG_INFO_NONE=y
 EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
