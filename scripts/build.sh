@@ -233,6 +233,8 @@ CONFIG_RTW89=m
 CONFIG_RTW89_CORE=m
 CONFIG_RTW89_PCI=m
 CONFIG_RTW89_8852BE=m
+CONFIG_HID_BATTERY_STRENGTH=y
+CONFIG_UHID=m
 EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
