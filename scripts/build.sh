@@ -241,6 +241,7 @@ CONFIG_UHID=m
 CONFIG_HZ_1000=y
 CONFIG_HZ=1000
 CONFIG_NO_HZ_FULL=y
+CONFIG_DEBUG_INFO_NONE=y
 EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
@@ -259,6 +260,8 @@ build_collabora_kernel
 build_ffmpeg
 build_mpv
 build_standard_repos
+
+run_silent "Removing debug packages" rm -f "$OUTPUT_DIR"/*dbg*.deb
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"
