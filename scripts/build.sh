@@ -221,6 +221,14 @@ CONFIG_NF_CONNTRACK_FTP=m
 CONFIG_NF_NAT_TFTP=m
 CONFIG_NF_CONNTRACK_TFTP=m
 CONFIG_BT_LE=y
+CONFIG_BT_RFCOMM=m
+CONFIG_BT_RFCOMM_TTY=y
+CONFIG_BT_HCIUART_RTL=y
+CONFIG_BT_RFCOMM=y
+CONFIG_BT_RFCOMM_TTY=y
+CONFIG_BT_BNEP=m
+CONFIG_BT_BNEP_MC_FILTER=y
+CONFIG_BT_BNEP_PROTO_FILTER=y
 EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
