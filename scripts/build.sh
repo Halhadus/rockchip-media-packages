@@ -150,6 +150,8 @@ build_collabora_kernel() {
     run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves kmod fakeroot debhelper dpkg-dev python3-dev libdw-dev lsb-release
     run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
     cat <<EOF > custom_kernel.config
+CONFIG_LOCALVERSION="-collabora-devel"
+CONFIG_LOCALVERSION_AUTO=n
 CONFIG_DEVFREQ_GOV_PERFORMANCE=y
 CONFIG_DEVFREQ_GOV_POWERSAVE=y
 CONFIG_PWM_ROCKCHIP=y
@@ -195,6 +197,39 @@ EOF
     rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
     run_silent "Compiling and packaging: Linux Kernel" make DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
+    log_header "Creating Meta Packages"
+    IMAGE_DEB=$(ls ../linux-image-*-collabora-devel_*.deb | head -n 1 2>/dev/null)
+    if [ -f "$IMAGE_DEB" ]; then
+        ACTUAL_PKG_NAME=$(dpkg-deb -f "$IMAGE_DEB" Package)
+        PKG_VERSION=$(dpkg-deb -f "$IMAGE_DEB" Version)
+        mkdir -p meta-pkg-img/DEBIAN
+        cat <<EOF > meta-pkg-img/DEBIAN/control
+Package: linux-image-collabora-devel
+Version: ${PKG_VERSION}
+Architecture: arm64
+Maintainer: Custom Build Script
+Description: Meta-package for Collabora kernel image
+Depends: ${ACTUAL_PKG_NAME}
+EOF
+        run_silent "Building meta-package: linux-image-collabora-devel" dpkg-deb --build meta-pkg-img "../linux-image-collabora-devel_${PKG_VERSION}_arm64.deb"
+        rm -rf meta-pkg-img
+    fi
+    HEADERS_DEB=$(ls ../linux-headers-*-collabora-devel_*.deb | head -n 1 2>/dev/null)
+    if [ -f "$HEADERS_DEB" ]; then
+        ACTUAL_HDR_NAME=$(dpkg-deb -f "$HEADERS_DEB" Package)
+        HDR_VERSION=$(dpkg-deb -f "$HEADERS_DEB" Version)
+        mkdir -p meta-pkg-hdr/DEBIAN
+        cat <<EOF > meta-pkg-hdr/DEBIAN/control
+Package: linux-headers-collabora-devel
+Version: ${HDR_VERSION}
+Architecture: arm64
+Maintainer: Custom Build Script
+Description: Meta-package for Collabora kernel headers
+Depends: ${ACTUAL_HDR_NAME}
+EOF
+        run_silent "Building meta-package: linux-headers-collabora-devel" dpkg-deb --build meta-pkg-hdr "../linux-headers-collabora-devel_${HDR_VERSION}_arm64.deb"
+        rm -rf meta-pkg-hdr
+    fi
     mv ../linux-*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "Collabora Linux Kernel built successfully."
 }

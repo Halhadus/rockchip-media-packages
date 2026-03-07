@@ -17,10 +17,10 @@ fi
 mkdir -p "$OUTPUT_DIR"
 
 echo "Building Docker image ($IMAGE_NAME)..."
-docker build -t "$IMAGE_NAME" "$BASE_DIR"
+docker build --network=host -t "$IMAGE_NAME" "$BASE_DIR"
 
 echo "Starting build container..."
-docker run --rm \
+docker run --network=host --rm \
     -v "$BASE_DIR/output:/root/output" \
     -v "$BASE_DIR/build_workspace:/root/build_workspace" \
     "$IMAGE_NAME"
