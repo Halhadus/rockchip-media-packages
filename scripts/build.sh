@@ -197,6 +197,7 @@ EOF
     rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
     run_silent "Hiding DTS changes from Git status" git update-index --assume-unchanged arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
     run_silent "Hiding config changes from Git status" git update-index --assume-unchanged arch/arm64/configs/defconfig
+    echo '#!/bin/sh' > scripts/setlocalversion
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
     run_silent "Compiling and packaging: Linux Kernel" make DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
     log_header "Creating Meta Packages"
