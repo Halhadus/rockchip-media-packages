@@ -151,7 +151,6 @@ build_collabora_kernel() {
     run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
     git config user.email "build@localhost"
     git config user.name "Builder"
-    run_silent "Committing local changes to prevent dirty '+' suffix" git commit -am "chore: apply local dts patch"
     cat <<EOF > custom_kernel.config
 CONFIG_LOCALVERSION="-collabora-devel"
 CONFIG_LOCALVERSION_AUTO=n
@@ -198,6 +197,7 @@ EOF
     run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
     rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
+    run_silent "Committing local changes to prevent dirty '+' suffix" git commit -am "chore: apply local dts patch"
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
     run_silent "Compiling and packaging: Linux Kernel" make DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
     log_header "Creating Meta Packages"
