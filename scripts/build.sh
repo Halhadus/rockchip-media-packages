@@ -149,6 +149,9 @@ build_collabora_kernel() {
     cd "$KERNEL_DIR"
     run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves kmod fakeroot debhelper dpkg-dev python3-dev libdw-dev lsb-release
     run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+    git config user.email "build@localhost"
+    git config user.name "Builder"
+    run_silent "Committing local changes to prevent dirty '+' suffix" git commit -am "chore: apply local dts patch"
     cat <<EOF > custom_kernel.config
 CONFIG_LOCALVERSION="-collabora-devel"
 CONFIG_LOCALVERSION_AUTO=n
