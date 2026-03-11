@@ -149,6 +149,7 @@ build_collabora_kernel() {
     cd "$KERNEL_DIR"
     run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves kmod fakeroot debhelper dpkg-dev python3-dev libdw-dev lsb-release
     run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+    run_silent "Patching DTS for resolve RTC Interrupt Storm problem" sed -i '/&hym8563 {/,/};/ s/IRQ_TYPE_LEVEL_LOW/IRQ_TYPE_EDGE_FALLING/' arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
     cat <<EOF > custom_kernel.config
 CONFIG_LOCALVERSION="-collabora"
 CONFIG_LOCALVERSION_AUTO=n
@@ -196,6 +197,7 @@ EOF
     run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
     rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
     run_silent "Hiding DTS changes from Git status" git update-index --assume-unchanged arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
+    run_silent "Hiding DTS changes from Git status" git update-index --assume-unchanged arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
     run_silent "Hiding config changes from Git status" git update-index --assume-unchanged arch/arm64/configs/defconfig
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
     run_silent "Compiling and packaging: Linux Kernel" make LOCALVERSION="" DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
