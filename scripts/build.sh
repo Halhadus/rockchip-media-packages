@@ -151,8 +151,6 @@ build_collabora_kernel() {
     run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
     run_silent "Patching DTS for resolve RTC Interrupt Storm problem" sed -i '/&hym8563 {/,/};/ s/IRQ_TYPE_LEVEL_LOW/IRQ_TYPE_EDGE_FALLING/' arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
     cat <<EOF > custom_kernel.config
-CONFIG_LOCALVERSION="-collabora"
-CONFIG_LOCALVERSION_AUTO=n
 CONFIG_DEVFREQ_GOV_PERFORMANCE=y
 CONFIG_DEVFREQ_GOV_POWERSAVE=y
 CONFIG_PWM_ROCKCHIP=y
@@ -200,9 +198,9 @@ EOF
     run_silent "Hiding DTS changes from Git status" git update-index --assume-unchanged arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
     run_silent "Hiding config changes from Git status" git update-index --assume-unchanged arch/arm64/configs/defconfig
     export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
-    run_silent "Compiling and packaging: Linux Kernel" make LOCALVERSION="" DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
+    run_silent "Compiling and packaging: Linux Kernel" make DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
     log_header "Creating Meta Packages"
-    IMAGE_DEB=$(ls ../linux-image-*-collabora_*.deb | head -n 1 2>/dev/null)
+    IMAGE_DEB=$(ls ../linux-image*.deb | head -n 1 2>/dev/null)
     if [ -f "$IMAGE_DEB" ]; then
         ACTUAL_PKG_NAME=$(dpkg-deb -f "$IMAGE_DEB" Package)
         PKG_VERSION=$(dpkg-deb -f "$IMAGE_DEB" Version)
@@ -218,7 +216,7 @@ EOF
         run_silent "Building meta-package: linux-image-collabora" dpkg-deb --build meta-pkg-img "../linux-image-collabora_${PKG_VERSION}_arm64.deb"
         rm -rf meta-pkg-img
     fi
-    HEADERS_DEB=$(ls ../linux-headers-*-collabora_*.deb | head -n 1 2>/dev/null)
+    HEADERS_DEB=$(ls ../linux-headers*.deb | head -n 1 2>/dev/null)
     if [ -f "$HEADERS_DEB" ]; then
         ACTUAL_HDR_NAME=$(dpkg-deb -f "$HEADERS_DEB" Package)
         HDR_VERSION=$(dpkg-deb -f "$HEADERS_DEB" Version)
