@@ -95,7 +95,8 @@ build_ffmpeg() {
     run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
     run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
     run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
-    run_silent "Applying v4l2request.diff" git apply --ignore-whitespace --ignore-space-change --3way --exclude='.forgejo/CODEOWNERS' --exclude='Changelog' v4l2request.diff
+    filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
+    run_silent "Applying clean_v4l2request.diff" patch -p1 -i clean_v4l2request.diff
     run_silent "Applying strps1.patch" git apply --ignore-whitespace --ignore-space-change strps1.patch
     run_silent "Applying strps2.patch" git apply --ignore-whitespace --ignore-space-change strps2.patch
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
