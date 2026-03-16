@@ -241,8 +241,14 @@ prepare_environment
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
 build_collabora_kernel
-build_ffmpeg
-build_mpv
+if dpkg --compare-versions "$(apt-cache policy ffmpeg | awk '/Candidate/ {print $2}' | sed 's/.*://')" ge "8.1"; then
+    log_header "FFmpeg version is >= 8.1. Building ffmpeg and mpv..."
+    build_ffmpeg
+    build_mpv
+else
+    log_header "FFmpeg version is < 8.1. Skipping ffmpeg and mpv."
+    echo -e "${YELLOW}-> Waiting for FFmpeg 8.1+ in the repository.${NC}" | tee -a "$LOG_FILE"
+fi
 build_standard_repos
 
 run_silent "Removing debug packages" rm -f "$OUTPUT_DIR"/*dbg*.deb
