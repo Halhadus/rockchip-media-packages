@@ -92,7 +92,8 @@ build_ffmpeg() {
     run_silent "Fetching ffmpeg source via apt" apt-get source ffmpeg
     FFMPEG_DIR=$(find . -maxdepth 1 -type d -name "ffmpeg-*" | head -n 1)
     cd "$FFMPEG_DIR"
-    run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
+    #run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
+    run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/86eb07154d0255a5e96c822d8dc7805ade600f0b...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
     run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
     run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
     filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
