@@ -8,6 +8,12 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+export DEB_CFLAGS_APPEND="-O2 -mcpu=cortex-a76.cortex-a55 -mtune=cortex-a76.cortex-a55 -pipe -flto -Wno-error=incompatible-pointer-types"
+export DEB_CXXFLAGS_APPEND="-O2 -mcpu=cortex-a76.cortex-a55 -mtune=cortex-a76.cortex-a55 -pipe -flto -Wno-error=incompatible-pointer-types"
+
+export CFLAGS="$DEB_CFLAGS_APPEND"
+export CXXFLAGS="$DEB_CXXFLAGS_APPEND"
+
 BASE_DIR="$(pwd)"
 WORK_DIR="$BASE_DIR/build_workspace"
 OUTPUT_DIR="$BASE_DIR/output"
@@ -57,7 +63,6 @@ build_standard_repos() {
     repos=(
         "https://github.com/JeffyCN/mirrors.git linux-rga-multi linux-rga"
         "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
-        "https://github.com/JeffyCN/mirrors.git libmali mali"
     )
 
     for repo_info in "${repos[@]}"; do
