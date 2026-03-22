@@ -1,0 +1,31 @@
+FROM debian:testing
+
+LABEL maintainer="Halhadus"
+LABEL description="Build environment for Rockchip multimedia packages on Debian Testing"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmware/g' /etc/apt/sources.list.d/debian.sources
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    ca-certificates \
+    cmake \
+    debhelper \
+    devscripts \
+    equivs \
+    git \
+    libdrm-dev \
+    meson \
+    pkg-config \
+    rsync \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root
+
+COPY scripts/ /root/scripts/
+
+RUN chmod +x /root/scripts/build_mpp.sh
+
+CMD ["/root/scripts/build_mpp.sh"]
