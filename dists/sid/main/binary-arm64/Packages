@@ -1,0 +1,883 @@
+Package: debian-opi5plus-halhadus-config
+Version: 1.0.2
+Architecture: arm64
+Maintainer: Halhadus <eneshakans45@proton.me>
+Installed-Size: 20
+Depends: device-tree-compiler, zstd, xz-utils, clinfo, vulkan-tools, mesa-vulkan-drivers, glmark2-es2-drm, vkmark, glmark2-es2-wayland, lm-sensors, fastfetch, git, smartmontools, usbutils, pciutils, binutils, build-essential, meson, libtool, pkgconf, cmake, autoconf, automake, file, mpv, v4l-utils, qv4l2, qvidcap, ir-keytable, dvb-tools, libdvbv5-0t64, libdvbv5-dev, ffmpeg, wayfire, wayfire-dev, waybar, wcm, wf-shell, wf-recorder, wev, wlrctl, wlogout, wofi, swaylock, slurp, grim, swappy, mako-notifier, cliphist, xwayland, xdg-desktop-portal-wlr, xdg-desktop-portal-gtk, pipewire, pipewire-alsa, pipewire-audio, pipewire-pulse, pipewire-v4l2, wireplumber, libpipewire-0.3-common, libpipewire-0.3-modules, libspa-0.2-bluetooth, libspa-0.2-modules, pulseaudio-utils, pavucontrol-qt, pamixer, playerctl, rtkit, adwaita-icon-theme, papirus-icon-theme, lxappearance, nwg-look, qt5ct, qt6ct, qt6-wayland, libadwaita-1-0, libadwaita-1-dev, fonts-jetbrains-mono, fonts-jetbrains-mono-web, fonts-noto-color-emoji, btop, nvtop, inxi, kitty, thunar, thunar-archive-plugin, file-roller, unzip, brightnessctl, light, stress-ng, command-not-found, gvfs, gvfs-backends, gvfs-common, blueman, bluetooth, bluez, networkd-dispatcher, rfkill, arp-scan, iperf3, traceroute, ncat, rustup, python3-pip, python3-requests, default-jdk, nlohmann-json3-dev, libgtk-4-dev, libx11-dev, libxtst-dev, libwf-config1, firefox, obs-studio, obs-plugins, obs-pipewire-audio-capture, mangohud, goverlay, gamemode, chromium, chromium-sandbox, arch-install-scripts, seatd, wl-clipboard, mesa-utils, evtest, bridge-utils, iptables-persistent, nvme-cli, xfce4-settings, xdg-utils, polkit-kde-agent-1, dbus-x11, trace-cmd, libpolkit-agent-1-0, aria2, fio, strace, gdb, dmidecode, jq, alsa-utils, edid-decode, systemd-zram-generator, bash-completion, wget, drm-info, wlr-randr, network-manager-applet, tigervnc-viewer, gpiod, python3-libgpiod, wayvnc, libssl-dev
+Filename: pool/main/debian-opi5plus-halhadus-config_1.0.2_arm64.deb
+Size: 2784
+MD5sum: 83135c209e297e6b37eaabdece1b67e9
+SHA1: db687cd4a7cbd9a17291d732b41bc6ea10b91ac8
+SHA256: ad949f55aca5c8ebba3ed4411c80c948e99a669a1b9b378260a89cb6d3929283
+Section: admin
+Priority: optional
+Description: Orange Pi 5 Plus Halhadus Configuration Package
+
+Package: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3022
+Depends: libavcodec62 (>= 7:8.1), libavdevice62 (>= 7:8.1), libavfilter11 (>= 7:8.1), libavformat62 (>= 7:8.1), libavutil60 (>= 7:8.1), libc6 (>= 2.35), libplacebo360 (>= 7.360.0), libsdl2-2.0-0 (>= 2.0.12), libswresample6 (>= 7:8.1), libswscale9 (>= 7:8.1), zlib1g (>= 1:1.1.4)
+Suggests: ffmpeg-doc
+Filename: pool/main/ffmpeg_8.1-3_arm64.deb
+Size: 2078720
+MD5sum: 79ca93dbf5e7477e5bdbff0ad71d5fa9
+SHA1: 5b0e76278cc59fa3f9347811a601b9fe5a2d01f7
+SHA256: eb03e98195a5163a1082587968e322c2f9a49be5ca53e1ae7f2bb2d6cfcd0749
+Section: video
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://ffmpeg.org/
+Description: Tools for transcoding, streaming and playing of multimedia files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This package contains:
+  * ffmpeg: a command line tool to convert multimedia files between formats
+  * ffplay: a simple media player based on SDL and the FFmpeg libraries
+  * ffprobe: a simple multimedia stream analyzer
+  * qt-faststart: a utility to rearrange Quicktime files
+
+Package: ffmpeg-doc
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: all
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 39316
+Depends: libjs-jquery, libjs-bootstrap5
+Filename: pool/main/ffmpeg-doc_8.1-3_all.deb
+Size: 2440396
+MD5sum: 72b4a9b9c4775635ef3d71c94ace00dd
+SHA1: f98968814c3f8cd9ca7a57ed78875a3e519ce080
+SHA256: 85484ed9b6ff159b46d65dc67998ce3b4746a660023fb2cd82d24c1558cbc6aa
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://ffmpeg.org/
+Description: Documentation of the FFmpeg multimedia framework
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This package contains the HTML documentation for the FFmpeg multimedia
+ framework including the API documentation created by doxygen and the manpages
+ for the libraries.
+
+Package: libavcodec-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 23350
+Depends: libavcodec62 (= 7:8.1-3), libavutil-dev (= 7:8.1-3), libswresample-dev (= 7:8.1-3)
+Filename: pool/main/libavcodec-dev_8.1-3_arm64.deb
+Size: 6842220
+MD5sum: 13d1a28fa1d9642d3d913b4bfc9677a2
+SHA1: b13be035ec643156a9646bea257550d78c49dc16
+SHA256: d857b1585af5c2592f04371f1c1c834ccf34ef6248c8143b268db4c356960f8b
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with de/encoders for audio/video codecs - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic encoding/decoding framework and
+ contains multiple decoders and encoders for audio, video and subtitle streams,
+ and several bitstream filters.
+ .
+ The shared architecture provides various services ranging from bit stream I/O
+ to DSP optimizations, and makes it suitable for implementing robust and fast
+ codecs as well as for experimentation.
+ .
+ This package contains the development files.
+
+Package: libavcodec-extra
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 85
+Depends: libavcodec-extra62 (= 7:8.1-3)
+Filename: pool/main/libavcodec-extra_8.1-3_arm64.deb
+Size: 47232
+MD5sum: 45c2ed62f15ef92e3fb28baca38b6209
+SHA1: 91fb7b4cbcbb78eb0e846618c696f996ca461145
+SHA256: c92b7fe43d2b6b3018b3ebeb52b4a8698ac205ee916f3e0a1e705cc696ed8588
+Section: metapackages
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra codecs (metapackage)
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This metapackage depends on the latest version of the libavcodec variant
+ that offers additional codec support. Application packages can depend
+ on it if they require or suggest this variant in a robust manner.
+
+Package: libavcodec-extra62
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 15789
+Depends: libaom3 (>= 3.2.0), libaribb24-0t64 (>= 1.0.3), libavutil60 (= 7:8.1-3), libc6 (>= 2.35), libcairo2 (>= 1.2.4), libcodec2-1.2 (>= 1.2.0), libdav1d7 (>= 1.1.0), libglib2.0-0t64 (>= 2.12.0), libgsm1 (>= 1.0.18), libjxl0.11 (>= 0.8.0), liblzma5 (>= 5.1.1alpha+20120614), libmp3lame0 (>= 3.100), libopencore-amrnb0 (>= 0.1.6), libopencore-amrwb0 (>= 0.1.6), libopenjp2-7 (>= 2.1), libopus0 (>= 1.1), librav1e0.8 (>= 0.5.1), librsvg2-2 (>= 2.52.5), libshine3 (>= 3.1.0), libsnappy1v5 (>= 1.2.2), libspeex1 (>= 1.2~), libsvtav1enc3 (>= 2.2.1), libswresample6 (>= 7:8.1), libtheoradec2 (>= 1.2), libtheoraenc2 (>= 1.2), libtwolame0 (>= 0.3.10), libva2 (>= 2.9.0), libvo-amrwbenc0 (>= 0.1.3), libvorbis0a (>= 1.1.2), libvorbisenc2 (>= 1.1.2), libvpx12 (>= 1.16.0), libwebp7 (>= 1.5.0), libwebpmux3 (>= 1.5.0), libx264-165 (>= 2:0.165.3222+gitb35605ac), libx265-215 (>= 4.1), libxvidcore4 (>= 1.2.2), libzvbi0t64 (>= 0.2.35), zlib1g (>= 1:1.2.0)
+Suggests: libcuda1, libnvcuvid1, libnvidia-encode1
+Conflicts: libavcodec62
+Provides: libavcodec62 (= 7:8.1-3)
+Filename: pool/main/libavcodec-extra62_8.1-3_arm64.deb
+Size: 6099896
+MD5sum: 7e37ae5c262a44799d8e7f65daa0c1e9
+SHA1: d7e69fc5b3ab21dbfd47c1ab8af88738e284410a
+SHA256: 75bcbed58030338816b79d0a45ba9f8630756964e6324c062a534fdb53c2e7fe
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with additional de/encoders for audio/video codecs
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic encoding/decoding framework and
+ contains multiple decoders and encoders for audio, video and subtitle streams,
+ and several bitstream filters.
+ .
+ The shared architecture provides various services ranging from bit stream I/O
+ to DSP optimizations, and makes it suitable for implementing robust and fast
+ codecs as well as for experimentation.
+ .
+ This package replaces the libavcodec62 package and contains the
+ following additional codecs:
+ .
+  * ARIB STD-B24 Captions (Subtitle Decoder)
+  * OpenCORE Adaptive Multi-Rate (AMR) Narrow-Band (Encoder/Decoder)
+  * OpenCORE Adaptive Multi-Rate (AMR) Wide-Band (Decoder)
+  * Android VisualOn Adaptive Multi-Rate (AMR) Wide-Band (Encoder)
+ .
+ Because this package links against libraries that are licensed under
+ Apache License 2.0, the resulting binaries are distributed under the
+ GPL version 3 or later.
+
+Package: libavcodec62
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 15789
+Depends: libaom3 (>= 3.2.0), libavutil60 (= 7:8.1-3), libc6 (>= 2.35), libcairo2 (>= 1.2.4), libcodec2-1.2 (>= 1.2.0), libdav1d7 (>= 1.1.0), libglib2.0-0t64 (>= 2.12.0), libgsm1 (>= 1.0.18), libjxl0.11 (>= 0.8.0), liblzma5 (>= 5.1.1alpha+20120614), libmp3lame0 (>= 3.100), libopenjp2-7 (>= 2.1), libopus0 (>= 1.1), librav1e0.8 (>= 0.5.1), librsvg2-2 (>= 2.52.5), libshine3 (>= 3.1.0), libsnappy1v5 (>= 1.2.2), libspeex1 (>= 1.2~), libsvtav1enc3 (>= 2.2.1), libswresample6 (>= 7:8.1), libtheoradec2 (>= 1.2), libtheoraenc2 (>= 1.2), libtwolame0 (>= 0.3.10), libva2 (>= 2.9.0), libvorbis0a (>= 1.1.2), libvorbisenc2 (>= 1.1.2), libvpx12 (>= 1.16.0), libwebp7 (>= 1.5.0), libwebpmux3 (>= 1.5.0), libx264-165 (>= 2:0.165.3222+gitb35605ac), libx265-215 (>= 4.1), libxvidcore4 (>= 1.2.2), libzvbi0t64 (>= 0.2.35), zlib1g (>= 1:1.2.0)
+Suggests: libcuda1, libnvcuvid1, libnvidia-encode1
+Filename: pool/main/libavcodec62_8.1-3_arm64.deb
+Size: 6101776
+MD5sum: cd9f8749f489f1d47b9c9859916a9718
+SHA1: 6e19a2a20725174a38ccf6fc6f42648240699b41
+SHA256: 18a73d21feb353b97ed07af1489bbdd6b47d05329d416deff89192b0cbae50e0
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with de/encoders for audio/video codecs - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic encoding/decoding framework and
+ contains multiple decoders and encoders for audio, video and subtitle streams,
+ and several bitstream filters.
+ .
+ The shared architecture provides various services ranging from bit stream I/O
+ to DSP optimizations, and makes it suitable for implementing robust and fast
+ codecs as well as for experimentation.
+ .
+ This package contains the runtime files.
+
+Package: libavdevice-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 397
+Depends: libavcodec-dev (= 7:8.1-3), libavdevice62 (= 7:8.1-3), libavfilter-dev (= 7:8.1-3), libavformat-dev (= 7:8.1-3), libavutil-dev (= 7:8.1-3), libswscale-dev (= 7:8.1-3), libswresample-dev (= 7:8.1-3)
+Filename: pool/main/libavdevice-dev_8.1-3_arm64.deb
+Size: 109440
+MD5sum: 7ca19c4ca6db0cbce98c4acb6cdc3de5
+SHA1: b18221b02672c5fb66ae69841533ec60782a1c98
+SHA256: 2eac353061ce86d46af7205e48afc3279eec9fe67a1e4f5894347e82a263bbdd
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for handling input and output devices - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for grabbing from and rendering to
+ many common multimedia input/output devices, and supports several input and
+ output devices, including Video4Linux2, VfW, DShow, and ALSA.
+ .
+ This package contains the development files.
+
+Package: libavdevice62
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 286
+Depends: libasound2t64 (>= 1.0.16), libavc1394-0 (>= 0.5.3), libavcodec62 (>= 7:8.1), libavfilter11 (>= 7:8.1), libavformat62 (= 7:8.1-3), libavutil60 (= 7:8.1-3), libc6 (>= 2.34), libcdio-cdda2t64 (>= 10.2+2.0.0), libcdio-paranoia2t64 (>= 10.2+2.0.0), libdc1394-25 (>= 2.2.6), libdrm2 (>= 2.4.101), libiec61883-0 (>= 1.2.0), libjack-jackd2-0 (>= 1.9.10+20150825) | libjack-0.125, libopenal1 (>= 1.14), libpulse0 (>= 0.99.1), libraw1394-11 (>= 2.1.2), libx11-6, libxcb-shape0, libxcb-shm0, libxcb-xfixes0, libxcb1, libxext6, libxv1 (>= 2:1.0.13)
+Filename: pool/main/libavdevice62_8.1-3_arm64.deb
+Size: 96928
+MD5sum: c0f72b459177110018c13288f3907255
+SHA1: 86e50791fb3b42e19b0143716143ea51a1b26346
+SHA256: 3e65266e5578929322716ed2f8d3538f3a606850e553a7b6ce4bad2f392a3a0c
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for handling input and output devices - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for grabbing from and rendering to
+ many common multimedia input/output devices, and supports several input and
+ output devices, including Video4Linux2, VfW, DShow, and ALSA.
+ .
+ This package contains the runtime files.
+
+Package: libavfilter-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 9448
+Depends: libavcodec-dev (= 7:8.1-3), libavfilter11 (= 7:8.1-3), libavformat-dev (= 7:8.1-3), libavutil-dev (= 7:8.1-3), libswresample-dev (= 7:8.1-3), libswscale-dev (= 7:8.1-3)
+Filename: pool/main/libavfilter-dev_8.1-3_arm64.deb
+Size: 2211772
+MD5sum: 21b9b288124662c36608659d2341a5d0
+SHA1: c1bc1ef241b5dcd607c9f37860851bb28282c14f
+SHA256: c9ab0d6c4e89e339ebc807bd79689dacc525563f206ec3fd7c2ce9c1983612ea
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library containing media filters - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic audio/video filtering framework containing
+ several filters, sources and sinks.
+ .
+ This package contains the development files.
+
+Package: libavfilter-extra
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 85
+Depends: libavfilter-extra11 (= 7:8.1-3)
+Filename: pool/main/libavfilter-extra_8.1-3_arm64.deb
+Size: 47220
+MD5sum: 952a5f2d6cf39452921918e2f1f41571
+SHA1: 43ef7f779e466d1476aa1b8fca340b9f24fe05ae
+SHA256: e682175b54698af1996156cdefd41909d6b86397c2a59fc11b7b4667568f4583
+Section: metapackages
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra filters (metapackage)
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This metapackage depends on the latest version of the libavfilter variant
+ that offers additional filter support. Application packages can depend
+ on it if they require or suggest this variant in a robust manner.
+
+Package: libavfilter-extra11
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 13867
+Depends: libass9 (>= 1:0.15.0), libavcodec62 (= 7:8.1-3), libavformat62 (>= 7:8.1), libavutil60 (= 7:8.1-3), libbs2b0 (>= 3.1.0+dfsg), libc6 (>= 2.38), libflite1 (>= 1.4-release-9~), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.2.1), libfribidi0 (>= 0.19.2), libharfbuzz0b (>= 1.6.0), liblilv-0-0 (>= 0.14.2~dfsg0), libmysofa1 (>= 0.7~), libopenmpt0t64 (>= 0.2.7025~beta20.1), libplacebo360 (>= 7.360.0), librubberband3 (>= 4.0.0+dfsg), libstdc++6 (>= 13.1), libswresample6 (>= 7:8.1), libswscale9 (>= 7:8.1), libtesseract5 (>= 5.5.0), libva2 (>= 1.7.3), libvidstab1.1, libzimg2 (>= 0.3.1), libzmq5 (>= 3.2.3+dfsg), ocl-icd-libopencl1 | libopencl1, ocl-icd-libopencl1 (>= 1.0) | libopencl-1.2-1, zlib1g (>= 1:1.1.4)
+Suggests: frei0r-plugins
+Conflicts: libavfilter11
+Provides: libavfilter11 (= 7:8.1-3)
+Filename: pool/main/libavfilter-extra11_8.1-3_arm64.deb
+Size: 4063508
+MD5sum: 6e17ab479cc76f61d90bbad358c4530a
+SHA1: f5176488522f71bfcf397cb9a2409688ec618b84
+SHA256: a69fd36369b84672d414b7e9717c6bc3c1bdb1f866ada01e12cda673ff3a6a70
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra media filters - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic audio/video filtering framework containing
+ several filters, sources and sinks.
+ .
+ This package replaces the libavfilter11 package and contains the
+ following additional filters:
+ .
+  * Optical Character Recognition (uses Tesseract)
+ .
+ Because this package links against libraries that are licensed under
+ Apache License 2.0, the resulting binaries are distributed under the
+ GPL version 3 or later.
+
+Package: libavfilter11
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 13867
+Depends: libass9 (>= 1:0.15.0), libavcodec62 (= 7:8.1-3), libavformat62 (>= 7:8.1), libavutil60 (= 7:8.1-3), libbs2b0 (>= 3.1.0+dfsg), libc6 (>= 2.38), libflite1 (>= 1.4-release-9~), libfontconfig1 (>= 2.12.6), libfreetype6 (>= 2.2.1), libfribidi0 (>= 0.19.2), libharfbuzz0b (>= 1.6.0), liblilv-0-0 (>= 0.14.2~dfsg0), libmysofa1 (>= 0.7~), libopenmpt0t64 (>= 0.2.7025~beta20.1), libplacebo360 (>= 7.360.0), librubberband3 (>= 4.0.0+dfsg), libstdc++6 (>= 13.1), libswresample6 (>= 7:8.1), libswscale9 (>= 7:8.1), libva2 (>= 1.7.3), libvidstab1.1, libzimg2 (>= 0.3.1), libzmq5 (>= 3.2.3+dfsg), ocl-icd-libopencl1 | libopencl1, ocl-icd-libopencl1 (>= 1.0) | libopencl-1.2-1, zlib1g (>= 1:1.1.4)
+Suggests: frei0r-plugins
+Filename: pool/main/libavfilter11_8.1-3_arm64.deb
+Size: 4060164
+MD5sum: 04487390c4bb4dd4c22481a900b79e40
+SHA1: 00e30c7240b1f9a10fbd1c098646b5789c03e980
+SHA256: 4d6226819fb57a4970183d4a70efc29c8dcb9503c68cc575dc1f4e082e9e5588
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library containing media filters - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic audio/video filtering framework containing
+ several filters, sources and sinks.
+ .
+ This package contains the runtime files.
+
+Package: libavformat-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 6719
+Depends: libavcodec-dev (= 7:8.1-3), libavformat62 (= 7:8.1-3), libavutil-dev (= 7:8.1-3), libswresample-dev (= 7:8.1-3)
+Filename: pool/main/libavformat-dev_8.1-3_arm64.deb
+Size: 1485468
+MD5sum: 3317506b03ece69fd47d0af1924f6c5b
+SHA1: 2b9073cfb0f8299c4108ab0d07331602b800d4af
+SHA256: 2f6c042fa2d7b27b6083b8e9c4e1f1a916bd068a547f33f5a782fa1579002bad
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with (de)muxers for multimedia containers - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for multiplexing and demultiplexing
+ (muxing and demuxing) audio, video and subtitle streams. It encompasses
+ multiple muxers and demuxers for multimedia container formats. It also
+ supports several input and output protocols to access a media resource.
+ .
+ This package contains the development files.
+
+Package: libavformat-extra
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 85
+Depends: libavformat-extra62 (= 7:8.1-3)
+Filename: pool/main/libavformat-extra_8.1-3_arm64.deb
+Size: 47228
+MD5sum: 6ca0839f71cc306902f1166a323dab85
+SHA1: 5b55bd9fe82a7683e1426ce134ec9f3b648f532f
+SHA256: 2d2650d73c5003bcbfb3feee85a50dff8dddd382b049927a407fe887c4f2d375
+Section: metapackages
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with extra (de)muxers (metapackage)
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This metapackage depends on the latest version of the libavformat variant
+ that offers additional (de)muxers support. Application packages can depend
+ on it if they require or suggest this variant in a robust manner.
+
+Package: libavformat-extra62
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3367
+Depends: libavcodec62 (= 7:8.1-3), libavutil60 (= 7:8.1-3), libbluray3 (>= 1:0.2.2), libbz2-1.0, libc6 (>= 2.38), libchromaprint1 (>= 1.3.2), libdvdnav4 (>= 6.1.0), libdvdread8t64 (>= 6.1.0), libgme0 (>= 0.5.5), libgnutls30t64 (>= 3.8.4), libopenmpt0t64 (>= 0.3.0), librabbitmq4 (>= 0.6.0), librist4 (>= 0.2.6+dfsg), libsmbclient0 (>= 2:4.0.3+dfsg1), libsrt1.5-gnutls (>= 1.5.4), libssh-4 (>= 0.8.0), libxml2-16 (>= 2.14.1), libzmq5 (>= 4.0.1+dfsg), zlib1g (>= 1:1.2.0.2)
+Conflicts: libavformat62
+Provides: libavformat62 (= 7:8.1-3)
+Filename: pool/main/libavformat-extra62_8.1-3_arm64.deb
+Size: 1214264
+MD5sum: 2d4c4cf6ba6d5043325fdd5adc3c0d68
+SHA1: f5a6d5ace3f25668188bbbddba46f88b58aa5a59
+SHA256: 1ef8f12e24a837a7127f506f7a39f11b657db223f06f45fae3ba3aca2e18515c
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with additional (de)muxers for multimedia containers
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for multiplexing and demultiplexing
+ (muxing and demuxing) audio, video and subtitle streams. It encompasses
+ multiple muxers and demuxers for multimedia container formats. It also
+ supports several input and output protocols to access a media resource.
+ .
+ This package replaces the libavformat62 package and contains the
+ following additional (de)muxers:
+ .
+  * SMB protocol (using libsmbclient)
+ .
+ Because this package links against libraries that are licensed under
+ Apache License 2.0 or GPL version 3, the resulting binaries are distributed
+ under the GPL version 3 or later.
+
+Package: libavformat62
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3300
+Depends: libavcodec62 (= 7:8.1-3), libavutil60 (= 7:8.1-3), libbluray3 (>= 1:0.2.2), libbz2-1.0, libc6 (>= 2.38), libchromaprint1 (>= 1.3.2), libdvdnav4 (>= 6.1.0), libdvdread8t64 (>= 6.1.0), libgme0 (>= 0.5.5), libgnutls30t64 (>= 3.8.4), libopenmpt0t64 (>= 0.3.0), librabbitmq4 (>= 0.6.0), librist4 (>= 0.2.6+dfsg), libsrt1.5-gnutls (>= 1.5.4), libssh-4 (>= 0.8.0), libxml2-16 (>= 2.14.1), libzmq5 (>= 4.0.1+dfsg), zlib1g (>= 1:1.2.0.2)
+Filename: pool/main/libavformat62_8.1-3_arm64.deb
+Size: 1214232
+MD5sum: 60f5cd3aa22cd62c32ce3c599ee8814b
+SHA1: 5bf7d964916af1bbca160b82c1b9a8651cc5f405
+SHA256: e475b2fab4179e8aa7f92da9e34d0168a2c478c7ac0e6d7a04ec6d07fde051fc
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with (de)muxers for multimedia containers - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library provides a generic framework for multiplexing and demultiplexing
+ (muxing and demuxing) audio, video and subtitle streams. It encompasses
+ multiple muxers and demuxers for multimedia container formats. It also
+ supports several input and output protocols to access a media resource.
+ .
+ This package contains the runtime files.
+
+Package: libavutil-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 2628
+Depends: libavutil60 (= 7:8.1-3)
+Filename: pool/main/libavutil-dev_8.1-3_arm64.deb
+Size: 588976
+MD5sum: 96e408c90b3f84426770073949e6cfbf
+SHA1: 774ad62ecfcfd0b05d0a1917fe2cd198f1165d75
+SHA256: e5976bb7cd13a097a2daab15ca0fed924bbfdc48fc986e2545cbab3db21e228b
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with functions for simplifying programming - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library is a utility library to aid portable multimedia programming.
+ It contains safe portable string functions, random number generators, data
+ structures, additional mathematics functions, cryptography and multimedia
+ related functionality (like enumerations for pixel and sample formats).
+ It is not a library for code needed by both libavcodec and libavformat.
+ The goal for this library is to be modular, small, efficient and useful.
+ .
+ This package contains the development files.
+
+Package: libavutil60
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 1209
+Depends: libc6 (>= 2.38), libdrm2 (>= 2.4.66), libudev1 (>= 183), libva-drm2 (>= 1.3), libva-x11-2 (>= 1.3), libva2 (>= 2.21.0), libvdpau1 (>= 0.2), libx11-6, ocl-icd-libopencl1 | libopencl1, ocl-icd-libopencl1 (>= 1.0) | libopencl-1.2-1, zlib1g (>= 1:1.1.4)
+Filename: pool/main/libavutil60_8.1-3_arm64.deb
+Size: 415604
+MD5sum: ca1480bf7d5154561bc732746e93e171
+SHA1: 9f459388bcb7268f9febd9010d3dd42e61b66ab1
+SHA256: f5f0fa2993a595eff30add458c62087bf6f771a4681211529064a3a7d755eccd
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library with functions for simplifying programming - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library is a utility library to aid portable multimedia programming.
+ It contains safe portable string functions, random number generators, data
+ structures, additional mathematics functions, cryptography and multimedia
+ related functionality (like enumerations for pixel and sample formats).
+ It is not a library for code needed by both libavcodec and libavformat.
+ The goal for this library is to be modular, small, efficient and useful.
+ .
+ This package contains the runtime files.
+
+Package: libmpv-dev
+Source: mpv
+Version: 0.41.0-2
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 170
+Depends: libmpv2 (= 0.41.0-2), libarchive-dev (>= 3.4), libasound2-dev, libass-dev, libavcodec-dev (>= 7:7.0), libavdevice-dev (>= 7:7.0), libavfilter-dev (>= 7:7.0), libavformat-dev (>= 7:7.0), libavutil-dev (>= 7:7.0), libbluray-dev, libcdio-dev, libcdio-paranoia-dev, libdisplay-info-dev, libdrm-dev (>= 2.4.75), libdvdnav-dev, libegl-dev, libffmpeg-nvenc-dev, libgbm-dev, libgl-dev, libjack-dev, libjpeg-dev, liblcms2-dev (>= 2.6~), liblua5.2-dev, libmujs-dev, libpipewire-0.3-dev, libplacebo-dev (>= 6.338), libpulse-dev, librubberband-dev, libsixel-dev, libsndio-dev, libswscale-dev (>= 7:7.0), libuchardet-dev, libva-dev, libvdpau-dev, libvulkan-dev, libwayland-dev (>= 1.15.0), libx11-dev, libxinerama-dev, libxkbcommon-dev, libxpresent-dev, libxrandr-dev, libxss-dev, libxv-dev, libzimg-dev, wayland-protocols
+Filename: pool/main/libmpv-dev_0.41.0-2_arm64.deb
+Size: 45500
+MD5sum: 6da1fcdeae5f19e0e0c374a56d2b19da
+SHA1: 81d3eea564a2792f1125442b1e2dfab61ab69073
+SHA256: dfabcad80dce9bdf48b10b014ae176483211a3c279696a164278a896b9fbb391
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://mpv.io/
+Description: video player based on MPlayer/mplayer2 (client library dev files)
+ mpv is a movie player based on MPlayer and mplayer2. It supports a wide
+ variety of video file formats, audio and video codecs, and subtitle types.
+ .
+ This package provides development files for libmpv.
+
+Package: libmpv2
+Source: mpv
+Version: 0.41.0-2
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 2985
+Depends: libarchive13t64 (>= 3.4.0), libasound2t64 (>= 1.0.27), libass9 (>= 1:0.17.4), libavcodec62 (>= 7:8.1), libavdevice62 (>= 7:8.1), libavfilter11 (>= 7:8.1), libavformat62 (>= 7:8.1), libavutil60 (>= 7:8.1), libbluray3 (>= 1:0.5.0), libc6 (>= 2.38), libcdio-cdda2t64 (>= 10.2+2.0.0), libcdio-paranoia2t64 (>= 10.2+2.0.0), libcdio19t64 (>= 2.1.0), libdisplay-info3 (>= 0.3.0), libdrm2 (>= 2.4.105), libdvdnav4 (>= 4.1.3), libegl1, libgbm1 (>= 17.1.0~rc2), libjack-jackd2-0 (>= 1.9.10+20150825) | libjack-0.125, libjpeg62-turbo (>= 1.3.1), liblcms2-2 (>= 2.6), liblua5.2-0 (>= 5.2.4), libmujs3 (>= 1.0.7), libpipewire-0.3-0t64 (>= 1.0.4), libplacebo360 (>= 7.360.0), libpulse0 (>= 0.99.4), librubberband3 (>= 4.0.0+dfsg), libsixel1 (>= 1:1.8.7), libsndio7.0 (>= 1.9.0), libswresample6 (>= 7:8.1), libswscale9 (>= 7:8.1), libuchardet0 (>= 0.0.1), libva-drm2 (>= 1.1.0), libva-wayland2 (>= 1.3.0), libva-x11-2 (>= 1.0.3), libva2 (>= 2.2.0), libvdpau1 (>= 0.2), libvulkan1 (>= 1.2.131.2), libwayland-client0 (>= 1.20.0), libwayland-cursor0 (>= 1.15.0), libwayland-egl1 (>= 1.15.0), libx11-6 (>= 2:1.2.99.901), libxext6, libxfixes3, libxkbcommon0 (>= 0.5.0), libxpresent1 (>= 1.0.1), libxrandr2 (>= 2:1.4.0), libxss1, libxv1 (>= 2:1.0.13), libzimg2 (>= 0.3.1), zlib1g (>= 1:1.1.4)
+Recommends: yt-dlp
+Filename: pool/main/libmpv2_0.41.0-2_arm64.deb
+Size: 930780
+MD5sum: 840fe4978c40ada571711b991649c22a
+SHA1: 8d24173f6e5c297e05f75b16d989ab17241104f0
+SHA256: 9cdf3da651dd180f12270b5b267a8a8c96748790b4990bea004d2677e663d48d
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://mpv.io/
+Description: video player based on MPlayer/mplayer2 (client library)
+ mpv is a movie player based on MPlayer and mplayer2. It supports a wide
+ variety of video file formats, audio and video codecs, and subtitle types.
+ .
+ This package provides a client library that can be used to embed mpv in other
+ applications.
+
+Package: libswresample-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 324
+Depends: libavutil-dev (= 7:8.1-3), libswresample6 (= 7:8.1-3)
+Filename: pool/main/libswresample-dev_8.1-3_arm64.deb
+Size: 104924
+MD5sum: b37d43efe6574461fe9c0e72ed8e83e5
+SHA1: 408f8538dcdcdb1727cbf4589eb3ab75e333fe63
+SHA256: 4dee3b2545b2ab99685c40fdf4615ca5e8d1fe43959454b8e20718c08ec12290
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for audio resampling, rematrixing etc. - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized audio resampling, rematrixing
+ and sample format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Resampling is the process of changing the audio rate, for example from a
+    high sample rate of 44100Hz to 8000Hz. Audio conversion from high to low
+    sample rate is a lossy process. Several resampling options and algorithms
+    are available.
+  * Rematrixing is the process of changing the channel layout, for example from
+    stereo to mono. When the input channels cannot be mapped to the output
+    streams, the process is lossy, since it involves different gain factors
+    and mixing. Various other audio conversions (e.g. stretching and padding)
+    are enabled through dedicated options.
+  * Format conversion is the process of converting the type of samples, for
+    example from 16-bit signed samples to unsigned 8-bit or float samples.
+    It also handles packing conversion, when passing from packed layout (all
+    samples belonging to distinct channels interleaved in the same buffer), to
+    planar layout (all samples belonging to the same channel stored in a
+    dedicated buffer or "plane").
+ .
+ This package contains the development files.
+
+Package: libswresample6
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 226
+Depends: libavutil60 (>= 7:8.1), libc6 (>= 2.29), libsoxr0 (>= 0.1.0)
+Filename: pool/main/libswresample6_8.1-3_arm64.deb
+Size: 92852
+MD5sum: af4afe13f3365e5eedfbd480de5be293
+SHA1: cd4a66fc31aba1a4cd56c4a85f2e3fc327004c76
+SHA256: 026121317ce61fbe542a0da8851a053d6b3d87c49cd0f3b02702f3db629c4197
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for audio resampling, rematrixing etc. - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized audio resampling, rematrixing
+ and sample format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Resampling is the process of changing the audio rate, for example from a
+    high sample rate of 44100Hz to 8000Hz. Audio conversion from high to low
+    sample rate is a lossy process. Several resampling options and algorithms
+    are available.
+  * Rematrixing is the process of changing the channel layout, for example from
+    stereo to mono. When the input channels cannot be mapped to the output
+    streams, the process is lossy, since it involves different gain factors
+    and mixing. Various other audio conversions (e.g. stretching and padding)
+    are enabled through dedicated options.
+  * Format conversion is the process of converting the type of samples, for
+    example from 16-bit signed samples to unsigned 8-bit or float samples.
+    It also handles packing conversion, when passing from packed layout (all
+    samples belonging to distinct channels interleaved in the same buffer), to
+    planar layout (all samples belonging to the same channel stored in a
+    dedicated buffer or "plane").
+ .
+ This package contains the runtime files.
+
+Package: libswscale-dev
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 1873
+Depends: libavutil-dev (= 7:8.1-3), libswscale9 (= 7:8.1-3)
+Filename: pool/main/libswscale-dev_8.1-3_arm64.deb
+Size: 472732
+MD5sum: bccec2e86723d01b93cafd065d29598f
+SHA1: 5e7a2416f0dc8083e4c4c1c5f9ec3871c86eae53
+SHA256: 1acafbed54700108778aac34a5c34d1453161644116db1c87dcf50e266c649ab
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for image scaling and various conversions - development files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized image scaling and colorspace and pixel
+ format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Rescaling is the process of changing the video size. Several rescaling
+    options and algorithms are available. This is usually a lossy process.
+  * Pixel format conversion is the process of converting the image format and
+    colorspace of the image, for example from planar YUV420P to RGB24 packed.
+    It also handles packing conversion, that is converts from packed layout
+    (all pixels belonging to distinct planes interleaved in the same buffer),
+    to planar layout (all samples belonging to the same plane stored in a
+    dedicated buffer or "plane"). This is usually a lossy process in case the
+    source and destination colorspaces differ.
+ .
+ This package contains the development files.
+
+Package: libswscale9
+Source: ffmpeg
+Version: 7:8.1-3
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 9192
+Depends: libavutil60 (= 7:8.1-3), libc6 (>= 2.38), libstdc++6 (>= 13.1), zlib1g (>= 1:1.1.4)
+Filename: pool/main/libswscale9_8.1-3_arm64.deb
+Size: 2563648
+MD5sum: ec0bcaa33ee30db398a19ae0890b28f9
+SHA1: 2992aa5501aa261d56323e79816071fe70de57d4
+SHA256: df8fe294cc76ea3c5665a9d7b6041e9c7dac5f1a2f7e4440b65fd81ad992d303
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://ffmpeg.org/
+Description: FFmpeg library for image scaling and various conversions - runtime files
+ FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
+ mux, demux, stream, filter and play pretty much anything that humans and
+ machines have created. It supports the most obscure ancient formats up to the
+ cutting edge.
+ .
+ This library performs highly optimized image scaling and colorspace and pixel
+ format conversion operations.
+ Specifically, this library performs the following conversions:
+  * Rescaling is the process of changing the video size. Several rescaling
+    options and algorithms are available. This is usually a lossy process.
+  * Pixel format conversion is the process of converting the image format and
+    colorspace of the image, for example from planar YUV420P to RGB24 packed.
+    It also handles packing conversion, that is converts from packed layout
+    (all pixels belonging to distinct planes interleaved in the same buffer),
+    to planar layout (all samples belonging to the same plane stored in a
+    dedicated buffer or "plane"). This is usually a lossy process in case the
+    source and destination colorspaces differ.
+ .
+ This package contains the runtime files.
+
+Package: linux-headers-7.0.0-rc4-g8ea76aefbf79
+Source: linux-upstream
+Version: 7.0.0~rc4-g8ea76aefbf79-1
+Architecture: arm64
+Maintainer: root <root@8a22e4c12199>
+Installed-Size: 55850
+Filename: pool/main/linux-headers-7.0.0-rc4-g8ea76aefbf79_7.0.0~rc4-g8ea76aefbf79-1_arm64.deb
+Size: 9104244
+MD5sum: 19435a20889d54166e5a5c6022d72126
+SHA1: 547512a1a6c581b2562c5a55e526d38c13e326ba
+SHA256: 2111c7a8b2211c6648e8e8cc0f692c128521add2faac2c362dc921de234c1f81
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux kernel headers for 7.0.0-rc4-g8ea76aefbf79 on arm64
+ This package provides kernel header files for 7.0.0-rc4-g8ea76aefbf79 on arm64
+ .
+ This is useful for people who need to build external modules
+
+Package: linux-headers-collabora
+Version: 7.0.0~rc4-g8ea76aefbf79-1
+Architecture: arm64
+Maintainer: Custom Build Script
+Depends: linux-headers-7.0.0-rc4-g8ea76aefbf79
+Filename: pool/main/linux-headers-collabora_7.0.0~rc4-g8ea76aefbf79-1_arm64.deb
+Size: 712
+MD5sum: b1bfad94a4c4081f2d99522ab79f37bb
+SHA1: 13de7cedc0309eb696fbcb23006f52280aeb7bd4
+SHA256: 9ac00a737cf436799a5ffb056d185df4fb67cea122e92c925564ed339a8f0d8e
+Description: Meta-package for Collabora kernel headers
+
+Package: linux-image-7.0.0-rc4-g8ea76aefbf79
+Source: linux-upstream
+Version: 7.0.0~rc4-g8ea76aefbf79-1
+Architecture: arm64
+Maintainer: root <root@8a22e4c12199>
+Installed-Size: 237555
+Filename: pool/main/linux-image-7.0.0-rc4-g8ea76aefbf79_7.0.0~rc4-g8ea76aefbf79-1_arm64.deb
+Size: 34416828
+MD5sum: 77dada6955dc28016b9c2f4903419941
+SHA1: 12831a17bff93d22295e2c141da493107527990e
+SHA256: a091e57dd67b54b0e7fe8dd926d941c4f30010879d6ab03d604d057f00c157a4
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux kernel, version 7.0.0-rc4-g8ea76aefbf79
+ This package contains the Linux kernel, modules and corresponding other
+ files, version: 7.0.0-rc4-g8ea76aefbf79.
+
+Package: linux-image-collabora
+Version: 7.0.0~rc4-g8ea76aefbf79-1
+Architecture: arm64
+Maintainer: Custom Build Script
+Depends: linux-image-7.0.0-rc4-g8ea76aefbf79
+Filename: pool/main/linux-image-collabora_7.0.0~rc4-g8ea76aefbf79-1_arm64.deb
+Size: 712
+MD5sum: 3a5631f013d3075705d1e536029d9915
+SHA1: ceae726e96764bfbe3df5c21225da05a92080018
+SHA256: 9175a9c016aa51c5d13be40a53fbb3eb6b7bb43dd9edb9917fe180d8e1a870c7
+Description: Meta-package for Collabora kernel image
+
+Package: linux-libc-dev
+Source: linux-upstream
+Version: 7.0.0~rc4-g8ea76aefbf79-1
+Architecture: arm64
+Maintainer: root <root@8a22e4c12199>
+Installed-Size: 7558
+Provides: linux-kernel-headers
+Filename: pool/main/linux-libc-dev_7.0.0~rc4-g8ea76aefbf79-1_arm64.deb
+Size: 1466184
+MD5sum: 71f8ebc599158ce75f17fdd286a5a83c
+SHA1: d15fc90b9f570a1e2e35cda7f8e59879e5a538ad
+SHA256: 5305c871793a59c30ab366750fd6d51d07ba06529e8607ecff9787832c6b87b3
+Section: devel
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.kernel.org/
+Description: Linux support headers for userspace development
+ This package provides userspaces headers from the Linux kernel.  These headers
+ are used by the installed headers for GNU glibc and other system libraries.
+
+Package: mpv
+Version: 0.41.0-2
+Architecture: arm64
+Maintainer: Debian Multimedia Maintainers <debian-multimedia@lists.debian.org>
+Installed-Size: 3537
+Depends: libarchive13t64 (>= 3.4.0), libasound2t64 (>= 1.0.27), libass9 (>= 1:0.17.4), libavcodec62 (>= 7:8.1), libavdevice62 (>= 7:8.1), libavfilter11 (>= 7:8.1), libavformat62 (>= 7:8.1), libavutil60 (>= 7:8.1), libbluray3 (>= 1:0.5.0), libc6 (>= 2.38), libcdio-cdda2t64 (>= 10.2+2.0.0), libcdio-paranoia2t64 (>= 10.2+2.0.0), libcdio19t64 (>= 2.1.0), libdisplay-info3 (>= 0.3.0), libdrm2 (>= 2.4.105), libdvdnav4 (>= 4.1.3), libegl1, libgbm1 (>= 17.1.0~rc2), libjack-jackd2-0 (>= 1.9.10+20150825) | libjack-0.125, libjpeg62-turbo (>= 1.3.1), liblcms2-2 (>= 2.6), liblua5.2-0 (>= 5.2.4), libmujs3 (>= 1.0.7), libpipewire-0.3-0t64 (>= 1.0.4), libplacebo360 (>= 7.360.0), libpulse0 (>= 0.99.4), librubberband3 (>= 4.0.0+dfsg), libsixel1 (>= 1:1.8.7), libsndio7.0 (>= 1.9.0), libswresample6 (>= 7:8.1), libswscale9 (>= 7:8.1), libuchardet0 (>= 0.0.1), libva-drm2 (>= 1.1.0), libva-wayland2 (>= 1.3.0), libva-x11-2 (>= 1.0.3), libva2 (>= 2.2.0), libvdpau1 (>= 0.2), libvulkan1 (>= 1.2.131.2), libwayland-client0 (>= 1.20.0), libwayland-cursor0 (>= 1.15.0), libwayland-egl1 (>= 1.15.0), libx11-6 (>= 2:1.2.99.901), libxext6, libxfixes3, libxkbcommon0 (>= 0.5.0), libxpresent1 (>= 1.0.1), libxrandr2 (>= 2:1.4.0), libxss1, libxv1 (>= 2:1.0.13), libzimg2 (>= 0.3.1), zlib1g (>= 1:1.1.4)
+Recommends: xdg-utils, yt-dlp
+Suggests: libcuda1
+Filename: pool/main/mpv_0.41.0-2_arm64.deb
+Size: 1285624
+MD5sum: 0b2afcb4c5fe2b333d5f90dcd39861d9
+SHA1: f80ed91fe0c250869ec347e073a8f4a3122bb56c
+SHA256: 5eeb04f70414b1262464fe2ae18f230e9a767192339e656364f34bcb30ce0af0
+Section: video
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://mpv.io/
+Description: video player based on MPlayer/mplayer2
+ mpv is a movie player based on MPlayer and mplayer2. It supports a wide
+ variety of video file formats, audio and video codecs, and subtitle types.
+ .
+ Changes from mplayer2 to mpv include:
+  * Removal of lots of unneeded code to encourage developer activity
+  * Better OSD rendering
+  * Cleaned up terminal output
+  * Improved OpenGL output
+  * Encoding functionality (replacement for mencoder)
+  * Wayland support
+  * Support for playing URLs of popular streaming sites
+  * Screenshot improvements
+  * ...
+ See mpv(1) for more info regarding changes between MPlayer, mplayer2 and mpv.
+
