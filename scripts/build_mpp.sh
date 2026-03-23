@@ -63,7 +63,6 @@ build_standard_repos() {
     repos=(
         "https://github.com/JeffyCN/mirrors.git linux-rga-multi linux-rga"
         "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
-        "https://github.com/amazingfate/rockchip-multimedia-config.git main rockchip-multimedia-config"
     )
 
     for repo_info in "${repos[@]}"; do
