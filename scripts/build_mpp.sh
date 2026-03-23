@@ -63,6 +63,7 @@ build_standard_repos() {
     repos=(
         "https://github.com/JeffyCN/mirrors.git linux-rga-multi linux-rga"
         "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
+        "https://github.com/amazingfate/rockchip-multimedia-config.git main rockchip-multimedia-config"
     )
 
     for repo_info in "${repos[@]}"; do
@@ -76,7 +77,7 @@ build_standard_repos() {
         install_build_deps
         rm -f ../*.deb ../*.changes ../*.buildinfo
         run_silent "Compiling and packaging: $DIR_NAME" dpkg-buildpackage -us -uc -b
-        if [[ "$DIR_NAME" != *"mali"* ]]; then
+        if [[ "$DIR_NAME" != *"config"* ]]; then
             run_silent "Installing generated packages (runtime deps)" dpkg -i ../*.deb
         fi
         mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
