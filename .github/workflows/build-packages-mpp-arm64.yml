@@ -1,0 +1,58 @@
+name: Build Rockchip Packages (MPP) (ARM64)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * 0'
+  push:
+    paths:
+      - 'scripts/**'
+      - 'Dockerfile*'
+      - '.github/workflows/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-media:
+    name: Build Media Packages
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: debian:testing
+      options: --privileged --platform linux/arm64
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configure APT Sources
+        run: |
+          sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources
+          apt-get update -qq
+
+      - name: Install Media Build Dependencies
+        run: |
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            git build-essential devscripts debhelper equivs \
+            ca-certificates rsync meson pkg-config wget \
+            xorg-dev libx11-xcb-dev libxkbcommon-dev libffi-dev \
+            libssl-dev libwayland-dev wayland-protocols \
+            libdrm-dev libgbm-dev libgl-dev libegl-dev \
+            libstdc++6 libxcb-dri2-0-dev libxcb-dri3-dev \
+            libxcb-present-dev libxcb-glx0-dev libxcb-randr0-dev \
+            cmake libxcb-shm0-dev libxcb-sync-dev libvulkan-dev libwayland-bin libwayland-client0
+
+      - name: Execute Media Build Script
+        run: |
+          chmod +x scripts/build_mpp.sh
+          ./scripts/build_mpp.sh
+        shell: bash
+
+      - name: Upload Media Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: rockchip-media-mpp-deb
+          path: output/*.deb
+          if-no-files-found: error
+          retention-days: 7
