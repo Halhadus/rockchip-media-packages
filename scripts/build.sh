@@ -290,7 +290,7 @@ echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 build_collabora_kernel
 build_ffmpeg
 build_mpv
-build_standard_repos
+#build_standard_repos
 
 run_silent "Removing debug packages" rm -f "$OUTPUT_DIR"/*dbg*.deb
 

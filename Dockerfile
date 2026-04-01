@@ -1,7 +1,7 @@
 FROM debian:sid
 
 LABEL maintainer="Halhadus"
-LABEL description="Build environment for Rockchip multimedia packages on Debian Sid"
+LABEL description="Build environment for Rockchip multimedia packages on Debian Forky"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
