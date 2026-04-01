@@ -20,7 +20,7 @@ jobs:
     name: Build Media Packages
     runs-on: ubuntu-24.04-arm
     container:
-      image: debian:sid
+      image: debian:forky
       options: --privileged --platform linux/arm64
     steps:
       - name: Checkout Repository
@@ -77,18 +77,18 @@ jobs:
 
       - name: Generate Repository Structure
         run: |
-          mkdir -p public/dists/sid/main/binary-arm64
+          mkdir -p public/dists/forky/main/binary-arm64
           mkdir -p public/pool/main
           cp repo-build/*.deb public/pool/main/
           cd public
-          dpkg-scanpackages --arch arm64 --multiversion pool/main > dists/sid/main/binary-arm64/Packages
-          gzip -k -f dists/sid/main/binary-arm64/Packages
-          cd dists/sid
+          dpkg-scanpackages --arch arm64 --multiversion pool/main > dists/forky/main/binary-arm64/Packages
+          gzip -k -f dists/forky/main/binary-arm64/Packages
+          cd dists/forky
           cat << EOF > Release
           Origin: RockchipPackagesBuilder
           Label: Rockchip Media Packages Unofficial Repo
-          Suite: sid
-          Codename: sid
+          Suite: forky
+          Codename: forky
           Version: 1.0
           Architectures: arm64
           Components: main
