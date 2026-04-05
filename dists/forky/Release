@@ -1,0 +1,26 @@
+Origin: RockchipPackagesBuilder
+Label: Rockchip Media Packages Unofficial Repo
+Suite: forky
+Codename: forky
+Version: 1.0
+Architectures: arm64
+Components: main
+Description: Compiled Rockchip multimedia packages
+Date: Sun, 05 Apr 2026 06:30:57 +0000
+Date: Sun, 05 Apr 2026 06:30:57 +0000
+MD5Sum:
+ 55091d77e4ea6c37d9e843fb3ae5137c              286 Release
+ 6e922d08241317bd72580f70f907b856            44366 main/binary-arm64/Packages
+ d8e1ff217be51fb2aebcf76346e69fea             8948 main/binary-arm64/Packages.gz
+SHA1:
+ 82b61d2dd6ed31a6e88f15df134a9019deac332e              286 Release
+ f9d29a2e01aa1f0a275bcf00b2cf4a844b4e258e            44366 main/binary-arm64/Packages
+ 4fd07f65d68860f0ecc5ee3cb8fdbbbe9f704cad             8948 main/binary-arm64/Packages.gz
+SHA256:
+ db520d128674ea8caf36b6177f3a2522e182f02a5e518887a926c6755201a391              286 Release
+ f96991d6180429f8db1c24a51e75a9b7eeb3d0f84b1487f4fc7f7cfd2f2e7deb            44366 main/binary-arm64/Packages
+ a338f44a732d76fda0bc93a5b2d57caa0f0530c26ca7fcbf733fe58fd59f257f             8948 main/binary-arm64/Packages.gz
+SHA512:
+ 5a0e341955ef0d064066d147bb108e2a32963f72ac8879f8ebac363ca7ff7675f09248ea8b986de7caf176377eab025855d31359ffcd06dfcde5459697ee59fb              286 Release
+ bd18fd8aa730f92bcd9040cca4aec0e0c5376c61c1f3764b3776545db018a104d0e66a5b4f873ac049572dbdb4bec1ac85724db62bf16ed19aa9274ce7609ffb            44366 main/binary-arm64/Packages
+ 7ea573cb8907941ff3d65e3636de5988b8d70039912dc0c09fab3784095e8e10cea666daf6447fe3a4a0d247d2329be9c879768cf18b4b46d5b5236f3ffd05e8             8948 main/binary-arm64/Packages.gz
