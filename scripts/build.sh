@@ -81,25 +81,25 @@ build_ffmpeg() {
     log_header "Build Process: ffmpeg"
     cd "$WORK_DIR"
     rm -rf ffmpeg*
-    log_header "Installing Collabora Kernel api headers..."
-    LIBC_DEV_PKG=$(find "$OUTPUT_DIR" -name "linux-libc-dev_*.deb" | head -n 1)
-    if [ -f "$LIBC_DEV_PKG" ]; then
-        run_silent "Installing $LIBC_DEV_PKG" dpkg -i "$LIBC_DEV_PKG"
-    else
-        log_error "linux-libc-dev package not found!"
-        exit 1
-    fi
+    #log_header "Installing Collabora Kernel api headers..."
+    #LIBC_DEV_PKG=$(find "$OUTPUT_DIR" -name "linux-libc-dev_*.deb" | head -n 1)
+    #if [ -f "$LIBC_DEV_PKG" ]; then
+    #    run_silent "Installing $LIBC_DEV_PKG" dpkg -i "$LIBC_DEV_PKG"
+    #else
+    #    log_error "linux-libc-dev package not found!"
+    #    exit 1
+    #fi
     run_silent "Fetching ffmpeg source via apt" apt-get source ffmpeg
     FFMPEG_DIR=$(find . -maxdepth 1 -type d -name "ffmpeg-*" | head -n 1)
     cd "$FFMPEG_DIR"
     #run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
     run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/86eb07154d0255a5e96c822d8dc7805ade600f0b...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
-    run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
-    run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
+    #run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
+    #run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
     filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
     run_silent "Applying clean_v4l2request.diff" patch -p1 -i clean_v4l2request.diff
-    run_silent "Applying strps1.patch" git apply --ignore-whitespace --ignore-space-change strps1.patch
-    run_silent "Applying strps2.patch" git apply --ignore-whitespace --ignore-space-change strps2.patch
+    #run_silent "Applying strps1.patch" git apply --ignore-whitespace --ignore-space-change strps1.patch
+    #run_silent "Applying strps2.patch" git apply --ignore-whitespace --ignore-space-change strps2.patch
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
     sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-hwaccels \\' debian/rules
     install_build_deps
@@ -283,11 +283,39 @@ EOF
     log_success "Collabora Linux Kernel built successfully."
 }
 
+build_debian_kernel() {
+    log_header "Build Process: Debian Linux Kernel"
+    cd "$WORK_DIR"   
+    local KERNEL_DIR="linux-debian"
+    local REPO_URL="https://salsa.debian.org/kernel-team/linux.git"
+    local BRANCH="debian/latest"
+    if [ ! -d "$KERNEL_DIR" ]; then
+        run_silent "Cloning Debian kernel repository ($BRANCH)" git clone --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
+    fi
+    cd "$KERNEL_DIR"
+    run_silent "Installing base python modules and devscripts" apt-get install -y python3-dacite python3-jinja2
+    run_silent "Generating debian/control" make -f debian/rules debian/control || true
+    run_silent "Installing heavy build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
+    run_silent "Downloading orig tarball" origtargz
+    run_silent "Preparing and patching source" debian/rules source
+    export skipdbg=true
+    export DEBIAN_KERNEL_DISABLE_DEBUG=yes
+    export DEB_BUILD_OPTIONS="nodebug"
+    export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo nocloud nort"
+    export MAKEFLAGS="DTC_FLAGS=-@"
+    export DTC_FLAGS="-@"
+    log_header "Starting compilation"
+    run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
+    mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
+    log_success "Debian Kernel built successfully."
+}
+
 prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
-build_collabora_kernel
+#build_collabora_kernel
+build_debian_kernel
 build_ffmpeg
 build_mpv
 #build_standard_repos
