@@ -293,7 +293,10 @@ build_debian_kernel() {
         run_silent "Cloning Debian kernel repository ($BRANCH)" git clone --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
     fi
     cd "$KERNEL_DIR"
-    run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2
+    run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
+    run_silent "Pruning unwanted arm64 flavors" perl -0777 -pi -e 's/\[\[flavour\]\]\s*name\s*=\s*.?(cloud-arm64|rt-arm64|arm64-16k|test).*?(?=\n\[\[|\n\[build\])//gs' debian/config/arm64/defines.toml
+    run_silent "Pruning cross-arch libc-dev packages" perl -0777 -pi -e 's/\[\[kernelarch\]\]\s*name\s*=\s*.?(alpha|arc|arm\b|parisc|loongarch|m68k|mips|powerpc|riscv|s390|sh\b|sparc|x86).*?(?=\n\[\[|\n\[featureset\])//gs' debian/config/defines.toml
+    run_silent "Pruning RT featureset globally" sed -i -E 's/[[:space:]]*rt//g' debian/config/defines.toml || true
     run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
     run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
     run_silent "Downloading orig tarball" origtargz
@@ -301,8 +304,11 @@ build_debian_kernel() {
     run_silent "Preparing and patching source" debian/rules source
     export skipdbg=true
     export DEBIAN_KERNEL_DISABLE_DEBUG=yes
-    export DEB_BUILD_OPTIONS="nodebug"
-    export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo nocloud nort"
+    export DEBIAN_KERNEL_DISABLE_CLOUD=y
+    export DEBIAN_KERNEL_DISABLE_RT=y
+    export DEBIAN_KERNEL_DISABLE_DOCS=yes
+    export DEB_BUILD_OPTIONS="nodoc nosource noautodbgsym noddebs nodebug nocheck"
+    export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo pkg.linux.nosource nodoc nosource nocloud nort"
     export MAKEFLAGS="DTC_FLAGS=-@"
     export DTC_FLAGS="-@"
     log_header "Starting compilation"
@@ -321,7 +327,7 @@ build_ffmpeg
 build_mpv
 #build_standard_repos
 
-run_silent "Removing debug packages" rm -f "$OUTPUT_DIR"/*dbg*.deb
+run_silent "Cleaning unnecessary packages" rm -f "$OUTPUT_DIR"/*dbg*.deb "$OUTPUT_DIR"/*-doc*.deb "$OUTPUT_DIR"/*-source*.deb "$OUTPUT_DIR"/*-cross*.deb
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"
