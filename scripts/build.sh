@@ -294,23 +294,24 @@ build_debian_kernel() {
     fi
     cd "$KERNEL_DIR"
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
-    run_silent "Pruning unwanted arm64 flavors" perl -0777 -pi -e 's/\[\[flavour\]\]\s*name\s*=\s*.?(cloud-arm64|rt-arm64|arm64-16k|test).*?(?=\n\[\[|\n\[build\])//gs' debian/config/arm64/defines.toml
-    run_silent "Pruning cross-arch libc-dev packages" perl -0777 -pi -e 's/\[\[kernelarch\]\]\s*name\s*=\s*.?(alpha|arc|arm\b|parisc|loongarch|m68k|mips|powerpc|riscv|s390|sh\b|sparc|x86).*?(?=\n\[\[|\n\[featureset\])//gs' debian/config/defines.toml
-    run_silent "Pruning RT featureset globally" sed -i -E 's/[[:space:]]*rt//g' debian/config/defines.toml || true
-    run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
-    run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
-    run_silent "Downloading orig tarball" origtargz
-    run_silent "Applying Debian patches (orig)" debian/rules orig
-    run_silent "Preparing and patching source" debian/rules source
     export skipdbg=true
     export DEBIAN_KERNEL_DISABLE_DEBUG=yes
     export DEBIAN_KERNEL_DISABLE_CLOUD=y
     export DEBIAN_KERNEL_DISABLE_RT=y
     export DEBIAN_KERNEL_DISABLE_DOCS=yes
-    export DEB_BUILD_OPTIONS="nodoc nosource noautodbgsym noddebs nodebug nocheck"
+    export DEB_BUILD_OPTIONS="nodoc nocross nosource noautodbgsym noddebs nodebug nocheck"
     export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo pkg.linux.nosource nodoc nosource nocloud nort"
     export MAKEFLAGS="DTC_FLAGS=-@"
     export DTC_FLAGS="-@"
+    run_silent "Nuking RT, Cloud, and 16k flavours" \
+        perl -0777 -pi -e 's/\[\[flavour\]\]\nname = '\''(cloud-arm64|rt-arm64|arm64-16k)'\''[\s\S]*?(?=\[\[flavour\]\]|\[\[featureset\]\])//g' debian/config/arm64/defines.toml
+    run_silent "Nuking Cross-Arch libc-dev configs" \
+        perl -0777 -pi -e 's/\[\[kernelarch\]\]\nname = '\''(alpha|arc|arm|parisc|loongarch|m68k|mips|powerpc|riscv|s390|sh|sparc|x86)'\''[\s\S]*?(?=\[\[kernelarch\]\]|\[\[featureset\]\]|\[\[debianrelease\]\])//g' debian/config/defines.toml
+    run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
+    run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
+    run_silent "Downloading orig tarball" origtargz
+    run_silent "Applying Debian patches (orig)" debian/rules orig
+    run_silent "Preparing and patching source" debian/rules source
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
