@@ -294,7 +294,6 @@ build_debian_kernel() {
     fi
     cd "$KERNEL_DIR"
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2
-    run_silent "Clean repository" make -f debian/rules clean
     run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
     run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
     run_silent "Downloading orig tarball" origtargz
