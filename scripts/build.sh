@@ -326,7 +326,7 @@ echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 build_debian_kernel
 build_ffmpeg
 build_mpv
-#build_standard_repos
+build_standard_repos
 
 run_silent "Cleaning unnecessary packages" rm -f "$OUTPUT_DIR"/*dbg*.deb "$OUTPUT_DIR"/*-doc*.deb "$OUTPUT_DIR"/*-source*.deb "$OUTPUT_DIR"/*-cross*.deb
 
