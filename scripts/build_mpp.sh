@@ -142,7 +142,7 @@ echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
 build_standard_repos
 build_ffmpeg
-build_mpv
+#build_mpv
 
 log_header "All tasks completed successfully!"
 echo -e "${GREEN}Artifacts are located in: $OUTPUT_DIR${NC}"

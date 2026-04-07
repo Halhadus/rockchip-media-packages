@@ -4,11 +4,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 4 * * 0'
-  push:
-    paths:
-      - 'scripts/**'
-      - 'Dockerfile*'
-      - '.github/workflows/**'
 
 permissions:
   contents: write

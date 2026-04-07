@@ -293,10 +293,12 @@ build_debian_kernel() {
         run_silent "Cloning Debian kernel repository ($BRANCH)" git clone --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
     fi
     cd "$KERNEL_DIR"
-    run_silent "Installing base python modules and devscripts" apt-get install -y python3-dacite python3-jinja2
-    run_silent "Generating debian/control" make -f debian/rules debian/control || true
-    run_silent "Installing heavy build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
+    run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2
+    run_silent "Clean repository" make -f debian/rules clean
+    run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
+    run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
     run_silent "Downloading orig tarball" origtargz
+    run_silent "Applying Debian patches (orig)" debian/rules orig
     run_silent "Preparing and patching source" debian/rules source
     export skipdbg=true
     export DEBIAN_KERNEL_DISABLE_DEBUG=yes
