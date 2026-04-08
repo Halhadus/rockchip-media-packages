@@ -299,8 +299,8 @@ build_debian_kernel() {
     export DEBIAN_KERNEL_DISABLE_CLOUD=y
     export DEBIAN_KERNEL_DISABLE_RT=y
     export DEBIAN_KERNEL_DISABLE_DOCS=yes
-    export DEB_BUILD_OPTIONS="nodoc nocross nosource noautodbgsym noddebs nodebug nocheck"
-    export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo pkg.linux.nosource nodoc nosource nocloud nort"
+    export DEB_BUILD_OPTIONS="nodoc nocross nosource noautodbgsym noddebs nodebug nocheck noudeb"
+    export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo pkg.linux.nosource nodoc nosource nocloud nort noudeb"
     export MAKEFLAGS="DTC_FLAGS=-@"
     export DTC_FLAGS="-@"
     run_silent "Nuking RT, Cloud, and 16k flavours" \
