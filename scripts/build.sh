@@ -293,6 +293,11 @@ build_debian_kernel() {
         run_silent "Cloning Debian kernel repository ($BRANCH)" git clone --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
     fi
     cd "$KERNEL_DIR"
+    cat <<EOF >> debian/config/arm64/config
+CONFIG_DRM_ACCEL=y
+CONFIG_DRM_ACCEL_ROCKET=m
+CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
+EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
     export skipdbg=true
     export DEBIAN_KERNEL_DISABLE_DEBUG=yes
