@@ -34,7 +34,7 @@ jobs:
       - name: Install Media Build Dependencies
         run: |
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            git build-essential devscripts debhelper equivs \
+            git b4 build-essential devscripts debhelper equivs \
             ca-certificates rsync meson pkg-config wget \
             xorg-dev libx11-xcb-dev libxkbcommon-dev libffi-dev \
             libssl-dev libwayland-dev wayland-protocols \

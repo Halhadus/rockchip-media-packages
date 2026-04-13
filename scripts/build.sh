@@ -13,6 +13,12 @@ WORK_DIR="$BASE_DIR/build_workspace"
 OUTPUT_DIR="$BASE_DIR/output"
 LOG_FILE="$OUTPUT_DIR/build_log_$(date +%Y%m%d).txt"
 
+export DEB_CFLAGS_APPEND="-O2 -mcpu=cortex-a76.cortex-a55 -mtune=cortex-a76.cortex-a55 -pipe -flto -Wno-error=incompatible-pointer-types"
+export DEB_CXXFLAGS_APPEND="-O2 -mcpu=cortex-a76.cortex-a55 -mtune=cortex-a76.cortex-a55 -pipe -flto -Wno-error=incompatible-pointer-types"
+
+export CFLAGS="$DEB_CFLAGS_APPEND"
+export CXXFLAGS="$DEB_CXXFLAGS_APPEND"
+
 log_header() {
     echo -e "${BLUE}:: $1${NC}" | tee -a "$LOG_FILE"
 }
@@ -47,6 +53,9 @@ prepare_environment() {
         run_silent "Updating apt sources (adding deb-src)" sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/*.sources
         run_silent "Updating package lists" apt-get update -qq
     fi
+    run_silent "Configuring Git identity" git config --global user.email "eneshakans45@proton.me"
+    run_silent "Configuring Git identity" git config --global user.name "Halhadus"
+    run_silent "Configuring Git safe directory" git config --global --add safe.directory '*'
 }
 
 install_build_deps() {
@@ -56,6 +65,7 @@ install_build_deps() {
 build_standard_repos() {
     repos=(
         "https://github.com/Halhadus/debian-opi5plus-halhadus-config main debian-opi5plus-halhadus-config"
+        "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
     )
 
     for repo_info in "${repos[@]}"; do
@@ -81,27 +91,14 @@ build_ffmpeg() {
     log_header "Build Process: ffmpeg"
     cd "$WORK_DIR"
     rm -rf ffmpeg*
-    #log_header "Installing Collabora Kernel api headers..."
-    #LIBC_DEV_PKG=$(find "$OUTPUT_DIR" -name "linux-libc-dev_*.deb" | head -n 1)
-    #if [ -f "$LIBC_DEV_PKG" ]; then
-    #    run_silent "Installing $LIBC_DEV_PKG" dpkg -i "$LIBC_DEV_PKG"
-    #else
-    #    log_error "linux-libc-dev package not found!"
-    #    exit 1
-    #fi
     run_silent "Fetching ffmpeg source via apt" apt-get source ffmpeg
     FFMPEG_DIR=$(find . -maxdepth 1 -type d -name "ffmpeg-*" | head -n 1)
     cd "$FFMPEG_DIR"
-    #run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/master...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
     run_silent "Downloading v4l2request.diff" wget -nv "https://code.ffmpeg.org/FFmpeg/FFmpeg/compare/86eb07154d0255a5e96c822d8dc7805ade600f0b...Kwiboo:v4l2request-2025-v3-rkvdec.diff" -O v4l2request.diff
-    #run_silent "Downloading strps1.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/20b37c99b9318e1b104aa11f2569fcb0c7387e1e.patch" -O strps1.patch
-    #run_silent "Downloading strps2.patch" wget -nv "https://gitlab.collabora.com/detlev/ffmpeg/-/commit/dfa10f6e10441aef0d8b45c97bf3bce6598ede48.patch" -O strps2.patch
     filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
     run_silent "Applying clean_v4l2request.diff" patch -p1 -i clean_v4l2request.diff
-    #run_silent "Applying strps1.patch" git apply --ignore-whitespace --ignore-space-change strps1.patch
-    #run_silent "Applying strps2.patch" git apply --ignore-whitespace --ignore-space-change strps2.patch
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
-    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-hwaccels \\' debian/rules
+    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-rkmpp \\\n                --enable-hwaccels \\' debian/rules
     install_build_deps
     run_silent "Compiling and packaging: ffmpeg" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
@@ -138,154 +135,9 @@ build_mpv() {
     log_success "mpv built successfully."
 }
 
-build_collabora_kernel() {
-    log_header "Build Process: Linux Kernel (Collabora rockchip-devel)"
-    cd "$WORK_DIR"
-    local KERNEL_DIR="linux-collabora"
-    local REPO_URL="https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux.git"
-    local BRANCH="rockchip-devel"
-    if [ ! -d "$KERNEL_DIR" ]; then
-        run_silent "Cloning kernel repository ($BRANCH)" git clone --single-branch -b "$BRANCH" "$REPO_URL" "$KERNEL_DIR"
-    fi
-    cd "$KERNEL_DIR"
-    run_silent "Installing kernel build dependencies" apt-get install -y -qq build-essential libncurses-dev bison flex libssl-dev libelf-dev bc cpio rsync dwarves kmod fakeroot debhelper dpkg-dev python3-dev libdw-dev lsb-release
-    run_silent "Patching DTS for PWM12" sed -i '/pwm@febf0000 {/,/};/ s/status = "disabled";/status = "okay";/' arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-    run_silent "Patching DTS for resolve RTC Interrupt Storm problem" sed -i '/&hym8563 {/,/};/ s/IRQ_TYPE_LEVEL_LOW/IRQ_TYPE_EDGE_FALLING/' arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-    cat <<EOF > custom_kernel.config
-CONFIG_DEVFREQ_GOV_PERFORMANCE=y
-CONFIG_DEVFREQ_GOV_POWERSAVE=y
-CONFIG_PWM_ROCKCHIP=y
-CONFIG_ZRAM=m
-CONFIG_ZSMALLOC=y
-CONFIG_ZSTD_COMPRESS=y
-CONFIG_CRYPTO_ZSTD=y
-CONFIG_ZRAM_BACKEND_ZSTD=y
-CONFIG_SECURITY_LANDLOCK=y
-CONFIG_DRM_ACCEL_ROCKET=m
-CONFIG_DRM_ACCEL=y
-CONFIG_WIREGUARD=m
-CONFIG_LRU_GEN=y
-CONFIG_LRU_GEN_ENABLED=y
-CONFIG_PREEMPT=y
-CONFIG_TCP_CONG_BBR=y
-CONFIG_DEFAULT_TCP_CONG="bbr"
-CONFIG_PSI=y
-CONFIG_PSI_DEFAULT_DISABLED=n
-CONFIG_BT_LE=y
-CONFIG_BT_RFCOMM=m
-CONFIG_BT_RFCOMM_TTY=y
-CONFIG_BT_HCIUART_RTL=y
-CONFIG_BT_BNEP=m
-CONFIG_BT_BNEP_MC_FILTER=y
-CONFIG_BT_BNEP_PROTO_FILTER=y
-CONFIG_RTW89=m
-CONFIG_RTW89_CORE=m
-CONFIG_RTW89_PCI=m
-CONFIG_RTW89_8852BE=m
-CONFIG_HID_BATTERY_STRENGTH=y
-CONFIG_HIDRAW=y
-CONFIG_UHID=m
-CONFIG_INPUT_UINPUT=m
-CONFIG_CRYPTO_USER_API_HASH=m
-CONFIG_CRYPTO_USER_API_SKCIPHER=m
-CONFIG_CRYPTO_USER_API_AEAD=m
-CONFIG_BT_AOSPEXT=y
-CONFIG_DEBUG_INFO_NONE=y
-CONFIG_NETFILTER=y
-CONFIG_NETFILTER_ADVANCED=y
-CONFIG_NF_CONNTRACK=m
-CONFIG_NETFILTER_XTABLES=m
-CONFIG_NETFILTER_XT_NAT=m
-CONFIG_NETFILTER_XT_MARK=m
-CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=m
-CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
-CONFIG_NETFILTER_XT_MATCH_IPVS=m
-CONFIG_IP_NF_IPTABLES=m
-CONFIG_IP_NF_FILTER=m
-CONFIG_IP_NF_NAT=m
-CONFIG_IP_NF_TARGET_MASQUERADE=m
-CONFIG_IP_NF_MANGLE=m
-CONFIG_IP_NF_RAW=m
-CONFIG_NF_NAT=m
-CONFIG_IP6_NF_IPTABLES=m
-CONFIG_IP6_NF_FILTER=m
-CONFIG_IP6_NF_NAT=m
-CONFIG_IP6_NF_MANGLE=m
-CONFIG_IP6_NF_RAW=m
-CONFIG_IP6_NF_TARGET_MASQUERADE=m
-CONFIG_NF_TABLES=m
-CONFIG_NF_TABLES_INET=y
-CONFIG_NFT_COMPAT=m
-CONFIG_NFT_CT=m
-CONFIG_NFT_FIB=m
-CONFIG_NFT_FIB_IPV4=m
-CONFIG_NFT_FIB_IPV6=m
-CONFIG_NFT_MASQ=m
-CONFIG_NFT_NAT=m
-CONFIG_BRIDGE=m
-CONFIG_BRIDGE_NETFILTER=m
-CONFIG_VETH=m
-CONFIG_MACVLAN=m
-CONFIG_DUMMY=m
-CONFIG_VXLAN=m
-CONFIG_IP_VS=m
-CONFIG_IP_VS_NFCT=y
-CONFIG_IP_VS_PROTO_TCP=y
-CONFIG_IP_VS_PROTO_UDP=y
-CONFIG_IP_VS_RR=m
-CONFIG_BLK_DEV_THROTTLING=y
-CONFIG_NET_CLS_CGROUP=m
-CONFIG_CGROUP_NET_PRIO=y
-CONFIG_CFS_BANDWIDTH=y
-EOF
-    run_silent "Merging defconfig with custom config" env ARCH=arm64 scripts/kconfig/merge_config.sh -m arch/arm64/configs/defconfig custom_kernel.config
-    run_silent "Applying olddefconfig" make ARCH=arm64 olddefconfig
-    rm -f ../linux-*.deb ../linux-*.buildinfo ../linux-*.changes
-    run_silent "Hiding DTS changes from Git status" git update-index --assume-unchanged arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-    run_silent "Hiding DTS changes from Git status" git update-index --assume-unchanged arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts
-    run_silent "Hiding config changes from Git status" git update-index --assume-unchanged arch/arm64/configs/defconfig
-    export KCFLAGS="-march=armv8.2-a -mtune=cortex-a76.cortex-a55"
-    run_silent "Compiling and packaging: Linux Kernel" make DTC_FLAGS="-@" bindeb-pkg -j$(nproc) ARCH=arm64
-    log_header "Creating Meta Packages"
-    IMAGE_DEB=$(ls ../linux-image*.deb | head -n 1 2>/dev/null)
-    if [ -f "$IMAGE_DEB" ]; then
-        ACTUAL_PKG_NAME=$(dpkg-deb -f "$IMAGE_DEB" Package)
-        PKG_VERSION=$(dpkg-deb -f "$IMAGE_DEB" Version)
-        mkdir -p meta-pkg-img/DEBIAN
-        cat <<EOF > meta-pkg-img/DEBIAN/control
-Package: linux-image-collabora
-Version: ${PKG_VERSION}
-Architecture: arm64
-Maintainer: Custom Build Script
-Description: Meta-package for Collabora kernel image
-Depends: ${ACTUAL_PKG_NAME}
-EOF
-        run_silent "Building meta-package: linux-image-collabora" dpkg-deb --build meta-pkg-img "../linux-image-collabora_${PKG_VERSION}_arm64.deb"
-        rm -rf meta-pkg-img
-    fi
-    HEADERS_DEB=$(ls ../linux-headers*.deb | head -n 1 2>/dev/null)
-    if [ -f "$HEADERS_DEB" ]; then
-        ACTUAL_HDR_NAME=$(dpkg-deb -f "$HEADERS_DEB" Package)
-        HDR_VERSION=$(dpkg-deb -f "$HEADERS_DEB" Version)
-        mkdir -p meta-pkg-hdr/DEBIAN
-        cat <<EOF > meta-pkg-hdr/DEBIAN/control
-Package: linux-headers-collabora
-Version: ${HDR_VERSION}
-Architecture: arm64
-Maintainer: Custom Build Script
-Description: Meta-package for Collabora kernel headers
-Depends: ${ACTUAL_HDR_NAME}
-EOF
-        run_silent "Building meta-package: linux-headers-collabora" dpkg-deb --build meta-pkg-hdr "../linux-headers-collabora_${HDR_VERSION}_arm64.deb"
-        rm -rf meta-pkg-hdr
-    fi
-    mv ../linux-*.deb "$OUTPUT_DIR"/ 2>/dev/null
-    log_success "Collabora Linux Kernel built successfully."
-}
-
 build_debian_kernel() {
     log_header "Build Process: Debian Linux Kernel"
-    cd "$WORK_DIR"   
+    cd "$WORK_DIR"
     local KERNEL_DIR="linux-debian"
     local REPO_URL="https://salsa.debian.org/kernel-team/linux.git"
     local BRANCH="debian/latest"
@@ -297,6 +149,8 @@ build_debian_kernel() {
 CONFIG_DRM_ACCEL=y
 CONFIG_DRM_ACCEL_ROCKET=m
 CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
+CONFIG_SND_SOC_ES8328=m
+CONFIG_SND_SOC_ES8328_I2C=m
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
     export skipdbg=true
@@ -308,15 +162,35 @@ EOF
     export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo pkg.linux.nosource nodoc nosource nocloud nort noudeb"
     export MAKEFLAGS="DTC_FLAGS=-@"
     export DTC_FLAGS="-@"
-    run_silent "Nuking RT, Cloud, and 16k flavours" \
-        perl -0777 -pi -e 's/\[\[flavour\]\]\nname = '\''(cloud-arm64|rt-arm64|arm64-16k)'\''[\s\S]*?(?=\[\[flavour\]\]|\[\[featureset\]\])//g' debian/config/arm64/defines.toml
-    run_silent "Nuking Cross-Arch libc-dev configs" \
-        perl -0777 -pi -e 's/\[\[kernelarch\]\]\nname = '\''(alpha|arc|arm|parisc|loongarch|m68k|mips|powerpc|riscv|s390|sh|sparc|x86)'\''[\s\S]*?(?=\[\[kernelarch\]\]|\[\[featureset\]\]|\[\[debianrelease\]\])//g' debian/config/defines.toml
+    run_silent "Nuking RT, Cloud, and 16k flavours" perl -0777 -pi -e 's/\[\[flavour\]\]\nname = '\''(cloud-arm64|rt-arm64|arm64-16k)'\''[\s\S]*?(?=\[\[flavour\]\]|\[\[featureset\]\])//g' debian/config/arm64/defines.toml
+    run_silent "Nuking Cross-Arch libc-dev configs" perl -0777 -pi -e 's/\[\[kernelarch\]\]\nname = '\''(alpha|arc|arm|parisc|loongarch|m68k|mips|powerpc|riscv|s390|sh|sparc|x86)'\''[\s\S]*?(?=\[\[kernelarch\]\]|\[\[featureset\]\]|\[\[debianrelease\]\])//g' debian/config/defines.toml
     run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
     run_silent "Installing build dependencies" mk-build-deps --install --remove --tool 'apt-get -y' debian/control
     run_silent "Downloading orig tarball" origtargz
     run_silent "Applying Debian patches (orig)" debian/rules orig
     run_silent "Preparing and patching source" debian/rules source
+    log_header "Applying RK3588 Video/Media Patches"
+    LORE_MSGIDS=(
+        "20260409-rkvdec-multicore-v1-0-62b316abf0f7@collabora.com/"
+        "20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de"
+    )
+    for msgid in "${LORE_MSGIDS[@]}"; do
+        run_silent "Applying patch: $msgid" bash -c "
+            rm -rf temp_patch.mbx
+            set -e
+            b4 am -o temp_patch.mbx \"$msgid\" 2>&1
+            if [ -d temp_patch.mbx ]; then
+                for p in \$(ls temp_patch.mbx/*.mbx | sort); do
+                    patch -p1 --batch -N < \"\$p\" 2>&1
+                done
+            else
+                patch -p1 --batch -N < temp_patch.mbx 2>&1
+            fi
+            rm -rf temp_patch.mbx
+        "
+    done
+    run_silent "Applying patch: VDPU381 VP9" bash -c "wget -qO- https://github.com/dvab-sarma/android_kernel_rk_opi/commit/aa00b89b6bbfd7570e459172417e2e72921689f4.patch | patch -p1 -N"
+    run_silent "Applying patch: Out-of-tree VEPU580 driver" bash -c "wget -qO- https://github.com/rcawston/rockchip-rk3588-mainline-patches/raw/refs/heads/main/0001-rockchip-rk3588-vepu580-encoder-support-v3.patch | patch -p1 -N"
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
@@ -327,11 +201,10 @@ prepare_environment
 
 echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
-#build_collabora_kernel
+build_standard_repos
 build_debian_kernel
 build_ffmpeg
 build_mpv
-build_standard_repos
 
 run_silent "Cleaning unnecessary packages" rm -f "$OUTPUT_DIR"/*dbg*.deb "$OUTPUT_DIR"/*-doc*.deb "$OUTPUT_DIR"/*-source*.deb "$OUTPUT_DIR"/*-cross*.deb
 

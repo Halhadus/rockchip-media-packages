@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     devscripts \
     equivs \
     git \
+    b4 \
     libdrm-dev \
     libegl-dev \
     libffi-dev \
