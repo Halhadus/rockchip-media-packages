@@ -171,7 +171,7 @@ EOF
     run_silent "Preparing and patching source" debian/rules source
     log_header "Applying RK3588 Video/Media Patches"
     LORE_MSGIDS=(
-        "20260409-rkvdec-multicore-v1-0-62b316abf0f7@collabora.com/"
+        "20260409-rkvdec-multicore-v1-0-62b316abf0f7@collabora.com"
         "20260325-spu-rga3-v4-0-e90ec1c61354@pengutronix.de"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
