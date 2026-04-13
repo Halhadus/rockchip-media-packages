@@ -98,7 +98,7 @@ build_ffmpeg() {
     filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
     run_silent "Applying clean_v4l2request.diff" patch -p1 -i clean_v4l2request.diff
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
-    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-rkmpp \\\n                --enable-hwaccels \\' debian/rules
+    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                 --enable-version3 \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-rkmpp \\\n                --enable-hwaccels \\' debian/rules
     install_build_deps
     run_silent "Compiling and packaging: ffmpeg" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
