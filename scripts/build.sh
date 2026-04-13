@@ -138,6 +138,12 @@ build_mpv() {
 build_debian_kernel() {
     log_header "Build Process: Debian Linux Kernel"
     cd "$WORK_DIR"
+    local KCFLAGS="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
+    local DEB_CFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
+    local DEB_CXXFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
+    local DEB_LDFLAGS_APPEND="-Wl,-O1 --as-needed"
+    local CFLAGS="-O2 -pipe -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76.cortex-a55"
+    local CXXFLAGS="${CFLAGS}"
     local KERNEL_DIR="linux-debian"
     local REPO_URL="https://salsa.debian.org/kernel-team/linux.git"
     local BRANCH="debian/latest"
@@ -151,6 +157,7 @@ CONFIG_DRM_ACCEL_ROCKET=m
 CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
 CONFIG_SND_SOC_ES8328=m
 CONFIG_SND_SOC_ES8328_I2C=m
+CONFIG_VIDEO_ROCKCHIP_RKVENC=m
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
     export skipdbg=true
@@ -189,7 +196,6 @@ EOF
             rm -rf temp_patch.mbx
         "
     done
-    run_silent "Applying patch: VDPU381 VP9" bash -c "wget -qO- https://github.com/dvab-sarma/android_kernel_rk_opi/commit/aa00b89b6bbfd7570e459172417e2e72921689f4.patch | patch -p1 -N"
     run_silent "Applying patch: Out-of-tree VEPU580 driver" bash -c "wget -qO- https://github.com/rcawston/rockchip-rk3588-mainline-patches/raw/refs/heads/main/0001-rockchip-rk3588-vepu580-encoder-support-v3.patch | patch -p1 -N"
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
