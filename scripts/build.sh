@@ -138,12 +138,11 @@ build_mpv() {
 build_debian_kernel() {
     log_header "Build Process: Debian Linux Kernel"
     cd "$WORK_DIR"
-    local KCFLAGS="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
-    local DEB_CFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
-    local DEB_CXXFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
-    local DEB_LDFLAGS_APPEND="-Wl,-O1 --as-needed"
-    local CFLAGS="-O2 -pipe -march=armv8.2-a+crypto+fp16+rcpc+dotprod -mtune=cortex-a76.cortex-a55"
-    local CXXFLAGS="${CFLAGS}"
+    unset CFLAGS
+    unset CXXFLAGS
+    unset LDFLAGS
+    export DEB_CFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
+    export DEB_CXXFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
     local KERNEL_DIR="linux-debian"
     local REPO_URL="https://salsa.debian.org/kernel-team/linux.git"
     local BRANCH="debian/latest"
