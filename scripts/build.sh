@@ -138,11 +138,11 @@ build_mpv() {
 build_debian_kernel() {
     log_header "Build Process: Debian Linux Kernel"
     cd "$WORK_DIR"
-    unset CFLAGS
-    unset CXXFLAGS
-    unset LDFLAGS
-    export DEB_CFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
-    export DEB_CXXFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
+    local CFLAGS
+    local CXXFLAGS
+    local LDFLAGS
+    local DEB_CFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
+    local DEB_CXXFLAGS_APPEND="-mcpu=cortex-a76.cortex-a55 -O2 -pipe"
     local KERNEL_DIR="linux-debian"
     local REPO_URL="https://salsa.debian.org/kernel-team/linux.git"
     local BRANCH="debian/latest"
@@ -158,6 +158,9 @@ CONFIG_SND_SOC_ES8328=m
 CONFIG_SND_SOC_ES8328_I2C=m
 CONFIG_VIDEO_ROCKCHIP_RKVENC=m
 CONFIG_DRM_PANIC=n
+CONFIG_DMABUF_HEAPS=y
+CONFIG_DMABUF_HEAPS_SYSTEM=y
+CONFIG_DMABUF_HEAPS_CMA=y
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
     export skipdbg=true
