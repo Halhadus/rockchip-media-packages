@@ -65,6 +65,7 @@ install_build_deps() {
 build_standard_repos() {
     repos=(
         "https://github.com/Halhadus/debian-opi5plus-halhadus-config main debian-opi5plus-halhadus-config"
+        "https://github.com/rockchip-linux/mpp develop mpp"
     )
 
     for repo_info in "${repos[@]}"; do
@@ -97,7 +98,7 @@ build_ffmpeg() {
     filterdiff -x '*/Changelog' -x '*/.forgejo/CODEOWNERS' v4l2request.diff > clean_v4l2request.diff
     run_silent "Applying clean_v4l2request.diff" patch -p1 -i clean_v4l2request.diff
     echo -e "${YELLOW}-> Modifying debian/rules flags (enable v4l2-request/m2m)...${NC}"
-    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                 --enable-version3 \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-hwaccels \\' debian/rules
+    sed -i '/--enable-libvpx/a \                --enable-v4l2-request \\\n                 --enable-version3 \\\n                --enable-libudev \\\n                --enable-v4l2_m2m \\\n                --enable-libdrm \\\n                --enable-neon \\\n                --enable-rkmpp \\\n                --enable-hwaccels \\' debian/rules
     install_build_deps
     run_silent "Compiling and packaging: ffmpeg" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
@@ -155,6 +156,10 @@ CONFIG_DRM_ACCEL_ROCKET=m
 CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
 CONFIG_SND_SOC_ES8328=m
 CONFIG_SND_SOC_ES8328_I2C=m
+CONFIG_VIDEO_ROCKCHIP_RKVENC=m
+CONFIG_DMABUF_HEAPS=y
+CONFIG_DMABUF_HEAPS_SYSTEM=y
+CONFIG_DMABUF_HEAPS_CMA=y
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
     export skipdbg=true
@@ -193,7 +198,7 @@ EOF
             rm -rf temp_patch.mbx
         "
     done
-    #run_silent "Applying patch: Out-of-tree VEPU580 driver" bash -c "wget -qO- https://github.com/rcawston/rockchip-rk3588-mainline-patches/raw/refs/heads/main/0001-rockchip-rk3588-vepu580-encoder-support-v3.patch | patch -p1 -N"
+    run_silent "Applying patch: Out-of-tree VEPU580 driver" bash -c "wget -qO- https://github.com/rcawston/rockchip-rk3588-mainline-patches/raw/refs/heads/main/0001-rockchip-rk3588-vepu580-encoder-support-v3.patch | patch -p1 -N"
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
