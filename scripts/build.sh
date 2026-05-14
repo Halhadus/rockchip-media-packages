@@ -62,7 +62,7 @@ install_build_deps() {
 build_standard_repos() {
     repos=(
         "https://github.com/JeffyCN/mirrors.git linux-rga-multi linux-rga"
-        "https://github.com/nyanmisaka/rk-mirrors jellyfin-mpp mpp"
+        "https://github.com/rockchip-linux/mpp develop mpp"
         "https://github.com/woodyst/rockchip-vaapi main libva-rockchip"
     )
 
