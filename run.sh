@@ -3,8 +3,7 @@
 set -e
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-IMAGE_NAME="rockchip-testing-builder"
-DOCKERFILE="Dockerfile"
+IMAGE_NAME="rockchip-forky-builder"
 OUTPUT_DIR="$BASE_DIR/output"
 
 echo "=== Rockchip Unofficial Package Builder ==="
@@ -18,10 +17,10 @@ fi
 mkdir -p "$OUTPUT_DIR"
 
 echo "Building Docker image ($IMAGE_NAME)..."
-docker build -f "$BASE_DIR/$DOCKERFILE" -t "$IMAGE_NAME" "$BASE_DIR"
+docker build --network=host -t "$IMAGE_NAME" "$BASE_DIR"
 
 echo "Starting build container..."
-docker run --rm \
+docker run --network=host --rm \
     -v "$BASE_DIR/output:/root/output" \
     -v "$BASE_DIR/build_workspace:/root/build_workspace" \
     "$IMAGE_NAME"

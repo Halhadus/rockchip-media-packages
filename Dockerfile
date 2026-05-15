@@ -1,7 +1,7 @@
-FROM debian:testing
+FROM debian:forky
 
 LABEL maintainer="Halhadus"
-LABEL description="Build environment for Rockchip multimedia packages on Debian Testing"
+LABEL description="Build environment for Rockchip multimedia packages on Debian Forky"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -15,11 +15,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     devscripts \
     equivs \
     git \
+    b4 \
     libdrm-dev \
+    libegl-dev \
+    libffi-dev \
+    libgbm-dev \
+    libgl-dev \
+    libssl-dev \
+    libstdc++6 \
+    libvulkan-dev \
+    libwayland-bin \
+    libwayland-client0 \
+    libwayland-dev \
+    libx11-xcb-dev \
+    libxcb-dri2-0-dev \
+    libxcb-dri3-dev \
+    libxcb-glx0-dev \
+    libxcb-present-dev \
+    libxcb-randr0-dev \
+    libxcb-shm0-dev \
+    libxcb-sync-dev \
+    libxkbcommon-dev \
     meson \
     pkg-config \
     rsync \
+    wayland-protocols \
     wget \
+    xorg-dev \
+    libfdk-aac-dev \
+    libldacbt-enc-dev \
+    patchutils \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
