@@ -176,7 +176,7 @@ EOF
     log_header "Applying RK3588 Video/Media Patches"
     LORE_MSGIDS=(
         "20260409-rkvdec-multicore-v1-0-62b316abf0f7@collabora.com"
-        "20260428-spu-rga3-v5-0-eb7f5d019d86@pengutronix.de"
+        "20260617-v4l2-add-fdinfo-v2-0-d298e98ce06a@collabora.com"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
         run_silent "Applying patch: $msgid" bash -c "
@@ -193,7 +193,6 @@ EOF
             rm -rf temp_patch.mbx
         "
     done
-    #run_silent "Applying patch: Out-of-tree VEPU580 driver" bash -c "wget -qO- https://github.com/rcawston/rockchip-rk3588-mainline-patches/raw/refs/heads/main/0001-rockchip-rk3588-vepu580-encoder-support-v3.patch | patch -p1 -N"
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
