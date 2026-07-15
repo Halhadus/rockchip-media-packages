@@ -156,7 +156,7 @@ CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
 CONFIG_SND_SOC_ES8328=m
 CONFIG_SND_SOC_ES8328_I2C=m
 EOF
-    run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl
+    run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl equivs
     export skipdbg=true
     export DEBIAN_KERNEL_DISABLE_DEBUG=yes
     export DEBIAN_KERNEL_DISABLE_CLOUD=y
@@ -166,6 +166,8 @@ EOF
     export DEB_BUILD_PROFILES="pkg.linux.nokerneldbg pkg.linux.nokerneldbginfo pkg.linux.nosource nodoc nosource nocloud nort noudeb"
     export MAKEFLAGS="DTC_FLAGS=-@"
     export DTC_FLAGS="-@"
+    run_silent "Disabling signed templates to generate clean local linux-image" sed -i 's/enable_signed = true/enable_signed = false/g' debian/config/arm64/defines.toml
+    run_silent "Fixing ABI full enforcement for local unreleased suite" sed -i '/abi_version_full = false/d' debian/config/defines.toml
     run_silent "Nuking RT, Cloud, and 16k flavours" perl -0777 -pi -e 's/\[\[flavour\]\]\nname = '\''(cloud-arm64|rt-arm64|arm64-16k)'\''[\s\S]*?(?=\[\[flavour\]\]|\[\[featureset\]\])//g' debian/config/arm64/defines.toml
     run_silent "Nuking Cross-Arch libc-dev configs" perl -0777 -pi -e 's/\[\[kernelarch\]\]\nname = '\''(alpha|arc|arm|parisc|loongarch|m68k|mips|powerpc|riscv|s390|sh|sparc|x86)'\''[\s\S]*?(?=\[\[kernelarch\]\]|\[\[featureset\]\]|\[\[debianrelease\]\])//g' debian/config/defines.toml
     run_silent "Generating debian/control" sh -c "make -f debian/rules debian/control || true"
@@ -194,6 +196,41 @@ EOF
     done
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
+    log_header "Generating Meta-Packages"
+    REAL_IMAGE_DEB=$(find .. -maxdepth 1 -name "linux-image-[0-9]*.deb" ! -name "*dbg*" | head -n 1)
+    REAL_HEADERS_DEB=$(find .. -maxdepth 1 -name "linux-headers-[0-9]*-arm64_*.deb" | head -n 1)
+    if [ -n "$REAL_IMAGE_DEB" ]; then
+        IMAGE_PKG_NAME=$(dpkg-deb -f "$REAL_IMAGE_DEB" Package)
+        KERNEL_VERSION=$(dpkg-deb -f "$REAL_IMAGE_DEB" Version)
+        cat <<EOF > opi5plus-image.control
+Section: kernel
+Priority: optional
+Package: linux-image-opi5plus
+Version: $KERNEL_VERSION
+Architecture: arm64
+Depends: $IMAGE_PKG_NAME (= $KERNEL_VERSION)
+Description: Meta-package for Orange Pi 5 Plus custom kernel
+ Installs and upgrades to the latest compiled local kernel automatically.
+EOF
+        equivs-build opi5plus-image.control
+        mv linux-image-opi5plus_*.deb "$OUTPUT_DIR"/
+    fi
+    if [ -n "$REAL_HEADERS_DEB" ]; then
+        HEADERS_PKG_NAME=$(dpkg-deb -f "$REAL_HEADERS_DEB" Package)
+        KERNEL_VERSION=$(dpkg-deb -f "$REAL_HEADERS_DEB" Version)
+        cat <<EOF > opi5plus-headers.control
+Section: kernel
+Priority: optional
+Package: linux-headers-opi5plus
+Version: $KERNEL_VERSION
+Architecture: arm64
+Depends: $HEADERS_PKG_NAME (= $KERNEL_VERSION)
+Description: Meta-package for Orange Pi 5 Plus custom kernel headers
+ Installs and upgrades to the latest compiled local kernel headers automatically.
+EOF
+        equivs-build opi5plus-headers.control
+        mv linux-headers-opi5plus_*.deb "$OUTPUT_DIR"/
+    fi
     mv ../*.deb "$OUTPUT_DIR"/ 2>/dev/null
     log_success "Debian Kernel built successfully."
 }
