@@ -1,11 +1,11 @@
 # Repository unarchived
 Unarchived repository because I no longer use ArchLinuxARM(I've lost all my brain cells from tracking the source codes, PKGBUILDs, etc. that I use.). But also I no longer using BSP kernel so we need V4L2 patches.
 
-# Rockchip Mainline Multimedia Build System (Debian Forky)
+# Rockchip Mainline Multimedia Build System (Debian sid)
 
-This repository contains automated scripts and CI workflows to build some V4L2 Request patched packages (FFmpeg and mpv with HW accel) and **Collabora devel branch kernel** packages for **Debian Forky (ARM64)**.
+This repository contains automated scripts and CI workflows to build some V4L2 Request patched packages (FFmpeg and mpv with HW accel) and **Collabora devel branch kernel** packages for **Debian sid (ARM64)**.
 
-Designed for Orange Pi 5 series / Rock 5 series and similar RK3588 based devices running Debian Forky.
+Designed for Orange Pi 5 series / Rock 5 series and similar RK3588 based devices running Debian sid.
 
 ## 📦 Included Packages
 
@@ -42,7 +42,7 @@ Pin-Priority: 990
 ```
 Types: deb
 URIs: https://halhadus.github.io/rockchip-media-packages/
-Suites: forky
+Suites: sid
 Components: main
 Trusted: yes
 ```
