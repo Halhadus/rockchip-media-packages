@@ -178,6 +178,7 @@ EOF
     log_header "Applying RK3588 Video/Media Patches"
     LORE_MSGIDS=(
         "20260409-rkvdec-multicore-v1-0-62b316abf0f7@collabora.com"
+        "20260726-b4-add-rkvdec2-vp9-vdpu381-v1-0-180fb2d1f10c@gmail.com"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
         run_silent "Applying patch: $msgid" bash -c "
