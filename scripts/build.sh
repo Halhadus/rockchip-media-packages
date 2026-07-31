@@ -195,6 +195,20 @@ EOF
             rm -rf temp_patch.mbx
         "
     done
+    log_header "Applying Multicore Port Fixes to rkvdec-vdpu381-vp9.c"
+    RKVDEC_C="drivers/media/platform/rockchip/rkvdec/rkvdec.c"
+    if [ -f "$RKVDEC_C" ] && ! grep -q "rkvdec_vdpu381_vp9_fmt_ops" "$RKVDEC_C"; then
+        sed -i '/static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts\[\] = {/a \thttps:\n\t{\n\t\t.fourcc = V4L2_PIX_FMT_VP9_FRAME,\n\t\t.frmsize = {\n\t\t\t.min_width = 64,\n\t\t\t.max_width = 65472,\n\t\t\t.step_width = 64,\n\t\t\t.min_height = 64,\n\t\t\t.max_height = 65472,\n\t\t\t.step_height = 64,\n\t\t},\n\t\t.ctrls = &vdpu381_vp9_ctrls,\n\t\t.ops = &rkvdec_vdpu381_vp9_fmt_ops,\n\t\t.num_decoded_fmts = ARRAY_SIZE(rkvdec_vdpu381_vp9_decoded_fmts),\n\t\t.decoded_fmts = rkvdec_vdpu381_vp9_decoded_fmts,\n\t},' "$RKVDEC_C"
+        sed -i 's/https://g' "$RKVDEC_C"
+    fi
+    VP9_FILE="drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-vp9.c"
+    if [ -f "$VP9_FILE" ]; then
+        sed -i 's/rkvdec->dev/ctx->dev->v4l2_dev.dev/g' "$VP9_FILE"
+        sed -i 's/ctx->dev->dev/ctx->dev->v4l2_dev.dev/g' "$VP9_FILE"
+        sed -i 's/rkvdec->regs/ctx->core->regs/g' "$VP9_FILE"
+        sed -i 's/rkvdec->axi_clk/ctx->core->axi_clk/g' "$VP9_FILE"
+        sed -i 's/rkvdec->watchdog_work/ctx->core->watchdog_work/g' "$VP9_FILE"
+    fi
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     log_header "Generating Meta-Packages"
