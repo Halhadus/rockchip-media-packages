@@ -1,0 +1,26 @@
+Origin: RockchipPackagesBuilder
+Label: Rockchip Media Packages Unofficial Repo
+Suite: sid
+Codename: sid
+Version: 1.0
+Architectures: arm64
+Components: main
+Description: Compiled Rockchip multimedia packages
+Date: Sun, 02 Aug 2026 07:52:05 +0000
+Date: Sun, 02 Aug 2026 07:52:05 +0000
+MD5Sum:
+ 2fd4a78f0b5a81247dccb4602b7d97ac              282 Release
+ 4d61c797548138bedb5cca32811800d8            62585 main/binary-arm64/Packages
+ 2333854654d3bd73c1a7bb652c5755c4            14401 main/binary-arm64/Packages.gz
+SHA1:
+ e4605d1c7841be1d1724ac3aa4799de19b039b24              282 Release
+ 5ed5a3e3676e8343a794635f63257ab7d379a661            62585 main/binary-arm64/Packages
+ 1934988303ce29599eecfc4533fa154165132e6f            14401 main/binary-arm64/Packages.gz
+SHA256:
+ 657a9fef89e5ef691ec78abb0a505eac79e285a005943beb7a86c5b51ee1712e              282 Release
+ 2535de702aabf57d6cf79ee0f73bd59e29f30d7f367360e2e00133bf7ae1595c            62585 main/binary-arm64/Packages
+ 9b9f2f6696640b02dcca409bafb53d3bd50e1139cc72f695faaeebfb5ace44fe            14401 main/binary-arm64/Packages.gz
+SHA512:
+ 4e4035f4d4d447e6c35b9f17f57a1571b4a536fad045c55bf5d2a74447db647a84ad56f7af78ad6982e7d50d8200d6ce7f5fb1846dbf3b4441167ac42f5bf96d              282 Release
+ 875ed2f3a85672411298324a85ba3a1a5452e0228c0e9875865b9b059d4967ba1e6063028361d918cd4f8802b87a7c1dcadbba444c2596ed26b14e9debdc1479            62585 main/binary-arm64/Packages
+ d7b0c30fd2cde985ae76dc9e31677be53c25734f3c89f6228dd880d9ac307746c5dcd06cace5b98b126eefea669b1d59b438e989e7d021fa1fc4432096df6261            14401 main/binary-arm64/Packages.gz
