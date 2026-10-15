@@ -177,14 +177,14 @@ EOF
     run_silent "Preparing and patching source" debian/rules source
     log_header "Applying RK3588 Video/Media Patches"
     LORE_MSGIDS=(
-        "20260409-rkvdec-multicore-v1-0-62b316abf0f7@collabora.com"
-        "20260726-b4-add-rkvdec2-vp9-vdpu381-v1-0-180fb2d1f10c@gmail.com"
+        "20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com"
+        "CAEWPSH754+Wq7W4CVKNqjuMZ22q_S79K-Tin9SXYw1RCYQwLwg@mail.gmail.com"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
         run_silent "Applying patch: $msgid" bash -c "
             rm -rf temp_patch.mbx
             set -e
-            b4 am -o temp_patch.mbx \"$msgid\" 2>&1
+            b4 am -c -C -o temp_patch.mbx \"$msgid\" 2>&1
             if [ -d temp_patch.mbx ]; then
                 for p in \$(ls temp_patch.mbx/*.mbx | sort); do
                     patch -p1 --batch -N < \"\$p\" 2>&1
