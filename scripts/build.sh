@@ -177,22 +177,32 @@ EOF
     run_silent "Preparing and patching source" debian/rules source
     log_header "Applying RK3588 Video/Media Patches"
     LORE_MSGIDS=(
+        "20260916-spu-rga3multicore-v2-17-23aa2cb74e61@pengutronix.de"
         "20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com"
         "CAEWPSH754+Wq7W4CVKNqjuMZ22q_S79K-Tin9SXYw1RCYQwLwg@mail.gmail.com"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
         run_silent "Applying patch: $msgid" bash -c "
-            rm -rf temp_patch.mbx
+            rm -rf temp_patch.mbx temp_patch.split
             set -e
             b4 am -c -C -o temp_patch.mbx \"$msgid\" 2>&1
             if [ -d temp_patch.mbx ]; then
                 for p in \$(ls temp_patch.mbx/*.mbx | sort); do
-                    patch -p1 --batch -N < \"\$p\" 2>&1
+                    mkdir -p temp_patch.split
+                    git mailsplit -o"temp_patch.split" "\$p"
+                    for part in temp_patch.split/*; do
+                        if [ \"$msgid\" = '20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com' ] && grep -qFx 'Subject: [PATCH v2 3/5] v4l2: export v4l2_m2m_set_max_parallel_jobs' \"\$part\"; then
+                            echo 'Skipping duplicate RKVDEC 3/5 export patch'
+                            continue
+                        fi
+                        patch -p1 --batch -N < \"\$part\" 2>&1
+                    done
+                    rm -rf temp_patch.split
                 done
             else
                 patch -p1 --batch -N < temp_patch.mbx 2>&1
             fi
-            rm -rf temp_patch.mbx
+            rm -rf temp_patch.mbx temp_patch.split
         "
     done
     log_header "Applying Multicore Port Fixes to rkvdec-vdpu381-vp9.c"
@@ -203,11 +213,12 @@ EOF
     fi
     VP9_FILE="drivers/media/platform/rockchip/rkvdec/rkvdec-vdpu381-vp9.c"
     if [ -f "$VP9_FILE" ]; then
-        sed -i 's/rkvdec->dev/ctx->dev->v4l2_dev.dev/g' "$VP9_FILE"
-        sed -i 's/ctx->dev->dev/ctx->dev->v4l2_dev.dev/g' "$VP9_FILE"
+        sed -i 's/rkvdec->dev/ctx->dev->main_core->dev/g' "$VP9_FILE"
+        sed -i 's/ctx->dev->dev/ctx->dev->main_core->dev/g' "$VP9_FILE"
         sed -i 's/rkvdec->regs/ctx->core->regs/g' "$VP9_FILE"
         sed -i 's/rkvdec->axi_clk/ctx->core->axi_clk/g' "$VP9_FILE"
         sed -i 's/rkvdec->watchdog_work/ctx->core->watchdog_work/g' "$VP9_FILE"
+        sed -i '/^[[:space:]]*struct rkvdec_dev \*rkvdec = ctx->dev;[[:space:]]*$/d' "$VP9_FILE"
     fi
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
