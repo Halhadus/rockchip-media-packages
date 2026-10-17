@@ -155,6 +155,7 @@ CONFIG_DRM_ACCEL_ROCKET=m
 CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
 CONFIG_SND_SOC_ES8328=m
 CONFIG_SND_SOC_ES8328_I2C=m
+CONFIG_DMABUF_DEBUG=n
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl equivs
     export skipdbg=true
