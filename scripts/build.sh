@@ -236,6 +236,7 @@ Package: linux-image-opi5plus
 Version: $KERNEL_VERSION
 Architecture: arm64
 Depends: $IMAGE_PKG_NAME (= $KERNEL_VERSION)
+Provides: linux-image-generic
 Description: Meta-package for Orange Pi 5 Plus custom kernel
  Installs and upgrades to the latest compiled local kernel automatically.
 EOF
@@ -252,6 +253,7 @@ Package: linux-headers-opi5plus
 Version: $KERNEL_VERSION
 Architecture: arm64
 Depends: $HEADERS_PKG_NAME (= $KERNEL_VERSION)
+Provides: linux-headers-generic
 Description: Meta-package for Orange Pi 5 Plus custom kernel headers
  Installs and upgrades to the latest compiled local kernel headers automatically.
 EOF
