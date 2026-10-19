@@ -181,6 +181,7 @@ EOF
         "20260916-spu-rga3multicore-v2-17-23aa2cb74e61@pengutronix.de"
         "20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com"
         "CAEWPSH754+Wq7W4CVKNqjuMZ22q_S79K-Tin9SXYw1RCYQwLwg@mail.gmail.com"
+        "20260908111908.19371-1-royalnet026@gmail.com"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
         run_silent "Applying patch: $msgid" bash -c "
