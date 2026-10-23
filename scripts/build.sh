@@ -64,7 +64,6 @@ install_build_deps() {
 
 build_standard_repos() {
     repos=(
-        "https://github.com/Halhadus/debian-opi5plus-halhadus-config main debian-opi5plus-halhadus-config"
         "https://github.com/Halhadus/va-request main libva-v4l2-request"
     )
 
