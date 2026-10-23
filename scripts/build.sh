@@ -65,6 +65,7 @@ install_build_deps() {
 build_standard_repos() {
     repos=(
         "https://github.com/Halhadus/debian-opi5plus-halhadus-config main debian-opi5plus-halhadus-config"
+        "https://github.com/Halhadus/va-request main libva-v4l2-request"
     )
 
     for repo_info in "${repos[@]}"; do
@@ -272,8 +273,8 @@ echo "--- Build Run Started: $(date) ---" > "$LOG_FILE"
 
 build_standard_repos
 build_debian_kernel
-build_ffmpeg
-build_mpv
+#build_ffmpeg
+#build_mpv
 
 run_silent "Cleaning unnecessary packages" rm -f "$OUTPUT_DIR"/*dbg*.deb "$OUTPUT_DIR"/*-doc*.deb "$OUTPUT_DIR"/*-source*.deb "$OUTPUT_DIR"/*-cross*.deb
 
