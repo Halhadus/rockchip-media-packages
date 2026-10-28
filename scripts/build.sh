@@ -183,6 +183,7 @@ EOF
         "20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com"
         "CAEWPSH754+Wq7W4CVKNqjuMZ22q_S79K-Tin9SXYw1RCYQwLwg@mail.gmail.com"
         "20260908111908.19371-1-royalnet026@gmail.com"
+        "20261024-es8328-vol-init-v1-2-efbd24de9639@163.com"
     )
     for msgid in "${LORE_MSGIDS[@]}"; do
         run_silent "Applying patch: $msgid" bash -c "
@@ -194,8 +195,8 @@ EOF
                     mkdir -p temp_patch.split
                     git mailsplit -o"temp_patch.split" "\$p"
                     for part in temp_patch.split/*; do
-                        if [ \"$msgid\" = '20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com' ] && grep -qFx 'Subject: [PATCH v2 3/5] v4l2: export v4l2_m2m_set_max_parallel_jobs' \"\$part\"; then
-                            echo 'Skipping duplicate RKVDEC 3/5 export patch'
+                        if { [ \"$msgid\" = '20260810-rkvdec-multicore-v2-5-986f89d22cdc@collabora.com' ] && grep -qFx 'Subject: [PATCH v2 3/5] v4l2: export v4l2_m2m_set_max_parallel_jobs' \"\$part\"; } || { [ \"$msgid\" = '20261024-es8328-vol-init-v1-2-efbd24de9639@163.com' ] && grep -qFx 'Subject: [PATCH 1/2] ASoC: es8328: describe the power-on register values in the regmap' \"\$part\"; }; then
+                            echo 'Skipping excluded patch'
                             continue
                         fi
                         patch -p1 --batch -N < \"\$part\" 2>&1
@@ -223,6 +224,9 @@ EOF
         sed -i 's/rkvdec->watchdog_work/ctx->core->watchdog_work/g' "$VP9_FILE"
         sed -i '/^[[:space:]]*struct rkvdec_dev \*rkvdec = ctx->dev;[[:space:]]*$/d' "$VP9_FILE"
     fi
+    log_header "Fixing ES8388 ADC tri-state output"
+    ES8328_C="sound/soc/codecs/es8328.c"
+    sed -i '/^static int es8328_set_dai_fmt(/,/^static int es8328_set_bias_level(/s/^\treturn 0;$/\tsnd_soc_component_update_bits(component, ES8328_ADCCONTROL3, BIT(2), 0);\n\treturn 0;/' "$ES8328_C"
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     log_header "Generating Meta-Packages"
