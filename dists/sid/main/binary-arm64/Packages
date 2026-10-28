@@ -1,0 +1,532 @@
+Package: bpftool
+Source: linux (7.3-1~exp1)
+Version: 7.8.0+7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 1070
+Depends: libc6 (>= 2.38), libcap2 (>= 1:2.10), libelf1t64 (>= 0.144), libssl3t64 (>= 3.0.0), zlib1g (>= 1:1.2.3.4)
+Filename: pool/main/bpftool_7.8.0+7.3-1~exp1_arm64.deb
+Size: 551284
+MD5sum: 245330f867888da64205e388217c621c
+SHA1: e6e3a9b45e8ef455a62c438c6c9ad8233a1bb8ca
+SHA256: 9fd352b5c6cee35a03f8be006017ad897f47ec2a2bc9f3e9f59a6ece8858023a
+Section: devel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Inspection and simple manipulation of BPF programs and maps
+ The bpftool command allows for inspection and simple modification of
+ Berkeley Packet Filter (BPF) objects on the system.
+
+Package: hyperv-daemons
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 484
+Depends: libc6 (>= 2.38)
+Filename: pool/main/hyperv-daemons_7.3-1~exp1_arm64.deb
+Size: 320328
+MD5sum: c22e70733297b2aea78d33a30e23e008
+SHA1: 09cbb88f8f8ad127ea477c1840adf3cae49b7374
+SHA256: 5ba3c90f80c5d938904f841c0b5c9229192626351167935274efa5bd6936f0db
+Section: admin
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Support daemons for Linux running on Hyper-V
+ Suite of daemons for Linux guests running on Hyper-V.
+ .
+ hv_kvp_daemon provides the key-value pair (KVP) service, allowing the host
+ to get and set the IP networking configuration of the guest.  (This
+ requires helper scripts which are not currently included.)
+ .
+ hv_vss_daemon provides the volume shadow copy service (VSS), allowing the
+ host to freeze the guest filesystems while taking a snapshot.
+
+Package: libcpupower-dev
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 322
+Depends: libcpupower1 (= 7.3-1~exp1)
+Conflicts: libcpufreq-dev
+Replaces: libcpufreq-dev
+Provides: libcpufreq-dev
+Filename: pool/main/libcpupower-dev_7.3-1~exp1_arm64.deb
+Size: 305792
+MD5sum: 11a38b2a51313e666900473f539b0a2c
+SHA1: a7cc193590ca25ca6d6fb643c8c025c06a8ca01b
+SHA256: 6ed6799b2395ba4f43deb135299f140cc4d70e1c0b4c4ef2c573533971639fa1
+Section: libdevel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: CPU frequency and voltage scaling tools for Linux (development files)
+ libcpupower is a library for inspecting and controlling cpufreq and
+ cpuidle tunables.
+ .
+ This package is needed to compile programs against libcpupower.
+
+Package: libcpupower1
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 387
+Depends: libc6 (>= 2.38)
+Filename: pool/main/libcpupower1_7.3-1~exp1_arm64.deb
+Size: 312656
+MD5sum: d481d3d45b531482b6cdb8b8e3130712
+SHA1: 413594e43097f212d7ec8b3fcc4079008235dded
+SHA256: 554e60f40e58023dc5a82521519ea16f16b5e5fb8df6045aac9402913fba4db4
+Section: libs
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: CPU frequency and voltage scaling tools for Linux (libraries)
+ libcpupower is a library for inspecting and controlling cpufreq and
+ cpuidle tunables.
+ .
+ This package contains the shared library.
+
+Package: libva-v4l2
+Version: 0.1.0
+Architecture: arm64
+Maintainer: Halhadus <eneshakans45@proton.me>
+Installed-Size: 564
+Depends: libc6 (>= 2.34), libdrm2 (>= 2.4.75), libgbm1 (>= 21.1.0), libva2 (>= 2.23.0)
+Recommends: libegl1, libgles2
+Filename: pool/main/libva-v4l2_0.1.0_arm64.deb
+Size: 220724
+MD5sum: c5bb70fa7a0690f32cc3039172eeae6c
+SHA1: e213af9a1514b81e4c6f43a58eaa1348ad943f8b
+SHA256: a9746c6201a6867514433beb22951d154346418b2fc5140147c604acb9dc43d3
+Section: video
+Priority: optional
+Homepage: https://github.com/Halhadus/va-v4l2
+Description: VA-API driver for Linux V4L2
+ Provides VA-API decoding through stateful V4L2 memory-to-memory and
+ stateless Request API interfaces, encoding and video processing, and LINEAR
+ DRM PRIME buffer sharing. Available operations are discovered at runtime.
+ See the support matrix for implemented codecs, formats and limitations.
+
+Package: linux-base-7.3+unreleased-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 146520
+Filename: pool/main/linux-base-7.3+unreleased-arm64_7.3-1~exp1_arm64.deb
+Size: 5209384
+MD5sum: 3cec9fd62616551c6f8c8f069365e30a
+SHA1: 1ac581958720e8ed50144f78aebadb9fb33cef8f
+SHA256: 84c19bc1599ab563003d200d6f37c0258dcb80acf75fa251e68241b202e35458
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux 7.3 for 64-bit ARMv8 machines (base files)
+ This package contains files for Linux 7.3 on 64-bit ARMv8 machines that
+ are used for both installing the kernel and building additional modules.
+
+Package: linux-base-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 11
+Depends: linux-base-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Filename: pool/main/linux-base-arm64_7.3-1~exp1_arm64.deb
+Size: 1228
+MD5sum: 3bb4d4f31ff3000473835fcc717d71f8
+SHA1: 30198adc5df75cd9ba1b348f535ee989e768d1f6
+SHA256: e0d3970bf53f969107dd21dfed95c91c92792b14c33168a539928962e44d620c
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux for 64-bit ARMv8 machines (dummy package)
+ This empty package is used to keep the installed versions of
+ linux-headers-64-bit ARMv8 machines and linux-image-64-bit ARMv8 machines
+ synchronised.
+
+Package: linux-binary-7.3+unreleased-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 42961
+Depends: linux-base-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Filename: pool/main/linux-binary-7.3+unreleased-arm64_7.3-1~exp1_arm64.deb
+Size: 10627748
+MD5sum: 81841c133927b8efbc6988e4ef19d67e
+SHA1: 528fce1ee718d6dc7f7e1badc1cd9a6c24038d33
+SHA256: e3f5e9877a180e1b4ac5a94297b723c36d93f218fd0e8748e4b3c1d593c1ac00
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux 7.3 for 64-bit ARMv8 machines (kernel image)
+ This package contains the kernel image for Linux 7.3 on 64-bit ARMv8
+ machines.
+ .
+ This does not provide a complete kernel installation.  You should normally
+ install linux-image-7.3+unreleased-arm64.
+
+Package: linux-bpf-dev
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 314
+Filename: pool/main/linux-bpf-dev_7.3-1~exp1_arm64.deb
+Size: 303404
+MD5sum: e66e60506b940beb7695fc0d8a78982f
+SHA1: fdd2fd2b9488b3181e940f63a5fd080968c0a2f4
+SHA256: 5e30689657382ddf960db2c3c53841215705b4fc053486f53fb3d83484eb06a5
+Section: devel
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.kernel.org/
+Description: Headers for BPF development
+ The vmlinux.h header is provided to allow userspace to build BPF CO-RE
+ programs targeting the packaged kernel.
+
+Package: linux-cpupower
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 516
+Depends: libc6 (>= 2.38), libcpupower1 (>= 6.14~)
+Filename: pool/main/linux-cpupower_7.3-1~exp1_arm64.deb
+Size: 342960
+MD5sum: f010ca656248826a69489ed8d7dd2e32
+SHA1: 80292e734b1ed006454fa12459fc3cd355091797
+SHA256: 87ef7a60a6d0d1fe9916f784d0971cecd9dc62b069b0de76ed8f4e2ddc08c466
+Section: admin
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: CPU power management tools for Linux
+ The cpupower command allows inspection and control of cpufreq and cpuidle
+ tunables for hardware that supports these features.  It replaces
+ "cpufreq-info" and "cpufreq-set" in cpufrequtils.
+
+Package: linux-headers-7.3+unreleased-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 4546
+Depends: gcc-16-for-host, linux-base (>= 4.12~), linux-base-7.3+unreleased-arm64 (= 7.3-1~exp1), linux-headers-7.3+unreleased-common (= 7.3-1~exp1), linux-kbuild-7.3+unreleased
+Filename: pool/main/linux-headers-7.3+unreleased-arm64_7.3-1~exp1_arm64.deb
+Size: 532440
+MD5sum: 6b5e78c3b23d2d3c78138367f3a256da
+SHA1: 6390b5a06696c84c3088db3c9528a5e2151ffdbf
+SHA256: 5894553f6201c7b8012fa4099b28e88bfd55a55c0a03ccbabde30a526cc13c70
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux 7.3 for 64-bit ARMv8 machines (module development)
+ This package provides the architecture-specific kernel header files for
+ Linux kernel 7.3+unreleased-arm64, generally used for building out-of-tree
+ kernel modules.  These files are going to be installed into
+ /usr/src/linux-headers-7.3+unreleased-arm64, and can be used for building
+ modules that load into the kernel provided by the
+ linux-image-7.3+unreleased-arm64 package.
+
+Package: linux-headers-7.3+unreleased-common
+Source: linux
+Version: 7.3-1~exp1
+Architecture: all
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 51984
+Filename: pool/main/linux-headers-7.3+unreleased-common_7.3-1~exp1_all.deb
+Size: 8844560
+MD5sum: d344f4eb43b73a149375712357590690
+SHA1: 4d12793288e1f83aef316e4ef2b83d5ef49bc3a6
+SHA256: f14a499f25708724a7f55febde726dc11a3a90532b99b3bd36d0e437338389b5
+Section: kernel
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.kernel.org/
+Description: Common header files for Linux 7.3+unreleased
+ This package provides the common kernel header files for Linux kernel
+ version 7.3+unreleased, generally used for building out-of-tree kernel
+ modules.  These files are going to be installed into
+ /usr/src/linux-headers-7.3+unreleased-common.
+ .
+ To obtain a complete set of headers you also need to install the
+ linux-headers-7.3+unreleased-(flavour) package, matching the flavour of
+ the kernel you intend the build for.
+
+Package: linux-headers-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 10
+Depends: linux-base-arm64 (= 7.3-1~exp1), linux-headers-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Provides: linux-headers-generic
+Filename: pool/main/linux-headers-arm64_7.3-1~exp1_arm64.deb
+Size: 1188
+MD5sum: 8db3ecb07d9cf79b6e74eb3c6f55ffbe
+SHA1: 8a4d5207120abf724f2559e325095b0cddc673d1
+SHA256: 5ece085b9796cc1a502174102298f04dfdd4c3270a3b751684ee4fda3511d978
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux for 64-bit ARMv8 machines (module development meta-package)
+ This package depends on the architecture-specific header files for the
+ latest Linux kernel arm64 configuration.
+
+Package: linux-headers-opi5plus
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Equivs Dummy Package Generator <root@75dd3ea5088b>
+Installed-Size: 9
+Depends: linux-headers-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Provides: linux-headers-generic
+Filename: pool/main/linux-headers-opi5plus_7.3-1~exp1_arm64.deb
+Size: 2332
+MD5sum: 35dda81bef2a289dc15bf96e303680cb
+SHA1: 3a0459a399d9137de7f7ec62302336cd67c651cd
+SHA256: 32c7dcc33c6d993803beed08a263086c8acb640957bdaa8310dfae7bc3336d88
+Section: kernel
+Priority: optional
+Multi-Arch: foreign
+Description: Meta-package for Orange Pi 5 Plus custom kernel headers
+ Installs and upgrades to the latest compiled local kernel headers automatically.
+
+Package: linux-image-7.3+unreleased-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 15
+Pre-Depends: linux-base (>= 4.17~)
+Depends: dracut | initramfs-tools (>= 0.120+deb8u2) | linux-initramfs-tool, linux-base-7.3+unreleased-arm64 (= 7.3-1~exp1), linux-binary-7.3+unreleased-arm64 (= 7.3-1~exp1), linux-modules-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Recommends: apparmor
+Suggests: debian-kernel-handbook, firmware-linux-free, linux-doc-7.3
+Breaks: flash-kernel (<< 3.110~), fwupdate (<< 12-7), initramfs-tools (<< 0.120+deb8u2), reform-tools (<< 1.83~), u-boot-efi-dtb (<< 5~), wireless-regdb (<< 2019.06.03-1~)
+Filename: pool/main/linux-image-7.3+unreleased-arm64_7.3-1~exp1_arm64.deb
+Size: 1880
+MD5sum: d174aa26d9254188973035c600d8a7e7
+SHA1: d1660a6a7a0fbcf5192ac8fd92596e52bf4a4c1f
+SHA256: b1a763042ad005af3194034954517b466f22a66c14713884ed898f3833702db0
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux 7.3 for 64-bit ARMv8 machines
+ The Linux kernel 7.3 and modules for use on 64-bit ARMv8 machines.
+
+Package: linux-image-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 15
+Depends: linux-base-arm64 (= 7.3-1~exp1), linux-image-7.3+unreleased-arm64 (= 7.3-1~exp1), linux-modules-arm64 (= 7.3-1~exp1)
+Provides: linux-image-generic, linux-latest-modules-7.3+unreleased-arm64, wireguard-modules (= 1.0.0)
+Filename: pool/main/linux-image-arm64_7.3-1~exp1_arm64.deb
+Size: 1444
+MD5sum: 68d86de34b145ce4a501c8ee0bc7743f
+SHA1: 91c594263f76c7df56365455ade1a65fdf82c80c
+SHA256: c64b3394a94c5583b33435d2fdd227de9f97799e5e5cc3eccdb3b55f15c041c8
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux for 64-bit ARMv8 machines (meta-package)
+ This package depends on the latest Linux kernel and modules for use on
+ 64-bit ARMv8 machines.
+
+Package: linux-image-opi5plus
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Equivs Dummy Package Generator <root@75dd3ea5088b>
+Installed-Size: 9
+Depends: linux-image-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Provides: linux-image-generic
+Filename: pool/main/linux-image-opi5plus_7.3-1~exp1_arm64.deb
+Size: 2320
+MD5sum: 25aa5fcd10eb083fabe6c63d4b8428c0
+SHA1: bea6b4d4f7df6ecd0c33f3ff67bca469fe489fc1
+SHA256: 9e85e43555f165aa9c71b2291e730e449b2fb74b4ad34f5883d75179e6e82fe7
+Section: kernel
+Priority: optional
+Multi-Arch: foreign
+Description: Meta-package for Orange Pi 5 Plus custom kernel
+ Installs and upgrades to the latest compiled local kernel automatically.
+
+Package: linux-kbuild-7.3+unreleased
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 2843
+Depends: pahole, libc6 (>= 2.38), libelf1t64 (>= 0.144), libssl3t64 (>= 3.0.0), zlib1g (>= 1:1.2.3.4)
+Filename: pool/main/linux-kbuild-7.3+unreleased_7.3-1~exp1_arm64.deb
+Size: 745560
+MD5sum: 0940fd6fb277331c8d0e32f5e05a4e25
+SHA1: 1ed70b389536470e3f58684250b32bb1f656764c
+SHA256: 7c6666db96ab30ed485f5ac4f783de8c80b22f50e3dead4d7053f424dc997258
+Section: kernel
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.kernel.org/
+Description: Kbuild infrastructure for Linux 7.3+unreleased
+ This package provides the kbuild infrastructure for the headers packages
+ for Linux kernel version 7.3.
+
+Package: linux-libc-dev
+Source: linux
+Version: 7.3-1~exp1
+Architecture: all
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 8038
+Filename: pool/main/linux-libc-dev_7.3-1~exp1_all.deb
+Size: 1793304
+MD5sum: 6d087a00370ed0d2d71be7fe60fb0828
+SHA1: 59a8e9a4d2f23d10322b94cfa5c6711dd6c41c09
+SHA256: 7bf0fa1d76e5df464e0afcc88d5d1b1f9307d9ca08873b026d4cea6ce5a9bf2d
+Section: devel
+Priority: optional
+Multi-Arch: foreign
+Homepage: https://www.kernel.org/
+Description: Linux support headers for userspace development
+ This package provides userspaces headers from the Linux kernel.  These
+ files are going to be installed into /usr/include, and are used by the
+ installed headers for GNU libc and other system libraries.
+
+Package: linux-misc-tools
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 580
+Depends: libc6 (>= 2.38), libconfig15 (>= 1.8.2+ds), libncursesw6 (>= 6), libtinfo6 (>= 6)
+Filename: pool/main/linux-misc-tools_7.3-1~exp1_arm64.deb
+Size: 333708
+MD5sum: 1a4e7fa684f472e568748dfda4e3a27d
+SHA1: bdc1b1b8b6f0065d67c726ae8a47c342a1f5cfff
+SHA256: c081bb8f0b7472c4fb4b9fa639963efdf1d5819c0cd440a9ef9a8c3b2c8b0fe7
+Section: admin
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: miscellaneous tools from the Linux source tree
+ This package provides the commands:
+ .
+ * bootconfig: Manipulate boot config blobs in initramfs images * ihex2fw:
+ Convert object files from Intel hex format to binary format * thermometer:
+ Create profile of thermal zones * tmon: Monitor and test thermal
+ management
+
+Package: linux-modules-7.3+unreleased-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 65993
+Depends: kmod, linux-base-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Filename: pool/main/linux-modules-7.3+unreleased-arm64_7.3-1~exp1_arm64.deb
+Size: 64926956
+MD5sum: 3a7b33fafc7a0c3299ab7f7423a68c5d
+SHA1: 79745f73ccecc005d664a3b268020ee51f3cb755
+SHA256: 468b6cec6edc22d8849b460542a0b39712cccd43766882c830ba33caa0ade297
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux 7.3 for 64-bit ARMv8 machines (modules)
+ This contains the kernel modules for Linux 7.3 on 64-bit ARMv8 machines.
+ .
+ This does not provide a complete kernel installation.  You should normally
+ install linux-image-7.3+unreleased-arm64.
+
+Package: linux-modules-arm64
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 8
+Depends: linux-base-arm64 (= 7.3-1~exp1), linux-modules-7.3+unreleased-arm64 (= 7.3-1~exp1)
+Filename: pool/main/linux-modules-arm64_7.3-1~exp1_arm64.deb
+Size: 984
+MD5sum: aca9fd985725dbedc032ae7f4c2d36a4
+SHA1: bc2d0018f13afaf1ed129d7797be0d2351889f71
+SHA256: b9941f9db935e89f01f17a0b6f629d057815b1feb602b6caa6aabf7507f2cec7
+Section: kernel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Linux modules for 64-bit ARMv8 machines (meta-package)
+ This package depends on the latest Linux modules for use on 64-bit ARMv8
+ machines.
+
+Package: linux-perf
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 10553
+Depends: perl:any, python3:any, libc6 (>= 2.38), libdebuginfod1t64 (>= 0.180), libdw1t64 (>= 0.161), libelf1t64 (>= 0.144), liblzma5 (>= 5.1.1alpha+20120614), libnuma1 (>= 2.0.11), libopencsd1 (>= 1.5.5), libpython3.14 (>= 3.14.1), libslang2 (>= 2.2.4), libstdc++6 (>= 4.1.1), libtraceevent1 (>= 1:1.3.0), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.2.3.4)
+Suggests: linux-doc-7.3
+Conflicts: linux-tools-7.3
+Replaces: linux-tools-7.3
+Provides: linux-tools-7.3
+Filename: pool/main/linux-perf_7.3-1~exp1_arm64.deb
+Size: 2325468
+MD5sum: 71ac75d2736e7bcfa749811b5b6bdbb0
+SHA1: f1f892ab21ba73b23fb7dfe2cd2de50256f04014
+SHA256: f92286da59c78b9ddacbd0c46f663bdd03a9ce23cf9b5ecccc22daa838649f0e
+Section: devel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Performance analysis tools for Linux
+ This package contains the 'perf' performance analysis tools for Linux.
+
+Package: rtla
+Source: linux
+Version: 7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 450
+Depends: libc6 (>= 2.38), libcpupower1 (>= 4.7~rc2-1~exp1), libtraceevent1 (>= 5.4), libtracefs1 (>= 1.6.3)
+Filename: pool/main/rtla_7.3-1~exp1_arm64.deb
+Size: 347748
+MD5sum: ac708f3fcf8fd67966be2410c0213cdc
+SHA1: 012e03b445b797ba780a7362d51d2ca366fe3e89
+SHA256: f0c7d8fbf0da29f80c112748cd99c831ca055ea220ee9a6e9e15cdbc6f3ee5b0
+Section: devel
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: Real-Time Linux Analysis tools
+ rtla provides a set of commands for analysing the real-time properties of
+ Linux.  rtla uses kernel tracing capabilities to provide precise
+ information about the properties and root causes of unexpected results.
+
+Package: usbip
+Source: linux (7.3-1~exp1)
+Version: 2.0+7.3-1~exp1
+Architecture: arm64
+Maintainer: Debian Kernel Team <debian-kernel@lists.debian.org>
+Installed-Size: 509
+Depends: usb.ids, libc6 (>= 2.34), libudev1 (>= 183), libwrap0 (>= 7.6-4~)
+Filename: pool/main/usbip_2.0+7.3-1~exp1_arm64.deb
+Size: 336288
+MD5sum: cc63e17d1c706dad89ba3e02e57de107
+SHA1: 310a09f758d253a4da10e798e0d20c2939ce295b
+SHA256: c0b9ee4e4bf817c366cecd20cba8960db369fb9c1643bf9aad6e7fb904b46823
+Section: admin
+Priority: optional
+Homepage: https://www.kernel.org/
+Description: USB device sharing system over IP network
+ USB/IP is a system for sharing USB devices over the network.
+ .
+ To share USB devices between computers with their full functionality,
+ USB/IP encapsulates "USB requests" into IP packets and transmits them
+ between computers.
+ .
+ Original USB device drivers and applications can be used for remote USB
+ devices without any modification of them.  A computer can use remote USB
+ devices as if they were directly attached.
+ .
+ Currently USB/IP provides no access control or encryption.  It should only
+ be used in trusted environments.
+ .
+ This package provides the server component 'usbipd' and the client tool
+ 'usbip'.
+
