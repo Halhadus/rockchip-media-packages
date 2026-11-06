@@ -171,6 +171,8 @@ CONFIG_PREEMPT_DYNAMIC=y
 CONFIG_IRQ_TIME_ACCOUNTING=y
 CONFIG_RCU_EXPERT=y
 CONFIG_RCU_BOOST=y
+CONFIG_UBSAN=n
+# CONFIG_DEBUG_LIST is not set
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl equivs
     export skipdbg=true
