@@ -157,6 +157,20 @@ CONFIG_VIDEO_SYNOPSYS_HDMIRX=m
 CONFIG_SND_SOC_ES8328=m
 CONFIG_SND_SOC_ES8328_I2C=m
 CONFIG_DMABUF_DEBUG=n
+CONFIG_VSI_IOMMU=y
+CONFIG_ANDROID_BINDERFS=y
+CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder,anbox-binder,anbox-hwbinder,anbox-vndbinder"
+CONFIG_DMABUF_HEAPS=y
+CONFIG_DMABUF_HEAPS_SYSTEM=y
+CONFIG_DMABUF_HEAPS_CMA=y
+# CONFIG_HZ_250 is not set
+CONFIG_HZ_1000=y
+# CONFIG_PREEMPT_LAZY is not set
+CONFIG_PREEMPT=y
+CONFIG_PREEMPT_DYNAMIC=y
+CONFIG_IRQ_TIME_ACCOUNTING=y
+CONFIG_RCU_EXPERT=y
+CONFIG_RCU_BOOST=y
 EOF
     run_silent "Installing base python modules" apt-get install -y python3-dacite python3-jinja2 perl equivs
     export skipdbg=true
@@ -227,6 +241,10 @@ EOF
     log_header "Fixing ES8388 ADC tri-state output"
     ES8328_C="sound/soc/codecs/es8328.c"
     sed -i '/^static int es8328_set_dai_fmt(/,/^static int es8328_set_bias_level(/s/^\treturn 0;$/\tsnd_soc_component_update_bits(component, ES8328_ADCCONTROL3, BIT(2), 0);\n\treturn 0;/' "$ES8328_C"
+    log_header "Applying RK35xx Panthor GPU Patches"
+    run_silent "Downloading rk35xx-panthor-1GHz.patch" wget -nv "https://raw.githubusercontent.com/armbian/build/main/patch/kernel/archive/rockchip64-7.4/rk35xx-panthor-1GHz.patch" -O rk35xx-panthor-1GHz.patch
+    run_silent "Applying rk35xx-panthor-1GHz.patch" patch -p1 --batch -N --fuzz=0 -i rk35xx-panthor-1GHz.patch
+    rm -f rk35xx-panthor-1GHz.patch
     log_header "Starting compilation"
     run_silent "Compiling and packaging: Debian Kernel" dpkg-buildpackage -us -uc -b -j$(nproc)
     log_header "Generating Meta-Packages"
